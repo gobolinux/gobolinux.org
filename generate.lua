@@ -3,6 +3,7 @@
 local lfs = require("lfs")
 
 local root_dir = lfs.currentdir().."/output"
+local verbose = false
 
 local ok = true
 
@@ -80,7 +81,6 @@ local function apply_template(filename, tags, lang)
    end)
 
    template = template:gsub("<<#([^>]*)>>", function(tag_name)
-print(tag_name, tags[tag_name])
       local output = apply_template(tags[tag_name], tags, lang)
       if special_formatters[tag_name] then
          return special_formatters[tag_name](output)
@@ -193,9 +193,15 @@ for lang in lfs.dir("lang") do
          process_pages(dir.."/pages", out_dir, lang)
          local latest_news = process_news(dir.."/news", out_dir, lang)
          render_with("index.yats", "templates/index.yats", "templates/", out_dir, lang, { latest_news = latest_news })
-      end, function(err) print(err); print(debug.traceback()) end )
+      end, function(err) 
+         if verbose then
+            print(err); print(debug.traceback())
+         end
+      end)
       if not ok then
-         print(err)
+         if verbose then
+            print(err)
+         end
       end
    end
 end
