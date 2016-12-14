@@ -1,0 +1,131 @@
+
+<h2>Organization: is there any?</h2>
+
+<p><i>Hisham Muhammad</i>, November 13th, 2003.</p>
+
+<h3>Who is who</h3>
+
+<p>
+There is no formal organization at this point. The way things work now are 
+derived from the historical evolution of the project. I came up with the 
+original idea, which Andr&eacute; and I first implemented. Guilherme joined soon 
+thereafter. Lucas and Rafael followed.
+</p><p>
+The heart of the distribution is the Scripts package, for which I have been 
+the gatekeeper for most of the time and will return to be soon.
+</p><p>
+Guilherme was the one who first put GoboLinux on a CD, and he takes care of 
+that part to this day. I think he is the person who was most overloaded 
+during my absence, and he did a wonderful job in keeping the ball running. 
+Thanks again.
+</p><p>
+When Lucas came by, he asked "what can I do" and gladly accepted the kernel 
+maintenance duties. Also, he and Felipe Damasio are the developers of 
+GoboHide we all love. Ah, and he is the one you all vimsters have to thank 
+for.
+</p><p>
+Rafael worked hard on the late source packages project (which was not in vain! 
+I converted some of the scripts for inclusion in Compile and plan to convert 
+more of them as time allows) and, with help from Lucas, was the first brave 
+soul to attempt to compile GNOME for GoboLinux (that alone will guarantee his 
+entrance to heaven, along with me and Stu Penrose). He is now temporarily 
+retired from the project, dedicating himself to meditation and the search for 
+his inner soul.
+</p><p>
+Andr&eacute;, the other co-founder, is a funny case, because everytime people ask me 
+this I never know how to describe what he does in the project. At times I 
+feel he has evaporated, but at other times, such as right now, he is 
+essential (and I mean it). I guess his greatest assets are his personality 
+traits. They balance the group well. In the early days, he was the main 
+package builder (in megabytes, while I was the main package builder in 
+package count, packing inumerous silly programs found on Freshmeat every week 
+:) ), taking care of important stuff such as KDE, XFree86 and Glibc. 
+</p><p>
+These are the people who worked the most on the project, and the people I 
+would list if I had to point out a "core team". I'll be honest here. The fact 
+that all five of us are close friends (in real life, that is) and are or have 
+been co-workers undeniably speeds up the process. There is hardly a way where 
+outside contributors can interact with the development process as intimately. 
+I see at least two or three of these guys every day in person. I hate to put 
+people out of the loop, but sometimes it just happens that some decision is 
+taken at a dinner table instead of in the mailing list.
+</p><p>
+Having said that, since the beginning, other people have helped in many ways.
+</p><p>
+Leandro Motta Barros, another friend of ours, started to work on a nice 
+documentation project, which seems to be currently stalled (I can't blame him 
+since some concepts in GoboLinux kept changing so fast during this year), and 
+given the quality of what was produced so far, I'm happy to wait.
+</p><p>
+Dario Rodriguez was the first user from outside of Brazil, back in the 
+pre-Slashdot days, and he was an invaluable source of bug reports and 
+motivated us to write most of the documentation we currently have, because 
+back then all GoboLinux knowledge was spread folklorically, by word of mouth. 
+:)
+</p><p>
+Carlo Calica was the one who introduced us to runit, a major improvement in 
+the distribution and contributed bug-fixes to the Scripts. Sarah Sholu 
+started to write tools for interaction with Portage, during our brief affair 
+with the Gentoo project, and also started an installer.
+</p><p>
+Many other people contributed compiled packages: Cadu Moreira, Ant&ocirc;nio Souto, 
+Todd Boland, Giusepe Casagrande, Stu Penrose... Here's the point where I'll 
+start to forget names and make injustices, sorry... as they say in the "80s 
+hard rock albums thank-you lists": you know who you are! You all rock!
+</p>
+
+<h3>How to join</h3>
+
+<p>
+First of all, help is always welcome!
+</p><p>
+Because of the structure (or lack of) that I described above, it was always 
+hard for people to just join in the project and start contributing. One 
+problem, just as an example: how to accept binaries from someone who appears 
+out of nowhere and says "nice project! here are some compiled packages"? That 
+would be unresponsible. I believe this problem is now, if not solved, much 
+relieved by the advent of the Compile system I posted this week. Anyone can 
+contribute recipes. I would find it great if people volunteered to maintain 
+certain recipes, too. Package availability and maintenance is the #1 problem 
+in any distribution. This is the part that needs the most manpower (or is it 
+personpower? or the 90s are over and we can forget about being collitically 
+correct again?)
+</p><p>
+The other way I see how people can contribute is by taking a task that is 
+totally "unassigned" (ie, that nobody's working on) and that can be done 
+relatively independently and working on that. Leandro did this taking the 
+documentation thing. Time and again people ask for GUI configuration tools 
+and stuff like that. Those would be welcome additions. [ Side note: But I'm 
+not sure how much of a job of the distro maker that is. I think it is our job 
+to integrate them if the tools are available. For example, if you want to 
+improve GoboLinux by writing an X configuration tool to do stuff such as 
+setting refresh rate, resolution, etc., why don't you make it a general, 
+non-distro-specific tool? That would be more useful. ]
+</p><p>
+Another thing I have done now and then that help us is to contribute 
+'configure' scripts to the projects out there. Many times it doesn't even 
+need to be a complex autoconf thing, sometimes a hand-written, single-screen 
+shell script which merely sets one prefix variable in a Makefile is enough. A 
+well behaved tarball is a GoboLinux source package. Making the world a more 
+GoboLinux-friendly place is a Good Thing. 
+</p><p>
+In my view, core stuff such as the Scripts, release management and such will 
+work better if they stay in the hands of the "core team" I listed above, at 
+least for the time being. I'd understand if someone is disappointed in 
+hearing me say (err, reading me write) this, but I don't think it is 
+unreasonable.
+</p>
+
+<h3>Cool. But what are we working for, again?</h3>
+
+<p>
+Every person involved in any level to this project has their own views about 
+this. If you ask my opinion, I'll say I wish GoboLinux to grow and become 
+significant, because I believe that would improve the Linux world as whole, 
+if only for removing hardcoded paths from everything. My ultimate goal, 
+"where I see GoboLinux in 5 years or whatever", is to have a great <i>operating 
+system</i>, not just a "cool Linux distro". It's no secret that I admire Apple 
+Computer (my first computer was an Apple ][) and I envy Mac OS X. They gave 
+UNIX a well-deserved kick in the butt, and I think projects such as ours here 
+is a step in the right direction.
+</p>

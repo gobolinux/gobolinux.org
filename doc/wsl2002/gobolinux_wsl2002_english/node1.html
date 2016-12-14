@@ -1,0 +1,130 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 3.2 Final//EN">
+
+<!--Converted with jLaTeX2HTML 2002 (1.62) JA patch-1.4
+patched version by:  Kenshi Muto, Debian Project.
+LaTeX2HTML 2002 (1.62),
+original version by:  Nikos Drakos, CBLU, University of Leeds
+* revised and updated by:  Marcus Hennecke, Ross Moore, Herb Swan
+* with significant contributions from:
+  Jens Lippmann, Marek Rouchal, Martin Wilck and others -->
+<HTML>
+<HEAD>
+<TITLE>1 Introduction</TITLE>
+<META NAME="description" CONTENT="1 Introduction">
+<META NAME="keywords" CONTENT="gobolinux_wsl2002_english">
+<META NAME="resource-type" CONTENT="document">
+<META NAME="distribution" CONTENT="global">
+
+<META HTTP-EQUIV="Content-Type" CONTENT="text/html; charset=iso-8859-1">
+<META NAME="Generator" CONTENT="jLaTeX2HTML v2002 JA patch-1.4">
+<META HTTP-EQUIV="Content-Style-Type" CONTENT="text/css">
+
+<LINK REL="STYLESHEET" HREF="gobolinux_wsl2002_english.css">
+<LINK REL="STYLESHEET" HREF="../../style.css">
+
+<LINK REL="next" HREF="node2.html">
+<LINK REL="previous" HREF="gobolinux_wsl2002_english.html">
+<LINK REL="up" HREF="gobolinux_wsl2002_english.html">
+<LINK REL="next" HREF="node2.html">
+</HEAD>
+
+<BODY >
+<!--Navigation Panel-->
+<A NAME="tex2html23"
+  HREF="node2.html">
+<IMG WIDTH="37" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="next"
+ SRC="file:/usr/share/latex2html/icons/next.png"></A> 
+<A NAME="tex2html21"
+  HREF="gobolinux_wsl2002_english.html">
+<IMG WIDTH="26" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="up"
+ SRC="file:/usr/share/latex2html/icons/up.png"></A> 
+<A NAME="tex2html15"
+  HREF="gobolinux_wsl2002_english.html">
+<IMG WIDTH="63" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="previous"
+ SRC="file:/usr/share/latex2html/icons/prev.png"></A>   
+<BR>
+<B> Next:</B> <A NAME="tex2html24"
+  HREF="node2.html">2 Characteristics of the</A>
+<B> Up:</B> <A NAME="tex2html22"
+  HREF="gobolinux_wsl2002_english.html">AN ALTERNATIVE FOR THE</A>
+<B> Previous:</B> <A NAME="tex2html16"
+  HREF="gobolinux_wsl2002_english.html">AN ALTERNATIVE FOR THE</A>
+<BR>
+<BR>
+<!--End of Navigation Panel-->
+
+<H1><A NAME="SECTION00010000000000000000">
+1 Introduction</A>
+</H1>
+
+<P>
+The UNIX operating system was first used on environments where users
+accessed a central application server through terminal stations with
+low (or no) storage capacity. A number of characteristics of this
+system, most notably the data organization structured as a directory
+tree, reflect this history. The storage model based on trees proves
+to be adequate to this day; however, the logic behind the UNIX directory
+hierarchy is based on assumptions that no longer correspond to the
+reality of most of the existing Linux installations. The Linux operating
+system is getting widely used on personal stations which execute and
+store the user's applications. In this context, there is no ``application
+server'', and still, conventions such as the existence of different
+repositories for libraries persist (<TT>/lib</TT>, <TT>/usr/lib</TT>
+and <TT>/usr/local/lib</TT>).
+
+<P>
+Because of the fast pace of development in the Free Software community
+( <I>``release early, release often''</I> [<A
+ HREF="node7.html#Raymond2001">3</A>]),
+the process of installing and removing programs became common and
+frequent. This is very different from the scenario on which the criteria
+for the UNIX directory hierarchy (still used by the Linux distributions)
+were based upon. As these criteria do not take into account the needs
+of today's reality, it becomes interesting to reevaluate them and
+seek an alternative.
+
+<P>
+This paper presents a directory tree that was conceived from the needs
+and usage patterns of modern Linux systems and, still, manages to
+retain compatibility with the UNIX legacy. Initially, aspects of the
+classic hierarchy are discussed (Section <A HREF="node2.html#sec:Atual"><IMG  ALIGN="BOTTOM" BORDER="1" ALT="[*]"
+ SRC="file:/usr/share/latex2html/icons/crossref.png"></A>). Next,
+an overview of the approaches employed in directory trees of other
+systems is presented (Section <A HREF="node3.html#sec:Outros"><IMG  ALIGN="BOTTOM" BORDER="1" ALT="[*]"
+ SRC="file:/usr/share/latex2html/icons/crossref.png"></A>). Section <A HREF="node4.html#sec:Gobo"><IMG  ALIGN="BOTTOM" BORDER="1" ALT="[*]"
+ SRC="file:/usr/share/latex2html/icons/crossref.png"></A>
+describes the devised hierarchy, while Section <A HREF="node5.html#sec:Experiencia"><IMG  ALIGN="BOTTOM" BORDER="1" ALT="[*]"
+ SRC="file:/usr/share/latex2html/icons/crossref.png"></A>
+reports experiences related to the use of this model. Finally, Section
+<A HREF="node6.html#sec:Concl"><IMG  ALIGN="BOTTOM" BORDER="1" ALT="[*]"
+ SRC="file:/usr/share/latex2html/icons/crossref.png"></A> concludes the paper.
+
+<P>
+<HR>
+<!--Navigation Panel-->
+<A NAME="tex2html23"
+  HREF="node2.html">
+<IMG WIDTH="37" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="next"
+ SRC="file:/usr/share/latex2html/icons/next.png"></A> 
+<A NAME="tex2html21"
+  HREF="gobolinux_wsl2002_english.html">
+<IMG WIDTH="26" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="up"
+ SRC="file:/usr/share/latex2html/icons/up.png"></A> 
+<A NAME="tex2html15"
+  HREF="gobolinux_wsl2002_english.html">
+<IMG WIDTH="63" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="previous"
+ SRC="file:/usr/share/latex2html/icons/prev.png"></A>   
+<BR>
+<B> Next:</B> <A NAME="tex2html24"
+  HREF="node2.html">2 Characteristics of the</A>
+<B> Up:</B> <A NAME="tex2html22"
+  HREF="gobolinux_wsl2002_english.html">AN ALTERNATIVE FOR THE</A>
+<B> Previous:</B> <A NAME="tex2html16"
+  HREF="gobolinux_wsl2002_english.html">AN ALTERNATIVE FOR THE</A>
+<!--End of Navigation Panel-->
+<ADDRESS>
+Hisham H. Muhammad
+2002-10-28
+</ADDRESS>
+</BODY>
+</HTML>

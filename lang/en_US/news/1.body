@@ -1,0 +1,6 @@
+<p>
+The last two legacy directories were removed from the
+GoboLinux root. Now <tt>/proc</tt> is a symlink to
+<tt>/System/Status</tt> and <tt>/dev</tt> is a symlink
+to <tt>/System/Devices</tt>.
+</p>

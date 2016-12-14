@@ -1,0 +1,11 @@
+<p>
+<a href="/images/cover01401.png"><img align="left" src="<<root>>/images/cover01401small.png" hspace="12px" vspace="6px"></a>
+
+We are very happy to introduce GoboLinux 014.01, the new release of GoboLinux, the Linux distribution with an alternative file system structure. This release is our first "point release", providing a stability update for our latest major release, GoboLinux 014, which was released three months ago.
+</p>
+<p>
+Read the detailed <a href="?page=release_notes_014.01">release notes</a> for more information and the full list of packages, including a list of which packages have changed from 014 to 014.01.
+</p>
+<p>
+Once again, thanks to everybody who contributed with feedback, bug reports, bug fixes, recipes, translations... 
+</p>

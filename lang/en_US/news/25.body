@@ -1,0 +1,8 @@
+<p>
+Thanks to our admin Ricardo Sanchez, GoboLinux now offers
+rsync access to its mirrors. The address is cscience.org::gobolinux-iso.
+For regular downloads, we still recommend using one of our mirrors,
+since our server has low bandwidth and more often than not is heavily
+loaded. If you'd like to provide a mirror for the GoboLinux ISO, don't
+hesitate in contacting us, and we'll happily list you in the downloads page.
+</p>

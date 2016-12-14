@@ -1,0 +1,102 @@
+<h1>     
+Compile: the GoboLinux compilation system     
+</h1>
+
+<p>
+<b>Compile</b> downloads source tarballs, unpacks, compiles and installs
+them, with a single command, using simple compilation scripts called
+"recipes". <b>Compile</b> was introduced in GoboLinux 011, but already
+features a considerable (and ever-growing) number of recipes, and
+is able to compile all kinds of software, including Glibc,
+GCC, KDE and the Linux kernel.
+</p>
+     
+<p>     
+Some of <b>Compile</b>'s distinctive features:     
+</p>     
+     
+<ul>     
+<li>     
+<span class="hilite">uses the each project's own download site to fetch sources</span>: 
+the GoboLinux repository (or one of its mirrors) is used for downloading recipes
+only. Recipes can be downloaded explicitly, using the GetRecipe
+command, or on-the-fly by Compile, when a compilation is requested.
+</li>     
+<li>     
+<span class="hilite">minimalistic and declarative-oriented compilation scripts</span>: typical "configure;
+make; make install" software can be scripted in two lines, greatly easing maintanance.     
+</li>     
+<li>     
+<span class="hilite">supports GoboLinux-style dependencies</span>: when matching dependencies for
+a compilation, Compile looks directly into /Programs. No matter how
+the package was installed -- by a binary package using InstallPackage,
+compiled from source using Compile, or even compiled by hand by the
+user -- it can be used by Compile when satisfying dependencies.     
+</li>     
+<li>     
+<span class="hilite">path-agnostic by design</span>: also works in a Rootless-GoboLinux installation, ie,     
+inside a $HOME directory of any other distribution.     
+</li>     
+</ul>     
+     
+<h3>Links</h3>     
+     
+<ul>     
+<li>     
+Check out the available software searching for 
+<a href="http://recipes.gobolinux.org">recipes</a>
+or looking at the entire <a href="http://www.gobolinux.org/recipe-store/">list of recipes</a>.
+</li>     
+<li><a href="?page=doc/articles/compile">"The ideas behind Compile"</a>, an article     
+describing the <b>Compile</b> architecture, written by its main author, Hisham Muhammad.     
+</li>     
+</ul>     
+     
+<h3>Using Compile</h3>     
+     
+As a user, all you need to do is ask <b>Compile</b> to compile your software:     
+
+<div class="console"><div class="padding"><pre>
+Compile allegro
+</pre></div></div>
+     
+It will search for an available recipe (doing a case-insensitive search) and     
+do all the work for you.     
+     
+As a potential contributor, you will find Recipes <i>very</i> easy to     
+create. In fact, ease of maintenance was the #1 concern (given that we     
+are still a niche distribution and have limited resources).     
+     
+A real example. This is how a Recipe file for a typical autoconf-based     
+program looks like. Two lines, nothing more:     
+     
+<div class="textfile"><pre>
+url=$ftpGnu/gtypist/gtypist-2.7.tar.bz2     
+recipe_type=configure   
+</pre></div>
+     
+A more complex example: Zip uses only makefiles. <b>Compile</b> supports     
+it just as well.     
+     
+<div class="textfile"><pre>
+url=ftp.uu.net/pub/archiving/zip/src/zip23.tar.gz     
+recipe_type=makefile  
+dir=zip-2.3     
+makefile=unix/Makefile     
+build_target=generic_gcc     
+install_variables=(     
+   "prefix=$target"     
+)     
+</pre></div>
+     
+Documentation of the API is maintained in the <a href="http://wiki.gobolinux.org">wiki</a>.
+     
+<h3>Contributing Recipes</h3>     
+     
+<p>     
+To send your own recipes, simply run the <tt>ContributeRecipe</tt> command after a successful build!
+Your contributions are greatly appreciated by the GoboLinux community! (Be sure to     
+put your name in your <tt>Compile.conf</tt> file so that <tt>MakeRecipe</tt> credits     
+you as the author in the recipe!)     
+</p>     
+     

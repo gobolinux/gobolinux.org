@@ -1,0 +1,18 @@
+<p>
+<img src="../images/007release.jpg" alt="GoboLinux 007" align="right"/>
+After some weeks of intensive work, GoboLinux 007 final 
+ is available for download (<a href="http://gobolinux.org/index.php?page=downloads">download it!</a>).
+Since 006, there were major improvements all over the system, including the 
+funcionality required to pack "Environment", "Daemons" and "Default Settings" 
+information within packages (using the "Resources" directory). The LiveCD 
+experience was also 
+severely improved: now you can run even KDE and OpenOffice without touching
+your hard disk. With the use of IsoLinux, most (maybe all) of the compatibility 
+problems experienced when trying to boot the 006 CD on certain machines are solved.
+</p>
+<p>
+If you have a GoboLinux 006 running, you don't need to reinstall it. Use
+the <a href="http://gobolinux.org/download/scripts/GoboLinux006-007--1.1.tar.bz2">
+GoboLinux006-007 conversion script </a> to turn your system fully compatible with
+the new scripts and packages.
+</p>

@@ -1,0 +1,14 @@
+<table><tr><td>
+<a href="http://flickr.com/photos/monkeyc/340242134/"><img align="right" src="<<root>>/images/fireworks.jpg" alt="Picture by monkeyc.net, licensed under Creative Commons BY-NC-SA 2.0" title="Picture by monkeyc.net, licensed under Creative Commons BY-NC-SA 2.0"/></a>
+
+<p>
+We are pleased to introduce <a href="?page=downloads">GoboLinux 014</a>, the new major release of GoboLinux, the Linux distribution with an alternative directory structure. Major upgrades include KDE 3.5.8, Glibc 2.5 and Xorg 7.2, as well as new versions of the GoboLinux management tools. 
+</p><p>
+Read the detailed <a href="?page=release_notes_014">release notes</a> for more information and the full list of packages.
+</p><p>
+Thanks to everybody who contributed by testing the development snapshots, submitting bug reports, fixing bugs, writing recipes...
+</p><p>
+...and a happy new year to everyone! :-)
+</p>
+
+</td></tr></table>

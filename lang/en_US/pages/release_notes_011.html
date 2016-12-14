@@ -1,0 +1,243 @@
+
+<h1>
+Gobolinux 011 - Release Notes
+</h1>
+
+<h2>
+Introduction
+</h2>
+
+<p>
+We are pleased to introduce <a href="http://www.gobolinux.org">GoboLinux</a> 011, the new major release of GoboLinux, the alternative Linux distribution. This release features the introduction of <a href="http://www.gobolinux.org/compile/">Compile</a>, a new source-based compilation system. Other distinctive features are the switch to the kernel 2.6 series (2.4 still included), adoption of the Xorg X11 server, and a large number of upgraded packages.
+
+<h2> Availability </h2>
+
+GoboLinux is available as an ISO download, in a number of 
+<a href="?page=downloads">mirrors</a>. 
+
+<h2> Overview of this release </h2>
+
+<h3> The Compile system </h3>
+
+<p>
+This release includes Compile 1.0.1, the first major release of the GoboLinux automated software compilation tool, Compile. "Compile" downloads source tarballs, unpacks, compiles and installs them, with a single command, using simple compilation scripts called "recipes". In this first release, the main GoboLinux repository already features <a href="http://www.gobolinux.org/recipe-store/">over 500 recipes</a>.
+</p>
+
+<p>
+Some of Compile's distinctive features:
+</p>
+
+<ul>
+<li> uses the projects' own download sites: the distribution's repository (or one of its mirrors) is only used for downloading recipes. Recipes may be downloaded on-the-fly or in batch.
+</li>
+<li> minimalistic and declarative-oriented compilation scripts: typical "configure; make; make install" software can be scripted in two lines, greatly easing maintanance.
+</li>
+<li> supports GoboLinux-style dependencies: software compiled "by hand" by the user is taken into account by the detection mechanism.
+</li>
+<li> path-agnostic by design: also works in a Rootless-GoboLinux installation, ie, inside a $HOME directory of any other distribution.
+</li>
+</ul>
+
+<p>
+GoboLinux still supports <a href="http://www.gobolinux.org/packages/binary/current/">binary packages</a>. GoboLinux 011 is compatible with packages created for versions 007 and 010.
+</p>
+
+<h3> Live CD </h3>
+
+<p>
+The GoboLinux CD serves both as an installation disc and a Live CD, with a complete graphical desktop featuring KDE, OpenOffice.org and a host of applications. In fact, due to the modular nature of the GoboLinux filesystem, every program available in the CD can be used directly from the "live" environment -- the work of the installer is to simply copy the user's selection to the destination partition (respecting dependency chains). 
+</p>
+
+<h3> Graphical installer </h3>
+
+<p>
+Since version 010, GoboLinux features an installer that works on both text and graphical mode. The feature set of both modes is identical, thanks to the innovative <a href="http://www.gobolinux.org/abstk">AbsTK</a> (Abstract Toolkit), created by the GoboLinux team especially for this installer: a unified widget toolkit for Python which detects and adapts itself for different environments. It currently supports two backends: ncurses/console and Qt/X11.
+</p>
+
+<h3> Hardware detection </h3>
+
+<p>
+GoboLinux uses a ported version of the Kudzu hardware detection system, used during boot of the Live CD. A large number of devices are detected, loading the appropriate kernel modules. Configurations detected in the Live CD initialization are then carried on to the installed system.
+</p>
+
+<p>
+Video detection is performed separately, by the Xorg server's own autodetection mechanism. If for any reason video card detection fails while booting the Live CD, you can skip to the default, "vesa", which works for most cards (unaccelerated).
+</p> 
+
+<h2> Changes since GoboLinux 010 </h2>
+
+<h3> Kernel 2.6 </h3>
+
+<p>
+The GoboLinux 011 CD features kernels 2.4.26 and 2.6.6. Bootloader entries are created for both kernels; you can select them from the GRUB menu at boot time. Both kernels include <a href="?page=doc/articles/gobohide">GoboHide</a>, kernel-level support for hidden directories, created to conceal the legacy Unix directories from the regular filesystem view in an application-independent manner.
+</p>
+
+<h3> /System/Links/Tasks </h3>
+
+<p>
+In line with our philosophy for self-contained program directories, application-specific boot scripts ("start"/"stop" services) are now stored under each program's own directory, at Resources/Tasks. The global view of all tasks in the system is /System/Links/Tasks.
+</p>
+
+<p>
+Our previous model for application services, based on Resources/Daemons and the RunIt daemon manager, is still available, but is considered deprecated, and will be replaced entirely by Resources/Tasks in a future release (RunIt will still be supported as an optional feature; its management scripts will use Resources/Tasks entries). 
+</p>
+
+<p>
+Due to the new tasks model, the CustomTasks file is no longer supported (the DefaultTasks file was broken into application-specific tasks). We recommend the user to do the same when applicable, or enter commands in the Init scripts directly when those do not correspond to "start"/"stop" kind of services. 
+</p>
+
+<h2> Hardware requirements </h2>
+
+<h3> Processor </h3>
+
+<p>
+GoboLinux is compiled to run on i686-class systems: Intel Pentium II/III/IV, Intel Celeron, AMD Duron, AMD Athlon/XP/MP.
+</p>
+
+<h3> Memory </h3>
+
+<p>
+To load the Live CD environment, 32 MB of RAM is the recommended minimum for a text-mode install, 64 MB is the recommended minimum to load the graphic KDE desktop; 128 MB is recommended for a comfortable Live CD experience.
+</p>
+<p>
+Once the system is installed in the hard disk, memory requirements vary greatly depending on the kind of applications executed, but the values stated above related to the Live CD experience serve as a good guideline.
+</p>
+
+<h3> Video and peripherals </h3>
+
+<p>
+Video cards are supported through the Xorg X11 server, with the fallback "vesa" driver covering the vast majority of current cards. A large number of sound cards are supported through ALSA (Advanced Linux Sound Architecture) and OSS (Open Sound System). Other peripherals are supported through additional packages (CUPS, SANE, GPhoto, etc.) available in the GoboLinux repository.
+</p>
+
+<h2> Installation notes </h2>
+
+</h3> Internationalization </h3>
+
+<p>
+Due to user demand, the installer supports both Brazilian Portuguese and English languages. The GoboLinux team welcomes contributions of new translations from the community.
+</p>
+
+<h2> Package-specific notes </h2>
+
+<p>
+This section contains some general comments about the package set included in GoboLinux. The complete list of packages included in the CD follows in the next section.
+</p>
+
+<h3> Xorg 6.7.0 </h3>
+
+<p>
+GoboLinux now uses the "Xorg" X11 Server, by the X.Org Foundation (part of the FreeDesktop.org project). While the features and functionalities are mostly similar to XFree86 -- code from Xorg is derived from the last XFree86 snapshot released with the original, less restrictive license -- the user should be aware to changes in the name of some important files.
+</p>
+
+<ul>
+<li> the X server itself, XFree86 in XFree86, is called Xorg;
+</li>
+<li> similarly, log files generated are called Xorg.?.log.
+</li>
+</ul>
+
+<h3> Absence of proprietary packages </h3>
+
+<p>
+This release does not include any proprietary packages. All packages were compiled from source, with the exception of OpenOffice.org and Mozilla FireFox, which provide cross-distribution binaries. It is worth to point out that programs such as Sun JDK and Macromedia Flash do work under GoboLinux with no limitations -- they are not included for legal reasons only. As an alternative to Acrobat Reader, we recommend Xpdf.
+</p>
+
+<h3> Internationalization </h3>
+
+GoboLinux ships whenever possible all packages distributed in their original state, as intended by the authors of the various free software projects that compose the distribution. This also applies to the distribution of the locale files. Therefore, support for internationalization varies according to the translation status of each project for each language. External locale packages are not usually included in the CD, but again, due to user demand, the Brazilian Portuguese i18n package for KDE is shipped.
+
+<h2> List of packages </h2>
+
+<p>
+The majority of packages received upgrades since GoboLinux 010. Here is the complete list of programs you will find included in the GoboLinux 011 CD:
+</p>
+<tt>
+<pre>
+AALib 1.4rc5            Grub 0.93               Pango 1.4.0
+ALSA-Driver 1.0.4       GTK+ 1.2.10             Parted 1.6.11
+ALSA-Lib 1.0.4          GTK+ 2.4.1              Patch 2.5.4
+ALSA-Utils 1.0.4        GTK-Engines 0.12        PCIUtils 2.1.11
+ATK 1.6.0               GV 3.5.8                PCRE 4.5
+Atool 0.27.0            Gzip 1.2.4a             Perl 5.8.4
+Audiofile 0.2.6         Hdparm 5.5              Pinfo 0.6.8
+Aumix 2.8               Htop 0.3                Pkgconfig 0.15.0
+Autoconf 2.59           HwData 0.92-1.1         Popt 1.7
+Automake 1.8.4          ImageMagick 6.0.0-7     PPP 2.4.1
+Bash 2.05b              IMLib 1.9.14            Procinfo 18
+BC 1.06                 InetUtils 1.4.2         Procps 3.2.0
+Bin86 0.16.3            Ispell 3.2.06           ProgsReiserFS 0.3.0
+BinUtils 2.14           JPEG 6b                 Psmisc 21.4
+Bison 1.875             KBD 1.12                PyGTK 2.0.0
+BOGL 0.1.9-20           KDE 3.2.2               PyQt 3.11
+BootScripts 011         KDE-I18n-pt_BR 3.2.2    Python 2.3.3
+Bzip2 1.0.2             Kudzu GoboLinux-007     Qt 3.3.2
+Cdparanoia-III alpha9.8 Lame 3.96               QtParted 0.4.4
+CDRTools 2.01a12        Lcms 1.08               Readline 4.3
+CloopUtils 2.00         Less 382                ReiserFSProgs 3.6.14
+Compile 1.0.1           Lesstif 0.93.34         RHPL 0.112-1
+CoreUtils 5.2.1         LibART_LGPL 2.3.16      RPM 4.0.4
+Cpio 2.5                LibGlade 2.3.1          RP-PPPoE 3.5
+CUPS 1.1.20             LibMad 0.15.0b          Ruby 1.8.1
+CVS 1.12.7              LibMng 1.0.3            Runit 1.0.1
+DevFSd v1.3.25          LibOGG 1.1              Sash 3.6
+DHCPCD 1.3.22-pl1       LibPNG 1.2.5            Scripts 011
+DiffUtils 2.8.1         LibRSVG 2.7.1           SDL 1.2.7
+E2FSProgs 1.35          Libsigc++ 2.0.1         Sed 4.0.9
+Ed 0.2                  LibStdC++ 2.95.3        Shadow 4.0.3
+Eject 2.0.13            LibTool 1.5.6           SIP 3.10.1
+EnhancedSkel 011        LibUngif 4.1.0b1        S-Lang 1.4.9
+Expat 1.95.7            LibVorbis 1.0.1         Strace 4.5.3
+FBSH 0.3                LibXML2 2.6.9           Sudo 1.6.6
+File 4.09               LibXSLT 1.1.6           SVGALib 1.4.3
+FindUtils 4.1           Licq 1.2.7              Sysklogd 1.4.1
+FireFox 0.8             LILO 22.3.4             Sysvinit 2.84
+Flex 2.5.4a             Liquid 0.9.6pre4        T1Lib 5.0.2
+Fontconfig 2.2.2        Lyx 1.3.4               Tar 1.13-1
+FreeType 2.1.5          M4 1.4                  TeTeX 1.0.7
+Freshen 1.0             Make 3.80               Texinfo 4.7
+Gawk 3.1.1              Man 1.5k                TIFF 3.6.1
+GCC 3.3.2               Man-Pages 1.66          TraceRoute 1.4a12
+GDB 6.1                 MC 4.6.0                Unzip 5.50
+GDK-Pixbuf 0.17.0       Mesa 5.0                Util-Linux 2.11y
+GDKXFT 1.5              MkTemp 1.5              Vim 6.2
+Gettext 0.14.1          Module-Init-Tools 3.0   Wget 1.9.1
+Ghostscript 7.05        ModUtils 2.4.27         WindowMaker 0.80.2
+Gimp 2.0.1              MPlayer 0.90            Xaw3d 1.5
+Gimp-Print 4.2.5        Mtail 1.1.1             XFS-Utils 1.2
+Glade 0.6.4             Nano 1.3.2              XMMS 1.2.10
+GLib 1.2.10             Nasm 0.98.38            Xorg 6.7.0
+GLib 2.4.1              Ncurses 5.4             Xpdf 3.00
+Glibc 2.3.2             Netkit-Base 0.17        Xtest 2.0-1
+Gnuplot 4.0.0           Net-Tools 1.60          Zip 2.3
+GoboHide 0.09           Newt 0.51.6-1           ZLib 1.2.1
+GPM 1.20.1              OpenOffice 1.1.1        ZSH 4.2.0
+Grep 2.5.1              OpenSSH 3.8.1p1         ZSNES 1.36
+Groff 1.19              OpenSSL 0.9.7d
+</pre>
+</tt>
+<h3> About GoboLinux </h3>
+
+<p>
+GoboLinux is an alternative Linux distribution, in
+the sense that it defines a new directory hierarchy. This hierarchy allows
+the coherent management of the installed base of programs in a system
+exclusively through the layout of the filesystem, without relying on 
+databases or package managers.
+</p>
+
+<p> In GoboLinux, each program resides in its own directory, such as
+/Programs/Xorg/6.7.0 and /Programs/KDE/3.2.2. Each file category
+(executables, libraries, headers) can also be accessed through unified
+symlink views, such as /System/Links/Libraries and
+/System/Links/Headers. These views match the legacy directories (/bin,
+/usr/include, /usr/local/share) and so on, achieving total Unix
+compatibility while keeping program directories completely
+self-contained. </p>
+
+<p> 
+Join the revolution.
+</p>
+
+<p>
+<a href="http://www.gobolinux.org">http://www.gobolinux.org</a>
+</p>

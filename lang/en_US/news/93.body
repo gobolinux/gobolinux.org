@@ -1,0 +1,9 @@
+<p>
+It's time for a new release of our new tools Scripts and Compile! This Scripts release holds quite a few new additions and changes, such as: "use flags", support for FUSE-based union filesystem backends, hints upon the execution of commands not found and a brand new archival tool, supporting LZMA/7Z.
+</p>
+<p>
+Compile now supports Mercurial and Bazaar repositories, Cabal packages and now features an integrated tool to make contribution of recipes more easy.
+</p>
+<p>The update is simple, as usual: Just run 'InstallPackage Scripts 2.9.0' and 'InstallPackage Compile 1.11.0' to get the latest and greatest. Please check the <a href="http://lists.gobolinux.org/pipermail/gobolinux-users/2008-May/007561.html">full announcement</a> for more details. 
+</p>
+ 

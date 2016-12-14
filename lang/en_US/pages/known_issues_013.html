@@ -1,0 +1,53 @@
+<h1>
+GoboLinux 013 - Known issues
+</h1>
+
+<h2>Live CD / Installation</h1>
+
+<h3>SMP problems with SquashFS</h3>
+
+<p>
+There seems to be a bug on SquashFS affecting <b>SMP</b>/<b>HyperThreaded</b> systems.
+If you see SquashFS-related errors when booting or running the Live CD, you can either
+disable SMP/HT on your BIOS while running the Live CD or disable them in the kernel,
+passing the following command at the CD bootloader prompt:
+</p>
+
+<pre>
+/isolinux/kernel initrd=initrd init=/linuxrc ramdisk_size=4096 root=/dev/ram0 video=vesafb:off ide=nodma Boot=LiveCD
+</pre>
+
+<p>
+Dual core AM2 AMD64 systems are also known to be defective, and can be booted fine after 
+supplying the following command instead:
+</p>
+<pre>
+/isolinux/kernel initrd=initrd init=/linuxrc ramdisk_size=4096 root=/dev/ram0 video=vesafb:off noapic nolapic nosmp apic=off Boot=LiveCD
+</pre>
+
+<p>
+This problem does not affect the installed system, which works with SMP/HT/AM2 fine.
+</p>
+
+<h3>QEmu with KQEmu</h3>
+
+<p>
+If you're getting "Lost interrupt" errors when booting the ISO with QEmu, try disabling
+the KQEmu kernel module, with <tt>rmmod kqemu</tt>. (This is probably a bug in KQEmu.)
+</p>
+
+<h3>Booting problems on VMware</h3>
+<p>
+If you get an error message like this:
+<pre>
+VFS Cannot open root device "sda1"
+</pre>
+then it's possible that VMware is configured to emulate a "LSI Logic" SCSI adapter.
+To fix that, just modify your virtual machine so that it emulates the "BusLogic" SCSI 
+adapter or an IDE drive and the problem will go away.
+</p>
+<p>
+Also, X11 detection is known not to work with VMware. You can still launch X11 using
+the default VESA configuration, but you need to skip X11 detection by pressing Esc
+when you see the "X11 detection" message during boot.
+</p>

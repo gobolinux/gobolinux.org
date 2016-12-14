@@ -1,0 +1,11 @@
+<p>
+After a lot of stability improvements, GoboLinux 007rc is a serious candidate 
+to be the final release. Probably, after this weekend, it will in fact be it.
+Check it out at the <a href="http://gobolinux.org/index.php?page=downloads">downloads
+page</a>. Hardware detection was not included on this version (but in 008, it
+will be there). This release contains an complete system (KDE, OpenOffice,
+Gimp, etc.), that can be run even without any installation (knoppix-like). For
+more information join the
+<a
+href="http://lists.gobolinux.org/mailman/listinfo/gobolinux-users">mailing 
+list</a>.</p>

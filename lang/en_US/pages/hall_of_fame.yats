@@ -1,0 +1,19 @@
+
+<h1>The Hall of Fame</h1>
+
+<p>
+Back in the early days, we made a list of the very first users of GoboLinux.
+Many of them used it as their primary or only Linux distribution —
+some still do! In keeping with the theme of the distribution,
+with its octal version numbers, our "user numbers" were binary.
+Some people even carried their user numbers in their
+email signatures to show off their "pioneer status" <tt>:)</tt>.
+</p>
+
+<p>
+We no longer maintain this "Hall of Fame", but it is fun to keep it around as a historical artifact. :)
+</p>
+
+<pre>
+<<@templates/hall_of_fame.yats>>
+</pre>

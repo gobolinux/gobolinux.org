@@ -1,0 +1,52 @@
+<h1>
+GoboLinux 014 - Known issues
+</h1>
+
+<h2>Updated packages</h2>
+
+<p>
+The following updated packages were released fixing problems
+detected in the GoboLinux 014 release.
+After installing the Live CD, you should install these packages
+using the InstallPackage command. For example, to upgrade Xorg,
+just run "InstallPackage xorg" from the command line and it will
+download and install the latest version.
+</p>
+
+<ul>
+<li><b>Xorg 7.2-r6</b> - fixes LibXCB assertion errors.</li>
+</ul>
+
+<h2>Updated recipes</h2>
+
+<p>
+The following updated <a href="?page=compile">recipes</a> were
+released fixing problems detected in the GoboLinux 014 release.
+Packages built from these should come up shortly. In the mean time,
+you can use the Compile tool to build the upgraded versions.
+</p>
+
+<ul>
+<li><b>DBus 1.1.2-r3</b> - fixes system id problem.</li>
+</ul>
+
+<h2>AM2 problems with SquashFS</h2>
+
+<p>
+There seems to be a bug on SquashFS affecting <b>Dual core AM2 AMD64 systems</b>. These system boots after 
+supplying the following command at the CD bootloader prompt:
+</p>
+<pre>
+/isolinux/kernel initrd=initrd init=/linuxrc ramdisk_size=4096 root=/dev/ram0 video=vesafb:off noapic nolapic nosmp apic=off Boot=LiveCD max_loop=32
+</pre>
+
+<p>
+This problem does not affect the installed system, which works with SMP/HT/AM2 fine.
+</p>
+
+<h2>Other issues</h2>
+
+<p>
+The LiveCD is known to have problems booting on the VirtualBox OSE emulator. This has been 
+fixed in the in-development version of the distribution.
+</p>

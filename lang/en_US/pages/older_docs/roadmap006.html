@@ -1,0 +1,57 @@
+<h2>To-do List</h2>
+
+<p> Here's a list of things we plan for the future. These are <b>not</b>
+"promised features", and they are in various stages of
+completion/design, and those are listed <i>in no particular order</i>.
+This is kept here, first and foremost, for our own control. Think of it
+as a place to centralize the good ideas that pop up on the GoboLinux
+mailing list. </p>
+
+<ul>
+
+<li> Improve name capitalization with a dictionary of exceptions,
+     as suggested <a href="http://www.kuro5hin.org/comments/2003/5/9/05015/62649/174#174">here</a>.
+
+<li> Make scripts check on the availability of tools they need
+(for example, make the PlayVideo wrapper check for mplayer).
+This is kinda trivial to implement, but there should be a unified
+method to do this, so that all scripts make use of it.
+
+<li> Programs/App/1.0/Resources - a directory to hold things such as:
+
+     <ul>
+     <li> /Programs/App/1.0/Resources/Environment - environment variables
+          and aliases needed by the application.
+     <li> /Programs/App/1.0/Resources/Dependencies - our .dependencies
+          file should move here.
+     <li> /Programs/App/1.0/Resources/Wrappers - convenience scripts
+          created for GoboLinux (former app-dependant scripts in the
+          Scripts packages). For example:
+          /Programs/MPlayer/Current/Resources/Wrappers/PlayVideo
+     <li> /Programs/App/1.0/Resources/Icon - who knows? Maybe one day
+          we could implement a menu-management system.
+     </ul>
+
+<li> Allow the package installation scripts to download stuff. Packages
+     which depend on other packages could download them from gobolinux.org
+     or other user-specified mirrors. Source packages could download the
+     source .tar.gz file from the app's original site.
+
+<li> Update Rootless to "006ify it" (update it to use /S/L/Shared), and
+     make the Scripts package fully-Rootless-compatible again.
+
+<li> Remove archive management scripts from the Scripts package.
+     Use atool (or a similar project) instead.
+
+<li> Separate the "base set" into two sets: the set of programs to
+     be copied to a freshly installed system, and the set of programs
+     to be available in the live ISO.
+
+<li> Improve documentation on installation, especially boot loader 
+     stuff.
+
+<li> Add proper SCSI support on the CD.
+
+<li> Dependencies of Python packages could be detected searching for
+     "import" lines in .py files with a rather small amount of parsing.
+</ul>

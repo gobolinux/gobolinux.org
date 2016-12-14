@@ -1,0 +1,1318 @@
+#LyX 1.3 created this file. For more info see http://www.lyx.org/
+\lyxformat 221
+\textclass article
+\language english
+\inputencoding auto
+\fontscheme palatino
+\graphics default
+\paperfontsize 11
+\spacing single 
+\papersize a4paper
+\paperpackage widemarginsa4
+\use_geometry 0
+\use_amsmath 0
+\use_natbib 0
+\use_numerical_citations 0
+\paperorientation portrait
+\secnumdepth 3
+\tocdepth 3
+\paragraph_separation indent
+\defskip medskip
+\quotes_language english
+\quotes_times 2
+\papercolumns 1
+\papersides 1
+\paperpagestyle default
+
+\layout Title
+
+I am not clueless 
+\newline 
+
+\size large 
+or 
+\size default 
+
+\newline 
+Myths and misconceptions about the design of GoboLinux
+\layout Author
+
+Hisham H.
+ Muhammad
+\layout Quote
+\align right 
+
+\emph on 
+
+\begin_inset Quotes eld
+\end_inset 
+
+Those who do not understand Unix 
+\newline 
+are doomed to reinvent it, poorly.
+\begin_inset Quotes erd
+\end_inset 
+
+
+\newline 
+-- Henry Spencer, 1987
+\layout Standard
+
+This week we had another release of GoboLinux, and again a number of people,
+ even if indirectly, called me 
+\begin_inset Quotes eld
+\end_inset 
+
+clueless
+\begin_inset Quotes erd
+\end_inset 
+
+ for coming up with such a structure for a Linux distribution, for a number
+ of reasons.
+ None of those reasons was new; I heard all of them many times.
+ This article is an attempt to sum them up, and explain why I chose the
+ design decisions I made, hopefully clearing any pending misconceptions.
+ I don't have illusion this will prevent them keep happening, but at least
+ I'll have a text to point people to.
+ This article ranges from common misconceptions from those who have never
+ used GoboLinux, to well-intentioned but poorly-thought-out ideas that keep
+ coming from time to time to the GoboLinux mailing list, often causing long
+ debates.
+ I'll be separating the points in sections and they are meant to be self-contain
+ed, so feel free to skip directly to the ones that interest you, if you
+ don't feel like reading the whole thing.
+\layout Section*
+
+
+\begin_inset Quotes eld
+\end_inset 
+
+There is a reason why things are the way they are
+\begin_inset Quotes erd
+\end_inset 
+
+
+\layout Standard
+
+This is something I hear constantly, often followed by an explanation about
+ the difference between 
+\family typewriter 
+/
+\family default 
+, 
+\family typewriter 
+/usr
+\family default 
+ and 
+\family typewriter 
+/usr/local
+\family default 
+, and/or 
+\family typewriter 
+/bin
+\family default 
+ and 
+\family typewriter 
+/sbin
+\family default 
+.
+ I do understand the difference
+\begin_inset Foot
+collapsed true
+
+\layout Standard
+
+For those who always wondered (and those who want to check if I really understan
+d the difference), the three main trees divide, respectively, files that
+ need to be available in the root partition for single-user rescue mode,
+ program files managed by the distribution, and programs added separately
+ by the site admin (this distinction varies on different Unices, but this
+ is mainly how it works on Linux distributions, read on for more).
+ Regular programs go in 
+\family typewriter 
+/bin
+\family default 
+, and programs intended for the superuser in 
+\family typewriter 
+/sbin
+\family default 
+.
+\end_inset 
+
+.
+ If I did away with this three-level distinction, is because I believe there
+ are other ways to approach the problems this distinction tries to solve.
+ In a GoboLinux system, the argument for having separate 
+\family typewriter 
+/usr
+\family default 
+ and 
+\family typewriter 
+/usr/local
+\family default 
+ trees in order to separate programs shipped by the distribution and compiled
+ by the user clearly does not hold.
+ Each program is naturally separated, and this was the prime intention of
+ creating GoboLinux in the first place.
+\layout Standard
+
+The historical reason why Unix systems have some of its tree directly at
+ the root partition (
+\family typewriter 
+/bin
+\family default 
+, 
+\family typewriter 
+/lib
+\family default 
+, 
+\family typewriter 
+/sbin
+\family default 
+) as opposed to having it under 
+\family typewriter 
+/usr
+\family default 
+, is because this way you can boot in a bare-bones single-user rescue mode
+ using those files only, in order to fix problems in the 
+\family typewriter 
+/usr
+\family default 
+ tree.
+ This is arcane.
+ When I need to rescue my system, I can use a fully-featured live CD that
+ runs a complete Linux distribution with a graphical desktop, that allows
+ me to browse the web and search for the solution to my problem, and use
+ all of the features of a regular system to fix it.
+ I understand the rationale for having a bare-bones rescue mode decades
+ ago, but we have a better solution in our hands now.
+\layout Standard
+
+The distinction between 
+\family typewriter 
+bin
+\family default 
+ and 
+\family typewriter 
+sbin
+\family default 
+ makes no sense, in the present context.
+ Historical evolution led to crazy arbitrary distinctions, like 
+\family typewriter 
+ping
+\family default 
+ and 
+\family typewriter 
+traceroute
+\family default 
+ lying in different directories (I fail to see how can they be of distinct
+ 
+\begin_inset Quotes eld
+\end_inset 
+
+program classes
+\begin_inset Quotes erd
+\end_inset 
+
+, by any measure).
+ Unix systems have a permissions system.
+ If one wants only the superuser to be able to run a command, then 
+\family typewriter 
+chmod 700
+\family default 
+ it.
+ I suspect the separation could have been conceived to reduce the number
+ of programs in the 
+\family typewriter 
+$PATH
+\family default 
+ of regular users.
+ In today's Linux systems, having 400 or 500 programs in your 
+\family typewriter 
+$PATH
+\family default 
+, does not make any difference.
+\layout Standard
+
+There is one last argument, however, that is still valid for Linux systems
+ to day: partitioning and remote mounting.
+ Those two are really different shades of the same color, with remote mounting
+ being, to my eyes, the most valid concern of those two.
+ I've seen arguments about this among the lines of 
+\begin_inset Quotes eld
+\end_inset 
+
+hard drives today are cheap, and you'll most likely have all software installed
+ locally anyway, for performance
+\begin_inset Quotes erd
+\end_inset 
+
+.
+ I agree with this, but I also understand the ones who'd like to maintain
+ things centralized for administrative purposes.
+ But imposing additional complexity on the overall system because of one
+ particular scenario is usually not a good thing, and even then, the traditional
+ Unix solution is not general enough: what if you have three or four application
+ servers? You'll mount one at 
+\family typewriter 
+/usr
+\family default 
+, one at 
+\family typewriter 
+/opt
+\family default 
+, and then what? There goes the traditional Unix tree.
+ In fact, in most of the larger Unix networks I had contact with, particular
+ needs of the site configuration led to non-standard directories added to
+ the Unix tree.
+\layout Standard
+
+Fortunately, like with the live CD, we have nowadays a technological advancement
+ that serves as a real solution to the problem: 
+\emph on 
+union mounts
+\emph default 
+, also known as 
+\emph on 
+overlay filesystems
+\emph default 
+.
+ The idea is that you can mount several partitions in the same directory.
+ This way, the semantics of 
+\family typewriter 
+/Programs
+\family default 
+ as 
+\begin_inset Quotes eld
+\end_inset 
+
+the collection of all programs available in the system
+\begin_inset Quotes erd
+\end_inset 
+
+ is retained, independently of the physical location of the actual data.
+ File systems are all about abstraction (we don't refer to files based on
+ their track, sector and cylinder address), this progresses a step further.
+ Overlay filesystems are very flexible: the sysadmin, for example, can overlay
+ site-specific settings for an application on top of the defaults exported
+ over NFS.
+ Unfortunately, it is not in widespread use, for reasons beyond by understanding.
+ The Plan 9 operating system has it as one of its basic filesystem operations:
+ the 
+\family typewriter 
+bind
+\family default 
+ command (in Plan 9, for example, you don't need a 
+\family typewriter 
+$PATH
+\family default 
+ variable, because all directories containing executables are 
+\begin_inset Quotes eld
+\end_inset 
+
+bound
+\begin_inset Quotes erd
+\end_inset 
+
+ in a single directory).
+ There is an implementation of an overlay filesystem for Linux: 
+\family typewriter 
+ovlfs
+\family default 
+.
+\layout Section*
+
+The alleged user-friendliness of longer names
+\layout Standard
+
+Many, many people, when they stumble upon GoboLinux, look at the long, descripti
+ve directory names and say 
+\begin_inset Quotes eld
+\end_inset 
+
+Look! They changed the Linux directory names by making them longer and descripti
+ve to make the system friendly!
+\begin_inset Quotes erd
+\end_inset 
+
+.
+ There is some people who say this as if this were a good thing, and some
+ people who say this as if this were a bad thing.
+ Both are wrong.
+\layout Standard
+
+There is a number of reasons why the names in GoboLinux are the way they
+ are, and none of them is 
+\begin_inset Quotes eld
+\end_inset 
+
+to attract new users who are scared by 
+\family typewriter 
+/etc
+\family default 
+ and the like
+\begin_inset Quotes erd
+\end_inset 
+
+.
+ The number one reason is: to not conflict with the Unix namespace.
+ And when I say Unix namespace I actually mean the Linux namespace, which
+ is not a very well settled thing.
+ This is not like a set of reserved keywords from a programming language
+ that says not to use 
+\family typewriter 
+if
+\family default 
+, 
+\family typewriter 
+while
+\family default 
+, 
+\family typewriter 
+repeat
+\family default 
+, etc.
+ as variable names and the rest is okay.
+ You never know what directories, files and programs will show up tomorrow,
+ so the best I could do was to pick names that were very unlikely to be
+ ever used.
+ Others did that before me, and that worked, so I followed their example:
+ NeXT and Mac OS X had to make their own directories coexist with Unix directori
+es, so they capitalized the names, and while they were at it, they used
+ full words instead of abbreviations.
+ The abbreviations were a sign of the times from the origins of Unix.
+ Dennis Ritchie once said that if he could go back in time and change only
+ one thing in Unix, he'd rename the 
+\family typewriter 
+creat
+\family default 
+ system call to 
+\family typewriter 
+create
+\family default 
+.
+\layout Standard
+
+The one thing that reassures me that my decision was right is that, when
+ we started with GoboLinux, back in the days of Linux 2.4.something, someone
+ asked me 
+\begin_inset Quotes eld
+\end_inset 
+
+why didn't you pick 
+\family typewriter 
+/sys
+\family default 
+ instead of 
+\family typewriter 
+/System
+\family default 
+? That would be easier to type
+\begin_inset Quotes erd
+\end_inset 
+
+.
+ You can guess what would have happened, now that the kernel guys reserved
+ 
+\family typewriter 
+/sys
+\family default 
+ for their own use.
+ In fact, the concerns on typing-friendliness always comes up in discussions
+ about the GoboLinux tree.
+ To that, I can only respond that, in a properly configured shell like the
+ one that comes by default with GoboLinux, typing 
+\family typewriter 
+/Programs
+\family default 
+ takes the exact same number of keystrokes as typing 
+\family typewriter 
+/usr
+\family default 
+: slash, lowercase 
+\family typewriter 
+p
+\family default 
+, Tab.
+\layout Standard
+
+One could also ask: but why change the directories, for starters? Why not
+ simply use the regular directory tree and make it behave like GoboLinux?
+ Yes, I suspect it could be possible, but from an operating system design
+ standpoint, I don't like the idea.
+ I am not comfortable with the concept of a system where well-known directories
+ have different semantics to those that most people expect.
+ AtheOS, for example, has this problem.
+ You see a 
+\family typewriter 
+/usr
+\family default 
+ directory, but that is no 
+\family typewriter 
+/usr
+\family default 
+.
+ In AtheOS, it behaves more like 
+\family typewriter 
+/opt
+\family default 
+, but unexplicably keeping the name that historically stood for 
+\begin_inset Quotes eld
+\end_inset 
+
+user
+\begin_inset Quotes erd
+\end_inset 
+
+ and then was turned into a backronym for Unix System Resources.
+ Even if Kurt Skauen called it 
+\family typewriter 
+/opt
+\family default 
+, it would still be strange; those are not 
+\begin_inset Quotes eld
+\end_inset 
+
+optional packages
+\begin_inset Quotes erd
+\end_inset 
+
+.
+\layout Standard
+
+The GoboLinux directories, too, have different semantics from the Unix directori
+es.
+ 
+\family typewriter 
+/Pro\SpecialChar \-
+grams
+\family default 
+ is the collection of all programs available in the system, where each subdirect
+ory contains all files from a given program (the distinction of a program
+ package is up to the developers of each project; the various tools from
+ 
+\family typewriter 
+CoreUtils
+\family default 
+ form a single program).
+ Each subdirectory in /System/Links contains a 
+\emph on 
+view
+\emph default 
+ (in the database sense of the term) of each file class from the programs
+ collection: libraries, executables, headers, and so on
+\begin_inset Foot
+collapsed true
+
+\layout Standard
+
+On Plan 9 that could be done with a 
+\family typewriter 
+bind
+\family default 
+ command; since we don't have this in a vanilla Linux kernel, we do this
+ with symbolic links.
+ But I have to admit I like the notion that the views are stored in a persistent
+ manner.
+\end_inset 
+
+.
+ You see, these directories are not the Unix directories, they function
+ differently, from an administrative point of view.
+ I believe it is good design to make this explicit in the names.
+\layout Standard
+
+For strict compatibility reasons, however, we have an extra set of symbolic
+ links with the Unix names pointing to the closest GoboLinux equivalents
+ (even making a few concessions in the GoboLinux side of the equation in
+ order to preserve this compatibility).
+ The fact that these are links, and we call them the 
+\emph on 
+legacy
+\emph default 
+ tree keeps this notion very clear.
+ The work of Lucas Villa-Real and Felipe Damasio on GoboHide, the kernel
+ patch for true hidden directories on Linux, further isolates the legacy
+ tree as an isolated accessory.
+\layout Section*
+
+Do you want to change the standard?
+\layout Standard
+
+Of course not.
+ For starters, we're not that naive to think that we could.
+ But the actual reason why we don't want to change the standard is because
+ we believe 
+\emph on 
+there should be no standard
+\emph default 
+.
+ I know this statement may sound even bolder than talking about changing
+ a standard, but the reason I say that is because we believe it is the duty
+ of each application to allow itself to be installed anywhere and to accept
+ that other applications it needs to work with may be installed anywhere
+ (more on this in the next section).
+ Now, if there was a standard stating this, I'd even sign a petition to
+ support it.
+ In fact, there is: the GNU release standards, when they recommend the usage
+ of GNU Autotools, supporting the 
+\family typewriter 
+--prefix
+\family default 
+ family of switches, and probing for the location of applications with the
+ configure script, do just that.
+ But when a proposed standard like the FHS gives me an arbitrary list of
+ binaries that should be, for unexplained reasons, in a separate directory,
+ I laugh at that.
+\layout Standard
+
+Different situations imply different needs, and so-called standards that
+ attempt to fit every feet in the same shoe are doomed to failure.
+ Standardize on flexibility instead.
+ That's not we don't propose the GoboLinux tree as a standard to be followed
+ by anyone else.
+ In five, ten or twenty years, we may have completely different needs from
+ the ones we have today.
+ I don't want that the move away from the GoboLinux tree then to be as hard
+ as the move away from the traditional Unix tree is today.
+ Which leads us naturally to our next section...
+\layout Section*
+
+An uphill battle to change all applications
+\layout Standard
+
+This is not as hard as it seems.
+ Before the first version of GoboLinux was fully built, I had already worked
+ on and improved this model for about a whole year.
+ When André Detsch and I got around to build, in two days, a system from
+ scratch built around those concepts, I already knew that this was perfectly
+ feasible.
+\layout Standard
+
+I work in an university environment, and I have for many years.
+ There, I am not the superuser, so I have to install every extra app I need
+ in my 
+\family typewriter 
+$HOME
+\family default 
+ directory.
+ This is a perfectly common situation, it is expected that any decent applicatio
+n will allow this, and the vast majority of them do.
+ In fact, one could argue that an app that doesn't has a broken build system.
+ If you can install Gimp on 
+\family typewriter 
+/usr
+\family default 
+, or 
+\family typewriter 
+/opt
+\family default 
+, or 
+\family typewriter 
+/home/hisham
+\family default 
+, then you can install it on 
+\family typewriter 
+/Programs/Gimp/2.0/
+\family default 
+.
+ Experience has shown that very few applications need to have their Makefiles
+ dissected in order to cooperate.
+ Even superuser-oriented software has (or should have) this flexibility:
+ in a regular Unix system, the superuser should have the option to choose
+ between, say, 
+\family typewriter 
+/sbin
+\family default 
+ and 
+\family typewriter 
+/usr/sbin
+\family default 
+.
+ There is no reason to have hardcoded paths in programs and installers
+\begin_inset Foot
+collapsed true
+
+\layout Standard
+
+An installer per se is a rare concept in Linux; what I mean by installer
+ here is usually the 
+\family typewriter 
+install
+\family default 
+ target of a Makefile.
+\end_inset 
+
+.
+\layout Standard
+
+A more delicate problem arises when a program, even though it allows itself
+ to be installed under any directory, wrongly assumes that another programs
+ it depends on is installed under the same directory.
+ As you can guess, this is a major source of problems for GoboLinux, but
+ I advocate this needs to be fixed for the benefit of the entire free software
+ community.
+ Let's return to the 
+\family typewriter 
+$HOME
+\family default 
+ directory scenario.
+ What if my favorite GNOME component was not installed by the system administrat
+or, and I want to install it in my 
+\family typewriter 
+$HOME
+\family default 
+, while still using the rest of GNOME installed at 
+\family typewriter 
+/usr
+\family default 
+? Situations like this, especially in big multi-component software, is often
+ problematic.
+ There is a number of programs that solve this problem using a 
+\family typewriter 
+$PATH
+\family default 
+-like environment variable: 
+\family typewriter 
+$GTKPATH
+\family default 
+, 
+\family typewriter 
+$PERL5LIB
+\family default 
+, 
+\family typewriter 
+$KDEDIRS
+\family default 
+, 
+\family typewriter 
+$PYTHON_PATH
+\family default 
+, and so on.
+ There is no reason to make a monolithic installation a requirement.
+\layout Standard
+
+So, the battle GoboLinux is fighting with regard to installation paths is
+ not specific to us; we are only exposing problems on the flexibility of
+ installation of applications, that happen not only in our tree, but anywhere
+ a user has a custom installation need.
+ I see that the situation has improved greatly in the last few years, with
+ more and more projects adopting GNU Autotools.
+\layout Section*
+
+
+\begin_inset Quotes eld
+\end_inset 
+
+It's easier to compile all programs relative to the same tree
+\begin_inset Quotes erd
+\end_inset 
+
+
+\layout Standard
+
+Sure it is.
+ This is a point that comes up from time to time on the GoboLinux mailing
+ list, when people suggest us to either model 
+\family typewriter 
+/System/Links
+\family default 
+ after a regular Unix tree, with subdirectories such as 
+\family typewriter 
+bin
+\family default 
+, 
+\family typewriter 
+lib
+\family default 
+, etc., or just compile everything relative to 
+\family typewriter 
+/usr
+\family default 
+ and let the legacy tree ensure that everything keeps working.
+ People who suggest this are also implicitly suggesting one of two things:
+ to compile relative to a tree and then install relative to another; or
+ to compile relative to a tree and then use a redirection hack on installation.
+ I don't like any of the two approaches.
+ In the first one, you are expecting a certain flexibility from the build
+ system that is not always there, but unlike the points I raised on the
+ previous section, it is not justifiable that this flexibility 
+\emph on 
+should
+\emph default 
+ be in the application's build system in the first place
+\begin_inset Foot
+collapsed true
+
+\layout Standard
+
+For those interested in this approach, I point you to GNU Stow.
+ I do not know, however, of any system built 100% with it, though.
+\end_inset 
+
+.
+ As for the second approach, I don't like the idea of an operating system
+ built around a hack that can be at any moment circumvented by a new system
+ call or some unorthodox access method.
+ Some might say that GoboHide, for example, also falls in this 
+\begin_inset Quotes eld
+\end_inset 
+
+low-level hack
+\begin_inset Quotes erd
+\end_inset 
+
+ territory.
+ I point out, then, that GoboHide is not mandatory: GoboLinux is designed
+ to work with a vanilla Linux kernel
+\begin_inset Foot
+collapsed true
+
+\layout Standard
+
+If it were not, we could also, for example, build the 
+\family typewriter 
+/System/Links
+\family default 
+ views as union mounts using 
+\family typewriter 
+ovlfs
+\family default 
+.
+\end_inset 
+
+.
+\layout Standard
+
+But instead of pointing flaws in the proposed alternatives, I'd prefer to
+ constructively defend my original design decision.
+ Our idea, with GoboLinux, is to exercise this new approach with self-contained
+ directories and assess its impact on system management, and we have been
+ collecting exciting results.
+ If instead we just used every possible stratagem to make apps 
+\begin_inset Quotes eld
+\end_inset 
+
+easier to compile
+\begin_inset Quotes erd
+\end_inset 
+
+, I believe we would be detracting ourselves from this goal.
+ When I run 
+\family typewriter 
+ls -l /System/Links/Executables
+\family default 
+ and see 
+\emph on 
+all
+\emph default 
+ executables from my system, and the programs they belong to, I see a clean
+ system design.
+ I would hate to look at 
+\family typewriter 
+/System/Links
+\family default 
+ (or whatever the directory would be called) and see within the Unix mess
+ emulated, with 
+\family typewriter 
+/bin
+\family default 
+, 
+\family typewriter 
+/sbin
+\family default 
+, and (
+\family typewriter 
+$DEITY
+\family default 
+ forbid!) 
+\family typewriter 
+/usr/X11R6
+\family default 
+.
+\layout Section*
+
+
+\begin_inset Quotes eld
+\end_inset 
+
+You want to turn Linux into a Windows-like!
+\begin_inset Quotes erd
+\end_inset 
+
+
+\layout Standard
+
+If you read everything up to this point, I believe it should be clear enough
+ that we're not.
+ If we were doing this to attract the Windows users, a structural reorganization
+ would be the last thing we would do.
+ Instead, we would concentrate on making the user interface look like Windows,
+ applying Windows-like themes, moving icons around, perhaps integrating
+ Wine tightly into the distribution, and so on.
+ And that's what Lindows, Lindash, Linspire, or whatever their name is today
+ is doing, not us.
+\layout Standard
+
+It may sound extremely paradoxical, but we strive to keep the Linux identity
+ on the system.
+ To be more precise, we strive for each project to keep its own identity.
+ Whenever possible, we ship every application with unmodified sources.
+ If you ever took the time to look inside the 
+\family typewriter 
+.src.rpm
+\family default 
+ files of any major distribution, you know what I'm talking about: the vast
+ majority of packages have patches to apply little modifications here and
+ there to modify this and that behavior; be it to change the default state
+ of a checkbox, or even to remove the 
+\begin_inset Quotes eld
+\end_inset 
+
+About
+\begin_inset Quotes erd
+\end_inset 
+
+ box of an application! We don't do that.
+ Our K menu shows the KDE logo, and so does the KDE splash screen.
+ We do ship a theme with a custom wallpaper, but that is presented as an
+ option in the installer.
+\layout Standard
+
+We go through great distances to ensure that our packages do not have GoboLinux-
+specific bugs.
+ The worst thing as a Linux user is to discover that a given software works
+ on distro X and doesn't on distro Y, and not know if that is because distro
+ Y introduced a custom patch that caused the bug, or if it's because distro
+ X introduced a patch that fixed the bug.
+ Speaking now as a developer, this is also a major headache.
+ Alexandre Julliard from Wine once said that the constant changes on Linux
+ distributions slow down the project more than the changes from the Win32
+ API.
+\layout Standard
+
+The fact that on GoboLinux all Unix library directories present all libraries
+ from the system, all header directories present all headers, and so on,
+ neutralizes many common compatibility problems between distributions, causing
+ us to be, ironically, one of the most compatible distros, despite the unorthodo
+x directory layout.
+\layout Section*
+
+The scope of a distribution
+\layout Standard
+
+Some people, perhaps excited by the fact that we made such a 
+\begin_inset Quotes eld
+\end_inset 
+
+big change
+\begin_inset Quotes erd
+\end_inset 
+
+ in the structure of the operating system, occasionaly come to us through
+ the mailing list with this great idea about doing some other big system-wide
+ change that would improve GoboLinux considerably.
+ Sometimes this great idea is applicable, and we do apply them, like when
+ Carlo Calica integrated a daemon managing tool, 
+\family typewriter 
+Runit
+\family default 
+, into GoboLinux
+\begin_inset Foot
+collapsed true
+
+\layout Standard
+
+The current trend on GoboLinux development is to loosen this integration,
+ making 
+\family typewriter 
+Runit
+\family default 
+ an optional component, but still providing the required framework to make
+ it work.
+\end_inset 
+
+.
+ But most of the time the idea is something that would require all applications
+ to be greatly modified, if not rewritten.
+ That is, obviously, something we can't and are not willing to do.
+ If we were talking about a limited number of programs, some of them might
+ even be feasible, but people need to keep in mind that the universe of
+ programs to be used with GoboLinux is potentially infinite, as new Linux
+ apps are written every day.
+\layout Standard
+
+To list just a few of the unfeasible ideas we were suggested, I could mention:
+\layout Itemize
+
+make all programs relocatable -- I would love to see that, but that would
+ either mean: rewrite every app in the world to use 
+\family typewriter 
+libprefix
+\family default 
+, store every dependency inside each program directory and have some libraries
+ on disk one hundred times (and deal with the clashes that arise in a system
+ that is not prepared for this), compile everything relative to the same
+ tree (I devoted an entire section above for this).
+\layout Itemize
+
+make all programs use a unified configuration file format -- Of course,
+ the rewrite effort that this would require is even greater than the one
+ from the previous item.
+ Every idea that starts with 
+\begin_inset Quotes eld
+\end_inset 
+
+make all programs...
+\begin_inset Quotes erd
+\end_inset 
+
+ tends to have the same problems: the effort is potentially infinite; you
+ can't make every project in the world agree to use your solution; even
+ if you could, there are many legacy systems out there that just can't change
+ even if they wanted, so incompatibility issues would happen no matter what.
+ Another idea of this class would be to make all programs use the same graphic
+ toolkit.
+ Yeah, that would look great and unify the Linux desktop, but it's just
+ not going to happen.
+\layout Itemize
+
+turn entries on 
+\family typewriter 
+/Programs
+\family default 
+ into AppDirs, because they look so much like RiscOS -- They may look like,
+ but they are pretty different.
+ Yes, 
+\family typewriter 
+/Programs/Emacs
+\family default 
+ could be made into an AppDir.
+ 
+\family typewriter 
+/Programs/LyX
+\family default 
+ too.
+ Hey, a lot of them could.
+ But what about 
+\family typewriter 
+/Programs/FindUtils
+\family default 
+? Or 
+\family typewriter 
+/Programs/KDE
+\family default 
+, what would happen when you click on that? Another key issue is that AppDirs
+ are relocatable by nature and GoboLinux packages are not, a problem which
+ I already covered above.
+\layout Section*
+
+Internationalization
+\layout Standard
+
+An often raised point is that 
+\begin_inset Quotes eld
+\end_inset 
+
+changing
+\begin_inset Quotes erd
+\end_inset 
+
+ names from things like 
+\family typewriter 
+lib
+\family default 
+ to things like 
+\family typewriter 
+Libraries
+\family default 
+ is too English-centric (
+\begin_inset Quotes eld
+\end_inset 
+
+at least the old names were equally meaningless for everyone
+\begin_inset Quotes erd
+\end_inset 
+
+) and that we should do an effort to make the directory tree translatable.
+ I could dismiss this point raising a number of technical issues that make
+ this impractical, unless we are talking about hacks involving symbolic
+ links and the GoboHide kernel patch.
+ But I won't do that.
+ I will, instead, assume that a clean and elegant way to translate all GoboLinux
+ directories existed, and ask 
+\begin_inset Quotes eld
+\end_inset 
+
+then what?
+\begin_inset Quotes erd
+\end_inset 
+
+.
+\layout Standard
+
+If people are willing to translate the directory tree in order to make the
+ system more friendly to those who don't speak English, I'm sorry, but that
+ won't help.
+ A user that is defeated by the fact that 
+\family typewriter 
+/System/Settings
+\family default 
+ is not called 
+\family typewriter 
+/Sistema/Configurações
+\family default 
+ won't go very farther, once they reach this directory and need to edit
+ 
+\family typewriter 
+httpd.conf
+\family default 
+.
+ The point I am trying to make is that the kind of users that need international
+ization won't be helped by a translated directory tree.
+ Efforts for translation should instead be directed towards documentation
+ and the user interface of programs.
+ If the user can read a manual in his/her language that tells him/her to
+ go to 
+\family typewriter 
+/System/Settings
+\family default 
+ and do such and such change in 
+\family typewriter 
+httpd.conf
+\family default 
+, this is much more useful than having the name of the directory changed.
+ If the user has a friendly GUI for configuring Apache like the one provided
+ by Mac OS X, he/she will probably like it much more.
+\layout Section*
+
+Integration with other distros 
+\layout Standard
+
+This is another point that is raised from time to time, in different shapes,
+ sizes and colors.
+ The one reason I see people leaning towards this idea is because of the
+ huge libraries of ready-to-use software provided by the other distributions.
+ At first sight, the idea of combining all the innovations of GoboLinux
+ with the enormous package base of distro X seems amazing.
+ Looking closer, we'll see it's not.
+\layout Standard
+
+First of all, there is the issue of the dependency systems.
+ GoboLinux has a very loose dependency system, designed to be resilient
+ to user customizations
+\begin_inset Foot
+collapsed true
+
+\layout Standard
+
+It's beyond the scope of this article to describe the GoboLinux dependency
+ system, but for example, if you install app A and it depends on B, it won't
+ complain if B was not installed with a vanilla package, and if B is missing,
+ it will report, but not refuse to install.
+\end_inset 
+
+.
+ If you take advantage of these GoboLinux features, you won't be able to
+ auto-update system of distro X, and vice-versa.
+ This way, you would have to choose between using GoboLinux as if you were
+ using distro X, giving up much of the GoboLinux flexibility, or ignoring
+ the cool auto-update features from distro X.
+ Either way, you would give up on one of the reasons you started this integratio
+n project in the first place.
+\layout Standard
+
+Then, there are all of the little peculiarities of both distributions, which
+ you would have to be constantly dealing with: different boot scripts, possible
+ library incompatibilities, the 
+\begin_inset Quotes eld
+\end_inset 
+
+value-added
+\begin_inset Quotes erd
+\end_inset 
+
+ package customizations of distro X...
+ Not to mention the inability to properly use Compile or the GoboLinux binaries
+ repository, due to, for example, different naming conventions of packages.
+\layout Standard
+
+In short, even if you convert a whole system to use distro X's packages,
+ what you'll end up with is not a 
+\begin_inset Quotes eld
+\end_inset 
+
+turbo
+\begin_inset Quotes erd
+\end_inset 
+
+ GoboLinux, but a quirky distro X.
+ It is trivial to take, for example, all RPM's that compose a RedHat system,
+ unpack them, and symlink them to look like a GoboLinux system.
+ The resulting system, in the end, would pretty much be still RedHat.
+ Different people have done this, with different goals (some to build a
+ full distro, others just to convert a binary package or two), with RedHat,
+ Slackware, Debian and more recently Gentoo.
+ The general lesson I learned, from watching them do it, is that it is not
+ worth it.
+\layout Section*
+
+The 
+\family typewriter 
+root
+\family default 
+ user
+\layout Standard
+
+Of course, I saved the best for last.
+ The decision of naming user zero something other than 
+\family typewriter 
+root
+\family default 
+ is among the ones we are most criticized for.
+ The origins of this predate GoboLinux.
+ On my experimental system, my regular user was named 
+\family typewriter 
+hisham
+\family default 
+, and the superuser 
+\family typewriter 
+lode
+\family default 
+.
+ I never liked the Unix notion of 
+\begin_inset Quotes eld
+\end_inset 
+
+an arbitrary 
+\family typewriter 
+root
+\family default 
+ versus regular users
+\begin_inset Quotes erd
+\end_inset 
+
+ and wanted to see how well a Linux system would behave without a 
+\family typewriter 
+root
+\family default 
+ user.
+ After a few adaptations here and there, it worked very well.
+ It was nice to know that every time someone would try to log as 
+\family typewriter 
+root
+\family default 
+ in my machine, they would always fail.
+\layout Standard
+
+When we made the hackathon that resulted in the first version of GoboLinux,
+ André and I decided to keep doing it.
+ We chose 
+\family typewriter 
+gobo
+\family default 
+, an inside joke.
+ The intention of course, was to have a system that could support a non-
+\family typewriter 
+root
+\family default 
+ superuser cleanly, but the users (a handful of people back then) never
+ changed the default and 
+\family typewriter 
+gobo
+\family default 
+ somehow got stuck.
+ It is still possible to change the default without much effort, though.
+ For a short while I administered a set of machines at the university, and,
+ to have them blend with the NIS environment more easily (the network was
+ basically composed of RedHat boxes), I changed the superuser from 
+\family typewriter 
+gobo
+\family default 
+ back to 
+\family typewriter 
+root
+\family default 
+.
+ Now that GoboLinux has a graphical installer, we are considering putting
+ the superuser name as an installation-time option.
+\layout Standard
+
+Now that I'm through with the historical explanation, one thing I would
+ like to point out that it is a well-known fact that the existence of a
+ single god-like entity is one of the weaknesses of the Linux security model,
+ and that is what bothered me with the notion of an arbitrary 
+\family typewriter 
+root
+\family default 
+ versus the rest of users; it is akin to a single point of failure in a
+ distributed system.
+ The first thing every project aiming to improve the security of Linux does
+ is to increase the granularity of the security model, do dilute the power
+ of 
+\family typewriter 
+root
+\family default 
+: ACLs, capabilities, SELinux...
+ It may be argued that some of those add excessive complexity to the model,
+ but I won't dive into this discussion here.
+ The one thing that is clear is that the 
+\family typewriter 
+root
+\family default 
+ model is overly simplistic for today's complex systems, and that the 
+\begin_inset Quotes eld
+\end_inset 
+
+setuid
+\begin_inset Quotes erd
+\end_inset 
+
+ kludge is the source of most security issues.
+ Plan 9, for example, doesn't have a superuser at all; it offers a virtualized
+ view of the file system to each process.
+ The 
+\family typewriter 
+gobo
+\family default 
+ experiment was an interesting assessment on how ingrained in the Linux
+ world is the expectation on having a 
+\family typewriter 
+root
+\family default 
+ user; fortunately, not much (it does not measure how attached the security
+ model is to the user #0, of course).
+ One future direction I would like GoboLinux to take (and in fact Linux
+ in general) is to adopt some of the technologies listed above as a way
+ to improve the control over the system security and administration; to
+ detach ourselves from 
+\family typewriter 
+root
+\family default 
+ was the first step in this direction.
+\layout Section*
+
+Conclusions
+\layout Standard
+
+Well, I believe I covered a lot of ground in this article.
+ I'm sure I forgot many issues, but I think the most important ones are
+ all here.
+ But the main idea I hope I passed here is that GoboLinux is not just a
+ cosmetic change in the filesystem.
+ We are pretty much aware of what we are doing, and what are the implications
+ of the things we are doing.
+\layout Standard
+
+It is no secret that when I came up with the first versions of this directory
+ layout, I did not expect it to turn into a Linux distribution used by people
+ all around the world (even though it was shaped as a distribution project
+ as early as when Guilherme Bedin joined).
+ The one thing I'm most happy about is that the original goal, from way
+ back when it was not a proper distro, remains: a clean design.
+\layout Standard
+
+I wholeheartedly agree with the quote in the beginning of the article, and
+ I definitely believe this is not the case.
+ 
+\the_end

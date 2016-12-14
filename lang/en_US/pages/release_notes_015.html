@@ -1,0 +1,270 @@
+<h1>
+Gobolinux 015 - Release Notes
+</h1>
+
+<h2>
+Introduction
+</h2>
+
+<p>
+We are pleased to introduce <b>GoboLinux 015</b>, the new major release of
+GoboLinux, the Linux distribution featuring a rethought file system structure.
+This is the first full-system image release in a number of years, after a
+long period in which we kept only updating
+<a href="http://recipes.gobolinux.org">compilation recipes</a>.
+Packages were built using both <a href="http://www.linuxfromscratch.org/alfs/">ALFS</a>
+(Automated Linux from Scratch) and our custom dynamically-generated
+sandboxed environment which insulates the source code and its dependencies
+during compilation.  Major upgrades include the Enlightenment 18 desktop and 
+kernel version 3.14.2, as well as new versions of
+the GoboLinux management tools. 
+</p><p>
+
+</p>
+
+<h2> Availability </h2>
+
+<p>
+GoboLinux is available as an <a href="?page=downloads">ISO download</a> which you can
+download from this site.
+</p>
+
+<h2> Overview of this release </h2>
+
+<h3> Live CD </h3>
+
+<p>
+The GoboLinux CD serves both as an installation disc and a Live CD, with a complete
+graphical desktop featuring Enlightenment 18, LibreOffice 4.2.3.3 and a host of applications.
+In fact, due to the modular nature of the GoboLinux filesystem, every program
+available in the CD can be used directly from the "live" environment -- the work
+of the installer is to simply copy the user's selection to the destination
+partition (respecting dependency chains).
+</p>
+
+<h3> Graphical installer </h3>
+
+<p>
+Since version 010, GoboLinux features an installer that works on both text and
+graphical mode. The feature set of both modes is identical, thanks to the
+innovative <a href="http://www.gobolinux.org/abstk">AbsTK</a> (Abstract Toolkit),
+created by the GoboLinux team especially for this installer: a unified widget
+toolkit for Python which detects and adapts itself for different environments.
+It currently supports two backends: ncurses/console and Qt/X11.
+</p>
+
+<h3> Hardware detection </h3>
+
+<p>
+GoboLinux features a Udev-based hardware detection system. A large number of
+devices are detected, loading the appropriate kernel modules.
+Video detection is performed separately, by Xorg's own autodetection mechanism.
+</p>
+
+<h2> Hardware requirements </h2>
+
+<h3> Processor </h3>
+
+<p>
+GoboLinux is compiled to run on i686-class systems, which means a Pentium IV
+or higher. You shouldn't have problems to run it on any modern x86 machine.
+This release contains 32-bit binaries.
+</p>
+
+<h3> Memory </h3>
+
+<p>
+To load the Live CD environment, 128 MB of RAM is the recommended minimum for
+a text-mode system, 512 MB is the recommended minimum to load the graphic
+Enlightenment desktop; 1 GB is recommended for a comfortable Live-boot experience.
+</p>
+<p>
+Once the system is installed in the hard disk, memory requirements vary greatly
+depending on the kind of applications executed, but the values stated above
+related to the Live CD experience serve as a good guideline.
+</p>
+
+<h3> Video and peripherals </h3>
+
+<p>
+Video cards are supported through the Xorg X11 server, with the fallback "vesa"
+driver covering the vast majority of current cards. A large number of sound cards
+are supported through ALSA (Advanced Linux Sound Architecture) and OSS (Open
+Sound System). Other peripherals are supported through additional packages
+(SANE, GPhoto, etc.) available in the GoboLinux recipe store.
+</p>
+
+<h2> Package-specific notes </h2>
+
+<p>
+This section contains some general comments about the package set included in
+GoboLinux. The complete list of packages included in the CD follows in the next
+section.
+</p>
+
+<h3> Absence of proprietary packages </h3>
+
+<p>
+This release does not include any proprietary packages. It is worth to point out
+that programs such as Sun JDK and Adobe Flash do work under GoboLinux with
+no limitations -- they are not included for legal reasons only. As alternatives
+to Acrobat Reader, we recommend Epdfview and Xpdf.
+</p>
+
+<h3> Internationalization </h3>
+
+GoboLinux ships whenever possible all packages distributed in their original state,
+as intended by the authors of the various free software projects that compose the
+distribution. This also applies to the distribution of the locale files. Therefore,
+support for internationalization varies according to the translation status of each
+project for each language.
+
+<h2> List of packages </h2>
+
+<p>
+Here is the complete list of programs you will find included in the GoboLinux 015 ISO image:
+</p>
+<tt>
+<pre>
+AbsTK 015                               GST-Plugins-Good 1.2.3                  NTFS-3G 2014.2.15
+ACL 2.2.52                              GST-Plugins-Ugly 1.2.3                  OpenLDAP 2.4.38
+Acpid 2.0.20                            GStreamer 1.2.3                         OpenSSH 6.4p1
+ALSA-Lib 1.0.27.2                       GTK+ 2.24.22                            OpenSSL 1.0.1g
+APR 1.5.0                               GTK+ 3.10.6                             ORC 0.4.18
+APR-Util 1.5.3                          GTKMM 2.24.4                            Oxygen-Icons 4.12.0
+AsciiDoc 8.6.9                          Gutenprint 5.2.9                        P11-Kit 0.20.2
+ATK 2.10.0                              Gzip 1.6                                Pango 1.36.1
+ATKMM 2.22.7                            HarfBuzz 0.9.27                         PangoMM 2.34.0
+Atomic_ops 7.2alpha4                    Hdparm 9.43                             Parted 3.1
+Atool 0.38.0                            Help2Man 1.40.6                         Patch 2.7.1
+At-Spi2-ATK 2.10.2                      Hplip 3.14.3                            PCIUtils 3.2.1
+At-Spi2-Core 2.10.2                     HTML-Tidy 20101110                      PCRE 8.34
+ATTR 2.4.47                             Htop 1.0.3                              PCSC-Lite 1.8.10
+Audacious 3.5                           IANA-etc 2.30                           Perl 5.18.1
+Audiofile 0.3.6                         Icon-Naming-Utils 0.8.90                Pidgin 2.10.9
+Autoconf 2.69                           IJS 0.35                                Pinentry 0.8.3
+Automake 1.14                           ImageMagick 6.8.9_0                     Pixman 0.32.4
+Avahi 0.6.31                            Imake 1.0.6                             Pkgconfig 0.28
+Babl 0.1.10                             InetUtils 1.9.1                         Polkit 0.112
+Bash 4.3                                Installer 015                           Polkit-GNOME 0.105
+BC 1.06.95                              Intltool 0.50.2                         Polkit-Qt-1 0.103.0
+BinUtils 2.24                           IPRoute2 3.12.0                         Poppler 0.24.5
+Bison 3.0.2                             Iptables 1.4.21                         Popt 1.16
+Boost 1.55.0                            ISO-Codes 3.51                          Portmap 5beta
+BootScripts 015                         JPEG 9                                  PowerTOP 2.5
+Bullet 2.82r2704                        Json-C 0.11                             PPP 2.4.6
+Bzip2 1.0.6                             KBD 2.0.1                               Procps-NG 3.3.9
+Cairo 1.12.16                           Kerberos 1.12                           Psmisc 22.20
+CairoMM 1.10.0                          Kmod 15                                 PTH 2.0.7
+Cdparanoia-III 10.2                     Lame 3.99.4                             PulseAudio 5.0
+CLucene 2.3.3.4                         LCMS 2.25                               PyCairo 1.10.0
+CMake 2.8.11                            Less 458                                PyGObject 2.28.6
+Compile 2.0                             Lesstif 0.95.2                          PyGTK 2.24.0
+ConfigTools 015                         LibArchive 3.2.1                        PyQt 4.10.3
+ConnMan 1.21                            LibAssuan 2.1.1                         Python 2.7.6
+ConsoleKit 0.4.6                        LibATASmart 0.19                        Python-Distutils-EXTRA 2.38
+CoreUtils 8.22                          LibBSD 0.6.0                            Python-Ecore 1.7.0
+CUPS 1.7.0                              LibCanberra 0.30                        Python-E_DBus 1.7.0
+CUPS-Filters 1.0.43                     LibCdio 0.92                            Python-Edje 1.7.0
+Curl 7.34.0                             LibCroco 0.6.8                          Python-Elementary 1.7.0
+Cyrus-SASL 2.1.26                       LibDaemon 0.14                          Python-Evas 1.7.0
+Cython 0.20.1                           LibDRM 2.4.50                           QJSON 0.8.1
+DB 6.0.20                               LibExif 0.6.21                          Qpdf 5.1.0
+DBus 1.7.10                             LibFFI 3.0.13                           Qt 4.8.5
+DBus-GLib 0.100.2                       LibGCrypt 1.6.0                         RagePlayer 20140414-GIT
+DBusMenu-Qt 0.9.2                       LibGlade 2.6.4                          Readline 6.3
+DBus-Python 1.2.0                       LibGPG-Error 1.12                       ReiserFSProgs 3.6.24
+DejaVu-Fonts-TTF 2.34                   LibICU4C 52.1                           RFKill 0.5
+DevelScripts 20110830-SVN               LibIDN 1.28                             Rlog 1.4
+DHCPCD 6.1.0                            LibIODBC 3.52.8                         Rsync 3.1.0
+Dialog 1.2                              LibKSBA 1.3.0                           Schroedinger 1.0.11
+DiffUtils 3.3                           LibMad 0.15.1b                          SCons 2.3.0
+DocBook-XML-DTD 4.5                     LibMCS 0.7.2                            Scripts 3.0
+DocBook-XSL 1.78.1                      LibMNG 2.0.2                            SDL 1.2.15
+DocBook-XSL-Stylesheets 1.78.1          LibMowgli 1.0.0                         Sed 4.2.2
+E17gtk 20140216                         LibNL 3.2.23                            Serf 1.3.2
+E2FSProgs 1.42.8                        LibNotify 0.7.6                         SetupTools 3.4.4
+Econnman 1.1                            LibOGG 1.3.1                            Shadow 4.1.5.1
+E_DBus 1.7.10                           LibPaper 1.1.24                         Shared-MIME-info 1.2
+EFL 1.9.3                               LibPipeline 1.2.6                       SIP 4.15.4
+Elementary 1.9.3                        LibPNG 1.6.8                            SPICE-Protocol 0.12.6
+EmotionGenericPlayers 1.9.0             LibPthread-Stubs 0.3                    SQLite 3.8.2
+EncFS 1.7.4                             LibreOffice 4.2.3.3                     Startup-Notification 0.12
+EnhancedSkel 015                        LibRSVG 2.40.1                          Strace 4.8
+Enlightenment 0.18.7                    LibSamplerate 0.1.8                     Subversion 1.8.5
+Enlightenment-Share 20140505-GIT        LibSecret 0.18                          Sudo 1.8.8
+EPDFView 0.1.8                          LibSigc++ 2.3.1                         Sysklogd 1.5
+Epour 0.5.2.0                           LibSndfile 1.0.25                       SYSLINUX 6.02
+EvasGenericLoaders 1.9.0                LibTasn1 3.3                            Sysvinit 2.88dsf
+ExFAT 0.9.8                             LibTheora 1.1.1                         T1Lib 5.1.2
+Exiv2 0.24                              LibTIRPC 0.2.4                          TagLib 1.9.1
+Expat 2.1.0                             LibTool 2.4.2                           Tar 1.27.1
+FAM 2.7.0                               LibTorrent-Rasterbar 0.16.16            Tcl 8.6.1
+FFmpeg 2.1.1                            LibUSB 1.0.17                           TCPWrappers 7.6
+File 5.16                               LibVA 1.2.1                             Terminology 0.5.0
+FindUtils 4.4.2                         LibVDPAU 0.7                            Texinfo 5.2
+Firefox 28.0                            LibVisual 0.4.0                         TIFF 4.0.3
+Flac 1.3.0                              LibVorbis 1.3.3                         Udev 208
+Flex 2.5.37                             LibWebP 0.4.0                           UDisks 2.1.2
+Fontconfig 2.11.0                       LibXML2 2.9.1                           UnionFS-Fuse 0.25
+FreeType 2.5.2                          LibXSLT 1.1.28                          Unzip 6.0
+Freshen 3.1.0                           LightMediaScanner 20140414-GIT          UPower 0.9.23
+Fribidi 0.19.6                          Links 2.3                               Util-Linux 2.24
+Fuse 2.9.3                              Linux 3.14.2                            Util-macros 1.18.0
+Gawk 4.1.0                              Linux-Firmware 20140120-GIT             Valgrind 3.9.0
+GCC 4.8.2                               Linux-Firmware 20140504-GIT             Vim 7.4
+Gccmakedep 1.0.2                        Linux-Headers 3.12.6                    Virtuoso 6.1.7
+Gcr 3.12.0                              Linux-PAM 1.1.8                         VLC 2.1.2
+GDB 7.7                                 LiveCD 015                              Wget 1.14
+GDBM 1.10                               Lode-Fonts 1.0                          Wireless-Tools 29
+GDK-Pixbuf 2.30.2                       Lsof 4.83                               WPA_Supplicant 2.0
+Gegl 0.2.0                              LuaJIT 2.0.3                            XCB-Util 0.3.9
+Gettext 0.18.3.1                        M4 1.4.17                               XCB-Util-Image 0.3.9
+Ghostscript 9.10                        Make 4.0                                XCB-Util-Keysyms 0.3.9
+Giflib 4.2.3                            Makedepend 1.0.5                        XCB-Util-Renderutil 0.3.8
+Gimp 2.8.10                             Man-DB 2.6.5                            XCB-Util-WM 0.3.9
+Git 1.8.4.2                             Man-Pages 3.55                          XDG-Utils 1.1.0_rc1
+GLib 2.38.2                             Mdadm 3.3                               XMLTO 0.0.25
+Glibc 2.18                              Meanwhile 1.0.2                         Xorg 7.7
+GLibmm 2.38.1                           Mesa 10.0.1                             Xorg-App 7.7
+GMP 5.1.3                               Mirage 0.9.5.2                          Xorg-cf-files 1.0.5
+Gnome-Keyring 3.12.0                    MozJS 17.0.0                            Xorg-Driver 7.7
+GnuPG 2.0.22                            MPC 1.0.1                               Xorg-Font 7.7
+GnuTLS 3.2.8                            MPFR 3.1.2                              Xorg-Lib 7.7
+GObject-Introspection 1.38.0            Mtail 1.1.1                             Xorg-Proto 7.7
+GoboHide 0.14                           MtDev 1.1.2                             Xorg-Server 1.15.0
+GParted 0.18.0                          Nasm 2.08.02                            Xpdf 3.03
+Gperf 3.0.4                             Ncurses 5.9                             XTerm 300
+GPGME 1.4.3                             NcursesW 5.9                            Xvidcore 1.3.2
+GPM 1.20.7                              Nettle 2.7.1                            XZ-Utils 5.0.5
+Grep 2.14                               Net-Tools 1.60                          Yasm 1.2.0
+Groff 1.22.2                            NetworkManager 0.9.8.8                  Zip 3.0
+GRUB 2.00                               Network-Manager-Applet 0.9.8.8          ZLib 1.2.8
+GST-Libav 1.2.3                         Notification-Daemon 0.7.6               ZSH 5.0.4
+GST-Plugins-Bad 1.2.3                   NSPR 4.10.2
+GST-Plugins-Base 1.2.3                  NSS 3.13.3
+</pre>
+</tt>
+<h3> About GoboLinux </h3>
+<p>
+GoboLinux is a Linux distribution created in 2002 which implements an
+innovative approach in terms of system administration. It defines a
+new directory hierarchy which allows the coherent management of the
+installed base of programs from a system. This is done exclusively
+through the filesystem layout, without relying on databases or
+package managers.
+</p>
+<p>
+In GoboLinux, each program resides in its own directory, such as
+/Programs/Xorg/7.7 and /Programs/Htop/1.0.3. Each file category
+(executables, libraries, headers) can also be accessed through unified
+symlink views, such as /System/Index/lib and
+/System/Index/include. These views match the legacy directories (/bin,
+/usr/include, /usr/local/share, and so on), achieving total Unix
+compatibility while keeping program directories completely
+self-contained.
+</p>
+
+<p>
+<a href="http://www.gobolinux.org">http://www.gobolinux.org</a>
+</p>

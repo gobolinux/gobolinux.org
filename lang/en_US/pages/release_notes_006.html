@@ -1,0 +1,74 @@
+<h2>GoboLinux 006 - Release notes / Known issues</h2>
+
+<p>
+This page collects relevant information concerning GoboLinux version
+006. This file can be considered a companion to the documentation included in
+the CD, and will be regularly updated as we get feedback in the mailing list.
+</p>
+
+<h3>
+Known bugs/issues
+</h3>
+
+<p>
+GoboLinux, like most free software, is in constant improvement.
+Since it is still improving, it means it is not perfect. 
+Since it is not perfect, it means it has bugs. Here's the list
+of known bugs in the latest release (of course, they should all be fixed
+until the next one).
+</p>
+
+<h4>
+Installation
+</h4>
+
+<ul>
+<li>
+The progress bar may not fill up to 100%, even though
+the installation is complete. In this case, you can press "Q" at any
+time (even before the installation is done) and the installer will
+proceed correctly with the installation.
+</ul>
+
+<h4>
+Use
+</h4>
+
+<ul>
+<li>
+To set the timezone, modify Glibc's <tt>localtime</tt> symlink inside
+<tt>/Programs/Glibc/Settings</tt>. Modifying it inside
+<tt>/System/Settings</tt> does not suffice. We intend to fix this.
+<li>
+The proprietary Java and Flash plugins at /Files/Plugins
+(distributable free of charge
+and available as a convenience) are linked to GCC 2 libraries. 
+Either install GCC 2 (you can keep GCC 3 as Current version) or
+update the plugins.
+<li>
+Not really a bug, but worth a comment: DHCP is listed as an
+option in the network boot scripts, but DHCPCD is not installed
+in the base system as default. Remember to install this package
+if you intend to use DHCP.
+<li>
+The GCC packages were modularized late in the release process. Because
+of this, some packages will complain that GCC is missing, even though
+this is not true. Please ignore.
+<li>
+The dependency listings may show the same package several times.
+This is harmless.
+</ul>
+
+<h4>Additional packages</h4>
+
+<ul>
+<li>
+The Licq package does not include the Qt-only plugin, only the
+KDE version.
+<li>
+Some ALSA utilities create state files in /System/Settings directly.
+To have them stored inside ALSA-Utils, do:<br>
+<tt> mkdir -p /Programs/ALSA-Utils/Settings<br>
+touch /Programs/ALSA-Utils/Settings/{alsactl,asound.state}
+</ul>
+

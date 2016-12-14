@@ -1,0 +1,154 @@
+<h2> GoboHide: surviving aside the legacy tree </h2>                   
+<p><i> Lucas Correia Villa Real </i>, December 9th, 2003.</p>    
+<p><i> Last updated on October 14, 2006.</i></p>                
+                   
+<h3> A little bit of history </h3>                   
+<p>                   
+As you might have already seen, GoboLinux adopts an alternative directory                   
+tree. As you might also be wondering, without the legacy tree a lot of                   
+common applications wouldn't work in GoboLinux. This document explains                   
+how this problem is solved by the distribution and how it's solved by other                   
+operating systems which must address the same problem. If you simply don't                   
+want to read the entire story, <a href="#download"> click here </a>                   
+to get directly into the download section.
+</p>                   
+                   
+<p>                   
+A long time ago, in a mailing list far, far away....                   
+There was a discussion about how we could get rid of the legacy tree,                   
+without actually removing it. We needed to keep it, but we just didn't                   
+want to know it existed.                   
+</p>                   
+<p>                   
+Inspired by MacOS, Hisham suggested that we started by modifying our "l" script                   
+(which is a wrapper for the 'ls' command): if an entry belonging to the                   
+legacy tree was going to be listed, then it should be skipped, and the final                   
+listing would only show the GoboLinux hierarchy tree.                   
+</p>                   
+<p>                   
+So, since all of the GoboLinux users at the time (that is, their developers)                   
+used to use "l", this approach could be good enough.. for our shell needs.                   
+MacOS uses an approach very similar to this: it keeps a file with the                    
+directory names that should not be listed by the graphical interface. Their                   
+toolkits then makes use of this file to avoid listing the legacy tree, and                   
+everyone is happy.                   
+</p>                   
+<p>                   
+Of course, since we are dealing with a great variety of window managers and                   
+interpreters, we couldn't adopt the same solution, or we would need to have                   
+a great job modifying every application which handled with filenames.                   
+</p>                   
+<p>                   
+My suggestion was to hook these read operations directly in the root of the                    
+problem: since every readdir() is performed by the kernel, then                   
+we could have a list kept in kernel to check on every readdir() operation.                   
+If the inode being read was present in this list, then it simply shouldn't be                   
+copied onto the destination buffer, which should be returned to the user.                   
+</p>                   
+<p>                   
+This first implementation was hardcoded with my own inode numbers (relative                   
+to the legacy tree), and this was when Felipe Damasio came with his kernel                   
+abilities and created a better interface based on ioctls in order to register                   
+the entries that should be hidden from the userspace, and then we got our                   
+first release of GoboHide.                   
+</p>                   
+<p>                   
+From these old days until now, GoboHide has been kept up to date to the                   
+newer kernel versions. The patch now is fully integrated with the VFS, which means
+that it works with any filesystem that supports directories and/or symlinks. It has
+been tested with EXT2, EXT3, ISOfs, JFFS2, JFS, NFS, ReiserFS, SquashFS and XFS, but
+certainly works with others, too.
+</p>
+                   
+<h3> And how can I interact with this wonderful piece of ioctls? </h3>                   
+<p>                   
+As mentioned before, its interface with the userland is made through ioctls,                   
+hence an application is needed to talk with the kernel. There's a tool called                   
+GoboHide (very intuitive, isn't it?) that can do the job for you:                   
+</p>                   
+<div class="console"><div class="padding"><pre>                   
+<span class="prompt">~]</span> gobohide --help                   
+                   
+gobohide: Hide/Unhide a directory                   
+                   
+-h, --hide     Hide the directory                   
+-u, --unhide   Unhide the directory                   
+-l, --list     List the hidden directories                   
+    --version  Show the program version                   
+    --help     Show this message                   
+</pre></div></div>                   
+                   
+<p>                   
+So, in order to hide a directory, one would need to run gobohide with '-h',                   
+passing the target entry. A subsequent "ls" will not show the hidden entry,                   
+then:                   
+</p>                   
+<div class="console"><div class="padding"><pre>                   
+<span class="prompt">~]</span> ls /                   
+<span class="dir">Depot  Mount     System</span><span                   
+class="symlink"> bin  etc  proc  sys </span><span                   
+class="dir"> usr </span>                   
+<span class="dir">Files  Programs  Users </span><span                   
+class="symlink"> dev  lib  sbin  tmp  var</span>                   
+                   
+<span class="prompt">~]</span> gobohide -h /usr                   
+<span class="prompt">~]</span> gobohide -h /etc                   
+                   
+<span class="prompt">~]</span> ls /                   
+<span class="dir">Depot  Mount     System</span> <span                   
+class="symlink"> bin  lib   sbin  tmp </span>                   
+<span class="dir">Files  Programs  Users </span> <span                   
+class="symlink"> dev  proc  sys   var </span>                   
+</pre></div></div>                   
+                   
+<p>                   
+This allows one to hide an entry from the filesystem. But don't worry,                   
+the superuser has power to ask the kernel for the entries being hidden, so                   
+you can always be sure about what is being hidden in your system:                   
+</p>                   
+<div class="console"><div class="padding"><pre>                   
+<span class="prompt">~]</span> gobohide -l                   
+Hidden directories:                   
+/etc                   
+/usr                   
+</pre></div></div>                   
+<p>                   
+And the best of it all: you can still access your files inside these hidden                   
+entries, and even bash would tell you that files exist in these directories:                   
+</p>                   
+<div class="console"><div class="padding"><pre>                   
+<span class="prompt">~]</span> [ -f /etc/fstab ] && echo                   
+"ooookay"                   
+ooookay                   
+                   
+<span class="prompt">~]</span> l /etc/zshrc                   
+                   
+rwx<span style="gray">rwxrwx</span>  28 <span                   
+class="symlink">/etc/zshrc</span>                   
+-> /Programs/ZSH/Settings/zshrc                   
+========================================================                   
+    28 in 1 file - 7614808 kB used (96%), 388760 kB free                   
+</pre></div></div>                   
+<h3><a name="download"></a>                   
+ Getting and applying the kernel patches and the userspace application </h3>                   
+<p>                   
+The GoboHide patch is already applied by default on the GoboLinux kernel.                    
+In case you are compiling a different kernel release, you can grab the                   
+patches which are contained inside the Linux kernel recipe and apply the GoboHide                   
+patch in the usual way, as follows:                   
+</p>                   
+<div class="console"><div class="padding"><pre>                   
+<span class="prompt">~/KernelSources]</span> patch    
+-i /path/to/gobohide.patch -p1                   
+</pre></div></div>                   
+<p>
+
+<p>
+<a href="http://recipes.gobolinux.org/r/?list=Linux&amp;ver=">These are the latest recipes for the GoboLinux kernel</a>.
+</p>
+<p>
+<a href="http://github.com/gobolinux/GoboHide">GoboHide userland app</a>.
+</p>
+<p>
+<a href="">GoboHide source code</a>.
+</p>

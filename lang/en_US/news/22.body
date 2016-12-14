@@ -1,0 +1,15 @@
+<p>
+So, GoboLinux 010rc1 is here. Lots of important improvements on
+this one, including hardware detection based on Kudzu and a graphical
+installer (which also works in text-mode with a curses interface).
+As the 'rc1' in the name implies, this is pretty close to a stable
+version, but it is still a development release. There are a few known
+issues and new ones may pop in the mailing list before 010 final is
+out, so, if you want to help us make 010 truly rock, give 010rc1 a
+spin and report your experiences in the list. We are especially
+interested in hear about any bugs related to the new features.
+</p>
+<p>
+And no, we did not bump the version number. Release numbers
+are octal... they all start with 0, get it? :)
+</p>

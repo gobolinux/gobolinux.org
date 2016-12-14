@@ -1,0 +1,24 @@
+<img alt="GoboLinux 013" src="http://www.gobolinux.org/images/release013.png" 
+align="left"/> 
+
+<p>
+We are pleased to introduce <b>GoboLinux 013</b>, the new major release of
+GoboLinux, the alternative Linux distribution. This release is the
+result of over an year of work on the build infrastructure used by
+the distribution. The new Live CD build environment is highly
+<a href="?page=livecd">customizable</a> and package building was overhauled
+by using a dynamically-generated sandboxed environment which insulates
+the source code and its dependencies during compilation.
+</p>
+
+<p>
+These under-the-hood improvements resulted in cleaner builds when
+bringing the package set up-to-date: major upgrades include Xorg 7.1,
+KDE 3.5.3, Glibc 2.4 and GCC 4.1.1. This release also features a number
+of improvements in the management tools, particularly new versions of <a href="?page=manager">Manager</a>, the graphical management console, and
+<a href="?page=compile">Compile</a>, the GoboLinux package building tool.
+</p>
+<p>
+Read the detailed <a href="http://gobolinux.org/index.php?page=release_notes_013
+">release notes</a> for more information
+</p>

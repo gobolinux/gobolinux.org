@@ -1,0 +1,133 @@
+<h2>
+Roadmap
+</h2>
+
+<p>
+(Thanks to Mika Pesu for reminding us to update this roadmap.)
+</p>
+
+<h3>
+Road to 011
+</h3>
+
+<p>
+The roadmap for 007 started with "GoboLinux 007 will not be a major
+departure from 006, but rather, a gradual improvement". This one is no
+different. We always try to improve gradually, that's why there are no
+points in our release numbers: in one sense, all releases are major
+releases, in another, all of them are point releases. It's a
+glass-half-empty/glass-half-full thing.
+</p>
+
+<p>
+Looking back at the roadmap for 007, I see that featurewise, it ended up
+being quite precise, but timewise, it failed miserably. We first planned
+it for July 2003 but only delivered it in October, a three-month delay.
+For 010, no date promises were made, but if I recall, the original plan
+was for December, and we released it in early January. Quite an
+improvement. :)
+</p>
+
+<p>
+By now, the development version of the Scripts, ie, the latest dated
+snapshot, is already considerably better than the earlier version that
+was frozen for 010, which means that 011 can't take too long to be
+released. So, the planned release date for 011 is "as soon as possible",
+once we get the planned features worked out. (I would say it could be
+out as early as late February/early March, but don't quote me on these
+numbers.)
+</p>
+
+<p>
+Now, on to the features.
+</p>
+
+<p>
+GoboLinux 007 and 010 featured large improvements, namely the installer
+and hardware detection. These would be hard to top on 011: the plan is
+to have smaller things as new features, and focus on improving these
+larger features that were introduced in the last releases.
+</p>
+
+<p>
+So, what's new to be expected:
+</p>
+
+<ul>
+<li>
+<b>New bootscripts.</b> They are going to be as simple as the current ones, but
+more modular than the current ones. While some scenarios need extra
+complexity (daemon management, dependency-based boot, runlevels) others
+just need a few programs to be launched in a certain order at startup
+and "that's it". We believe it is possible to support both in an elegant
+manner. And do all of this in a themeable way, of course. ;-)
+</li>
+<li>
+<b>Improved shell agnosticism.</b> As zsh users, we don't like it when we are
+forced into a bash-world. So, we won't try to force users of other
+shells into a zsh-world, either. This means a change in the way
+environment variables are handled, and the adoption of wrapper scripts
+instead of shell functions and aliases whenever possible.
+</li>
+<li>
+<b>Kernel 2.6.x.</b> GoboLinux 011 will most likely ship with kernel 2.4.x by
+default, but it should provide 2.6.x (and associated tools) as an
+option. There is work underway for this, including the port of GoboHide.
+</li>
+<li>
+<b>Integration of Compile.</b> "Compile" has proven to be a success among the
+GoboLinux community, so it will be made canon, with a server
+infrastructure set up by the time 011 is out so that users can upgrade
+their system through the network, either downloading binary packages or
+compiling at home.
+</li>
+</ul>
+
+<p>
+Some things from the 007 roadmap still hold true as to-do work:
+</p>
+
+<ul>
+<li>
+<b>Automate the base system build process.</b> Compile already holds most if
+not all of the recipes necessary to build the Base system, and we have a
+mostly-automated build script to generate the ISO image, but we haven't
+got to the point where we can shoot "go" in one end of the pipeline and
+get a ready-to-ship ISO in the other end. We'll try to have this on 011,
+but this is an ever-evolving, long-term task.
+</li>
+<li>
+<b>Improve the collection of packages.</b> This is an obvious, but tiring item,
+which will always be on every roadmap. Ideally we want every package
+shipped in the CD to be in its latest stable release. Also, we haven't
+settled if 011 will remain a 1-CD distro or not (most likely it will),
+but the decision of "what goes in" is always a hard one.
+</li>
+<li>
+<b>Improve documentation.</b> Documentation has improved slowly but steadily.
+This situation should improve as the system becomes more stable in its
+shape and changes are less frequent.
+</li>
+</ul>
+
+<h3>
+The i386 port
+</h3>
+
+<p>
+GoboLinux 010 is still i686-only. There is an ad-hoc 007 port of i686
+out there developed especially for the Eu Cidad&atilde;o social project,
+but it never featured a complete package set that warranted a proper
+release. We plan to use it to bootstrap a proper i386 port. Compile
+should be an important tool in this task. There is a considerable chance
+that 011 will feature both i386 and i686 versions, but this is a lower
+priority than the items listed above.
+</p>
+
+<h3>
+The long run
+</h3>
+
+<p>
+(yet to be written :-) )
+</p>

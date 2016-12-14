@@ -1,0 +1,44 @@
+<div id="intro">
+<img id="logo" src="<<root>>/images/gobolinux016.png"/>
+<div id="intro_text">
+<<@frontpage/overview.yats>>
+</div>
+</div>
+
+<a name="content"></a>
+
+<div class="spacer"></div>
+
+<div class="content content1">
+   <div id="left_content">
+      <div class="newssection">
+         <h1 class="frontpage_section">Latest news</h1>
+         <<latest_news>>
+         <p>
+         <a href="<<lang>>/news/news_archive_1.html"><<@strings/older_news>>...</a>
+         </p>
+      </div>
+   </div>
+   
+   <div id="right_content">
+      <div class="section">
+         <<@frontpage/downloads.yats>>
+      </div>
+   </div>
+</div>
+
+<div class="spacer"></div>
+
+<div class="content content2">
+   <div id="left_content">
+      <div class="section">
+         <<@frontpage/docs.yats>>
+      </div>
+   </div>
+   <div id="right_content">
+      <div class="section">
+         <<@frontpage/community.yats>>
+      </div>
+   </div>
+</div>
+

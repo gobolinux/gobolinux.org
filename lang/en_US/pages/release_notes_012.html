@@ -1,0 +1,256 @@
+
+<h1>
+Gobolinux 012 - Release Notes
+</h1>
+
+<h2>
+Introduction
+</h2>
+
+<p>
+We are pleased to introduce <b>GoboLinux 012</b>, the new major release of
+GoboLinux, the alternative Linux distribution. This release features
+the usual series of application upgrades, and marks the transition
+from devfs and Kudzu to udev and Hotplug, which should bring hardware
+detection up-to-date. It also features a number of improvements in the
+management tools, particularly the integration of the graphical
+management console <a href="?page=manager">Manager</a>
+
+
+<h2> Availability </h2>
+
+GoboLinux is available as an ISO download, in a number of
+<a href="?page=downloads">mirrors</a>.
+
+<h2> Overview of this release </h2>
+
+
+<h3> Live CD </h3>
+
+<p>
+The GoboLinux CD serves both as an installation disc and a Live CD, with a complete graphical desktop featuring KDE, OpenOffice.org and a host of applications. In fact, due to the modular nature of the GoboLinux filesystem, every program available in the CD can be used directly from the "live" environment -- the work of the installer is to simply copy the user's selection to the destination partition (respecting dependency chains).
+</p>
+
+<h3> Graphical installer </h3>
+
+<p>
+Since version 010, GoboLinux features an installer that works on both text and graphical mode. The feature set of both modes is identical, thanks to the innovative <a href="http://www.gobolinux.org/abstk">AbsTK</a> (Abstract Toolkit), created by the GoboLinux team especially for this installer: a unified widget toolkit for Python which detects and adapts itself for different environments. It currently supports two backends: ncurses/console and Qt/X11.
+</p>
+
+<h3> Hardware detection </h3>
+
+<p>
+GoboLinux uses Hotplug as hardware detection system. A large number of devices are detected, loading the appropriate kernel modules. Hotplug is activated both at LiveCD and at the installed system boot.
+</p>
+
+<p>
+Video detection is performed separately, by the Xorg server's own autodetection mechanism. If for any reason video card detection fails while booting the Live CD, you can skip to the default, "vesa", which works for most cards (unaccelerated).
+</p>
+
+<h2> Changes since GoboLinux 011 </h2>
+
+<h3> Selectable superuser name </h3>
+
+<p>
+The name of the system's superuser can now be choosen at instalation time.
+</p>
+
+<h3> New boot scripts scheme </h3>
+
+<p>
+GoboLinux 012 features a new scheme for bootscripts, BootScripts 2.0.
+It provides programmable parallel boot, unlimited "runlevel"
+flexibility through boot-time command-line options and simpler
+configuration files.
+</p>
+
+
+<h3> Addoption of SquashFS </h3>
+
+<p>
+Instead of cloop, GoboLinux LiveCD is now using SquashFS to store
+compressed data inside the CD. While cloop compresses an existing file
+system (e.g. ext2), squashfs is itself a file system, and provides
+better compression and performance.
+
+</p>
+
+
+<h3> Enhancements at the management scripts </h3>
+
+<p>
+Since 011, a series of enhancements and new features were added to the
+Scripts package. Features like automatic binary packages retrieval
+make it easier to manage the system. A new BuildIsoEnvironment enables
+anyone to perform changes at the GoboLinux 012 ISO image just calling
+a few commands.
+</p>
+
+<h3> German translations </h3>
+<p>
+Documentation, installation process and KDE now include German translations (besides English and Brazilian Portuguese).
+</p>
+
+
+<h3> Integration of Udev and Hotplug </h3>
+<p>
+Device management is now being performed by Udev (replacing devfs) and HotPlug.
+</p>
+
+<h3> Integration of 'Manager'</h3>
+<p>
+GoboLinux now features a graphical front-end for package management. It enables the user to perform tasks like update packages and remove programs in a simpler manner, without having to use the back-end scripts.
+</p>
+
+<h3> </h3>
+
+<h2> Hardware requirements </h2>
+
+<h3> Processor </h3>
+
+<p>
+GoboLinux is compiled to run on i686-class systems: Intel Pentium II/III/IV, Intel Celeron, AMD Duron, AMD Athlon/XP/MP.
+</p>
+
+<h3> Memory </h3>
+
+<p>
+To load the Live CD environment, 32 MB of RAM is the recommended minimum for a text-mode install, 64 MB is the recommended minimum to load the graphic KDE desktop; 128 MB is recommended for a comfortable Live CD experience.
+</p>
+<p>
+Once the system is installed in the hard disk, memory requirements vary greatly depending on the kind of applications executed, but the values stated above related to the Live CD experience serve as a good guideline.
+</p>
+
+<h3> Video and peripherals </h3>
+
+<p>
+Video cards are supported through the Xorg X11 server, with the fallback "vesa" driver covering the vast majority of current cards. A large number of sound cards are supported through ALSA (Advanced Linux Sound Architecture) and OSS (Open Sound System). Other peripherals are supported through additional packages (CUPS, SANE, GPhoto, etc.) available in the GoboLinux repository.
+</p>
+
+<h2> Installation notes </h2>
+
+<h3> Internationalization </h3>
+
+<p>
+Due to user demand, the installer supports Brazilian Portuguese, German and English languages. The GoboLinux team welcomes contributions of new translations from the community.
+</p>
+
+<h2> Package-specific notes </h2>
+
+<p>
+This section contains some general comments about the package set included in GoboLinux. The complete list of packages included in the CD follows in the next section.
+</p>
+
+<h3> Absence of proprietary packages </h3>
+
+<p>
+This release (like GoboLinux 011) does not include any proprietary packages. All packages were compiled from source, with the exception of OpenOffice.org and Mozilla FireFox, which provide cross-distribution binaries. It is worth to point out that programs such as Sun JDK and Macromedia Flash do work under GoboLinux with no limitations -- they are not included for legal reasons only. As an alternative to Acrobat Reader, we recommend Xpdf.
+</p>
+
+<h3> Internationalization </h3>
+
+GoboLinux ships whenever possible all packages distributed in their original state, as intended by the authors of the various free software projects that compose the distribution. This also applies to the distribution of the locale files. Therefore, support for internationalization varies according to the translation status of each project for each language. External locale packages are not usually included in the CD, but again, due to user demand, Brazilian Portuguese and German i18n packages for KDE are shipped.
+
+<h2> List of packages </h2>
+
+<p>
+The majority of packages received upgrades since GoboLinux 011. Here is the complete list of programs you will find included in the GoboLinux 012 CD:
+</p>
+<tt>
+<pre>
+AALib 1.4rc5              Gzip 1.3.5                OpenSSH 4.0p1
+ALSA-Driver 1.0.4         Hdparm 5.8                OpenSSL 0.9.7f
+ALSA-Lib 1.0.8            Hotplug 2004_03_29        PCIUtils 2.1.11
+ALSA-Utils 1.0.5          Htop 0.5.1                PCRE 5.0
+ATK 1.9.1                 HwData 0.92-1.1           PPP 2.4.1
+AbsTK 0.2                 ID3Lib 3.8.3              Pango 1.8.0
+Aspell 0.60               IMLib 1.9.15              Parted 1.6.22
+Atool 0.29.0              ImageMagick 6.2.0-7       Patch 2.5.4
+Audiofile 0.2.6           Indent 2.2.9              Pcmcia-CS 3.2.8
+Aumix 2.8                 InetUtils 1.4.2           Perl 5.8.6
+Autoconf 2.59             Ispell 3.2.06             Pilot-Link 0.11.8
+Automake 1.9.5            JACK 0.99.0               Pinfo 0.6.8
+BC 1.06                   JPEG 6b                   Pkgconfig 0.15.0
+Bash 3.0                  K3B 0.11.23               Popt 1.7
+Bin86 0.16.3              KBD 1.12                  Procinfo 18
+BinUtils 2.15             KDE-Base 3.4.0            Procps 3.2.3
+Bison 2.0                 KDE-Graphics 3.4.0        ProgsReiserFS 0.3.0
+BootScripts 2.0.0         KDE-I18n-de 3.4.0         Psmisc 21.4
+Bzip2 1.0.3               KDE-I18n-pt_BR 3.4.0      PyQt 3.13
+CDRDAO 1.1.9              KDE-Libs 3.4.0            Python 2.4.1
+CDRTools 2.01a31          KDE-Multimedia 3.4.0      Qt 3.3.4
+CUPS 1.1.23               KDE-Network 3.4.0         QtParted 0.4.4
+CVS 1.12.7                KDE-PIM 3.4.0             RP-PPPoE 3.5
+Cdparanoia-III alpha9.8   LCMS 1.13                 RPM 4.0.4
+Compile 1.3.1             LILO 22.3.4               Readline 5.0
+ConfigTools 1.0.0         Lame 3.96.1               ReiserFSProgs 3.6.19
+CoreUtils 5.2.1           Less 382                  Rsync 2.6.4
+Cpio 2.5                  Lesstif 0.94.0            Ruby 1.8.2
+DB 4.3.27                 LibART_LGPL 2.3.16        Runit 1.0.1
+DHCPCD 1.3.22-pl1         LibExif 0.6.12            SDL 1.2.8
+Device-Mapper 1.00.21     LibIDN 0.5.11             SIP 3.10.2
+Dialog 1.0-20040731       LibMNG 1.0.6              SVGALib 1.4.3
+DiffUtils 2.8.1           LibMad 0.15.1b            Sash 3.6
+DosFSTools 2.10           LibMal 0.40               Scripts 2.1.26
+E2FSProgs 1.36            LibOGG 1.1.2              Sed 4.1.4
+ESP-GhostScript 7.07.1    LibPNG 1.2.8              Shadow 4.0.3
+Ed 0.2                    LibRSVG 2.8.1             Strace 4.5.8
+Eject 2.0.13              LibSamplerate 0.1.2       Sudo 1.6.6
+EnhancedSkel 012          LibSndfile 1.0.10         SysFSUtils 1.2.0
+Esound 0.2.35             LibStdC++ 3.3.1           Sysklogd 1.4.1
+Expat 1.95.8              LibStdC++ 2.95.3          Sysvinit 2.84
+File 4.13                 LibTool 1.5.14            T1Lib 5.0.2
+FindUtils 4.2.18          LibVorbis 1.1.0           TIFF 3.6.1
+FireFox 1.0.4             LibXML2 2.6.18            Tar 1.15.1
+Flac 1.1.2                LibXSLT 1.1.13            TeTeX 1.0.7
+Flex 2.5.31               Libungif 4.1.3            Texinfo 4.8
+Fontconfig 2.3.1          Licq 1.3.0                Thunderbird 1.0.2
+FreeType 2.1.9            Links 2.1pre17            TraceRoute 1.4a12
+Freshen 1.99              Lsof 4.74                 Udev 053
+FxLoad 2002_04_11         Lyx 1.3.5                 Unzip 5.52
+GCC 3.4.3                 M4 1.4.3                  Util-Linux 2.12q
+GDB 6.3                   MC 4.6.0                  Vim 6.2
+GLib 2.6.3                MPlayer 1.0pre6           Wget 1.9.1
+GLib 1.2.10               Make 3.80                 WindowMaker 0.80.1
+GPM 1.20.1                Man 1.5k                  Wireless-Tools 27
+GTK+ 2.6.4                Man-Pages 2.01            X86Info 1.9
+GTK+ 1.2.10               Manager 1.0.0             XFS-Utils 1.2
+GV 3.5.8                  Mesa 5.0                  XMMS 1.2.10
+Gawk 3.1.4                MesaLib 6.2               Xaw3d 1.5
+Gettext 0.14.3            MkTemp 1.5                Xorg 6.8.1
+GhostScript 8.13          Module-Init-Tools 3.0     Xpdf 3.00pl2
+Gimp 2.2.4                Mtail 1.1.1               Xtest 2.0-1
+Gimp-Print 4.2.7          Multipath-Tools 0.4.2     YAFC 1.1
+Glibc 2.3.2               Nano 1.3.5                ZLib 1.2.2
+Gnuplot 4.0.0             Nasm 0.98.38              ZSH 4.2.4
+GoboHide 0.09             Ncurses 5.4               ZSNES 1.42
+Grep 2.5.1a               Net-Tools 1.60            Zip 2.3
+Groff 1.19.1              Netkit-Base 0.17          Linux 2.6.11.9
+</pre>
+</tt>
+<h3> About GoboLinux </h3>
+<p>
+GoboLinux is a Linux distribution created in 2002 which implements a
+radical new approach in terms of system administration. It defines a
+new directory hierarchy which allows the coherent management of the
+installed base of programs in a system exclusively through the layout
+of the filesystem, without relying on databases or package managers.
+</p>
+<p>
+In GoboLinux, each program resides in its own directory, such as
+/Programs/Xorg/6.8.0 and /Programs/KDE/3.4.0. Each file category
+(executables, libraries, headers) can also be accessed through unified
+symlink views, such as /System/Links/Libraries and
+/System/Links/Headers. These views match the legacy directories (/bin,
+/usr/include, /usr/local/share, and so on), achieving total Unix
+compatibility while keeping program directories completely
+self-contained.
+</p>
+
+<p>
+Join the revolution.
+</p>
+
+<p>
+<a href="http://www.gobolinux.org">http://www.gobolinux.org</a>
+</p>

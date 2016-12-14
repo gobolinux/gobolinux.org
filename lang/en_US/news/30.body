@@ -1,0 +1,14 @@
+<p>
+After minor changes, upgrade of most of the packages and integration
+of Compile (the GoboLinux compilation tool), 011 alpha1 CD is finally out.
+</p>
+<p>
+The major changes planned before a final release:
+</p>
+<ul>
+<li> Integration of the new bootscript engine;</li>
+<li>Put a 2.6 kernel as an option to the user;</li>
+<li>Installer enhancements;</li>
+<li>Update all packages;</li>
+<li>Update the LiveCD user environment.</li>
+</ul>

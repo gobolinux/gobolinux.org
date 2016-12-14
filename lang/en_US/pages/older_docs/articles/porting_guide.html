@@ -1,0 +1,127 @@
+
+<h3>Quick-and-dirty GoboLinux Porting Guide</h3>
+
+<p><i>Hisham Muhammad</i>, November 19th, 2003.</p>
+
+<p>
+Currently, GoboLinux is x86 only. Actually it is i686 only, though there is
+a incomplete (the pretty word would be "domain-specific") i386 port.
+Want to be the first to get GoboLinux to run in some other architecture?
+I believe things will be easier if you follow the following "plan of attack".
+Let's take the PowerPC architecture as an example.
+</p>
+
+<ol>
+<li>
+So, take a Linux PPC distribution, and install the bare minimum to be able to 
+compile programs with it. You don't want programs to get any extra 
+dependencies compiled in by accident. We want to build a Glibc 2.3/GCC 3.3 
+based system here, so try to get a Linux PPC distro which supports those or 
+upgrade them to these version using the means provided by your distribution, 
+or simply, by hand (you'll nuke the distro in the end, anyway).
+</li>
+
+<li>
+Then, create GoboLinux-like directories on it: /Programs, /System, etc. In the 
+unlikely event that you don't have any x86 system around, we can provide you 
+any necessary information about how GoboLinux looks like. ;) 
+</li>
+
+<li>
+Now, get the latest GoboLinux Scripts package from gobolinux.org and
+unpack it at <tt>/Programs</tt>.
+You should now have <tt>/Programs/Scripts/(date)</tt> files. You may need to 
+copy files from <tt>Scripts/20031115-hisham/Resources/Defaults/Settings</tt> to 
+<tt>/Programs/Scripts/Settings</tt>. Go to <tt>/System/Links/Executables</tt>, 
+<tt>/System/Settings</tt>, and friends and symlink stuff by hand. 
+</li>
+
+<li>
+Add <tt>/System/Links/Executables</tt> to your PATH, <tt>/System/Links/Libraries</tt> to your 
+LD_LIBRARY_PATH, and so on. Having an x86 GoboLinux handy will surely help so 
+you can look at it and compare. Put GoboLinux stuff first so that they will 
+gradually override your old Linux distro. You may have trouble with <tt>/etc</tt> vs. 
+<tt>/System/Settings</tt>, because unlike executables, libraries and headers, there is 
+no environment variable for this. Do this, then: move <tt>/etc</tt> to <tt>/etc-old</tt>, link 
+everything from <tt>/etc-old</tt> inside <tt>/System/Settings</tt>, and make <tt>/etc</tt> point to 
+<tt>/System/Settings</tt>.
+</li>
+
+<li>
+I don't remember now if there is any essential GoboLinux script that is 
+written in a compiled language. Let's check this, just a sec... oh, just one: 
+RealPath. That's a trivial C program that just calls realpath(3). The sources 
+are not here at my computer right now... who has it?
+</li>
+
+<li>
+Ok, so by now you can theoretically run CompilePackage and stuff like that. 
+Let's take a small program for a test run. Get this:
+<a href="ftp://ftp.gw.com/mirrors/pub/unix/file/file-4.04.tar.gz">
+ftp://ftp.gw.com/mirrors/pub/unix/file/file-4.04.tar.gz
+</a>
+and try to: <tt>CompileProgram file-4.04.tar.gz</tt>
+If it does compile, and in the end you get something like 
+<tt>/Programs/File/4.04/bin/file</tt>, then we're almost there.
+</li>
+
+<li>
+Get the Compile package which contains automated compilation rules for most of 
+the base system. You'll find it at:
+<a href="http://gobolinux.org/~lode/GoboLinux/Compile">
+http://gobolinux.org/~lode/GoboLinux/Compile
+</a>
+Unpack it at <tt>/Depot</tt> and, at this point, it should kinda work out of the box.
+Now, go following the list of packages from 
+<a href="http://www.linuxfromscratch.org/lfs/view/cvs/">
+Linux from Scratch</a>.
+You want the list from Part III, Chapter 6. Feel free (and encouraged) to skip 
+some critical and error-prone packages like Glibc, Binutils, GCC and Ncurses 
+at first. (Actually, I think I don't have Recipes for Glibc and GCC yet -- 
+there are GoboLinux source packages for those somewhere, I'll build Recipes 
+based on those). By the time you're finished here we expect to have all 
+Recipes necessary to build Base done, so let's assume you'll be able to 
+compile the entire Base this way. Start with "Compile Man-Pages" and go on 
+from there.
+</li>
+
+<li>
+Now, what do we need to get a complete system? Let's think...
+Get a BootScripts package from the website. It's just shell scripts, so they 
+should be portable. InstallPackage it normally.
+Check in a GoboLinux x86 system which non-link files should be present at 
+<tt>/System/Settings</tt>. Off the top of my head, there are passwd, group, inittab, 
+fstab... There are more, that's something to be checked.
+Well, you need also a kernel and its modules at <tt>/System/Kernel/Boot</tt> and 
+<tt>/System/Kernel/Modules</tt> (symlink stuff at <tt>/lib/modules</tt>). Take your running 
+distro's kernel and modules, let's reduce potential sources of problems. 
+Later on you can compile a kernel with GoboHide and other goodies.
+</li>
+
+<li>
+Well, that's it. Set up your favorite bootloader and voil&agrave;! There you have 
+your GoboLinux PPC system. It's a whole lot of work, but it is doable, 
+especially given that we have "been there and done that" and can help you 
+should problems arise. Just keep a rescue disk handy because you'll probably 
+render your system unbootable a few times during the process. :)
+</li>
+
+</ol>
+
+<p>
+Whoa!
+</p><p>
+We didn't even get to ten. I'm sure I forgot one thing or another, but I 
+believe I got the most important parts covered. So there you have it: 
+"GoboLinux Porting Guide version 0.0.0.0.0.0.1" :) I'm very enthusiastic 
+about the idea of porting GoboLinux to non-x86 architectures. Fernando Massen 
+and I toyed with the idea once, but we tried to do this on top of Mac OSX, 
+which is a bad idea because it is based on a BSD userland and GoboLinux 
+assumes a GNU userland. We got as far as getting a few packages compiled... 
+CoreUtils--5.0--G4.tar.bz2, if I recall correctly, but Massen lost interest 
+in the project shortly after. Using a Linux PPC system should reduce much of 
+the hassle. If it was doable on top of OS X, it's certainly doable on top of 
+a Linux PPC distro, and I believe the same is true for other architectures. 
+</p><p>
+Have fun and feel free to ask any questions on the list!
+</p>

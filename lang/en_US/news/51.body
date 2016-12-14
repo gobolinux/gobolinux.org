@@ -1,0 +1,20 @@
+<p>    
+Some new public mailing lists have been created on the last month to aid on the  
+organization    
+and development of the distribution. They are:      
+</p> 
+<ul>    
+<li><a    
+href="http://lists.gobolinux.org/mailman/listinfo/gobolinux-recipes">GoboLinux-Recipes</a>:    
+recipe submission and discussions takes place here now;</li>    
+<li><a    
+href="http://lists.gobolinux.org/mailman/listinfo/gobolinux-devel">GoboLinux-Devel</a>:    
+developers corner;</li>    
+<li><a    
+href="http://lists.gobolinux.org/mailman/listinfo/gobolinux-commits">GoboLinux-Commits</a>:    
+read-only list where commits to CVS are automatically posted;</li>    
+<li><a    
+href="http://lists.gobolinux.org/mailman/listinfo/gobolinux-arm">GoboLinux-ARM</a>:    
+general talk on the GoboLinux port for ARM platforms.</li>    
+</ul>    
+  

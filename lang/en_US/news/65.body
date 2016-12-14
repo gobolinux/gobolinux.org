@@ -1,0 +1,8 @@
+<p>New versions for Scripts (2.6.0), Compile (1.8.0) and Manager (1.1.3) were just 
+released. The main highlights are the improvement of the scripts option parser, and introduction of support for recipes and packages revisions. Our recipe store is going to be updated really soon to use this new scheme, so, go ahead and update those tools at your system.</p>
+<p>
+<i>Note to whom is still using Glibc 2.3.2:</i> This package for Scripts is the last one 
+being linked against Glibc 2.3.2. If your system is based on GoboLinux 012 (or older) 
+and you haven't updated your Glibc yet, please do it: just install this latest version 
+of Scripts ('InstallPackage Scripts') and run 'InstallPackage Glibc' afterwards.
+</p>

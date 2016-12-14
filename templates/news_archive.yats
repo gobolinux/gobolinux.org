@@ -1,0 +1,35 @@
+<<@templates/header.yats>>
+<script>
+window.onload = function() {
+<<@js/gobolinux/lines.js>>
+}
+</script>
+</head>
+<body>
+<<@templates/top_menu.yats>>
+<canvas id="parallax_lines">
+</canvas>
+
+<div class="spacer"></div>
+<div class="spacer"></div>
+
+<div class="content_wrap" id="first_content_block">
+<div class="content_page main_column">
+<<posts>>
+</div></div>
+<div class="spacer"></div>
+<div class="content_wrap">
+<div class="content_page main_column">
+
+<p>
+<a href="<<lang>>/news/<<older_news_link>>"><<#older_news>></a> &bullet;
+<a href="<<lang>>/news/<<newer_news_link>>"><<#newer_news>></a> 
+</p>
+
+</div></div>
+
+</div></div>
+
+<<@templates/footer.yats>>
+</body>
+</html>

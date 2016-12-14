@@ -1,0 +1,153 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 3.2 Final//EN">
+
+<!--Converted with jLaTeX2HTML 2002 (1.62) JA patch-1.4
+patched version by:  Kenshi Muto, Debian Project.
+LaTeX2HTML 2002 (1.62),
+original version by:  Nikos Drakos, CBLU, University of Leeds
+* revised and updated by:  Marcus Hennecke, Ross Moore, Herb Swan
+* with significant contributions from:
+  Jens Lippmann, Marek Rouchal, Martin Wilck and others -->
+<HTML>
+<HEAD>
+<TITLE>3 Alternative approaches</TITLE>
+<META NAME="description" CONTENT="3 Alternative approaches">
+<META NAME="keywords" CONTENT="gobolinux_wsl2002_english">
+<META NAME="resource-type" CONTENT="document">
+<META NAME="distribution" CONTENT="global">
+
+<META HTTP-EQUIV="Content-Type" CONTENT="text/html; charset=iso-8859-1">
+<META NAME="Generator" CONTENT="jLaTeX2HTML v2002 JA patch-1.4">
+<META HTTP-EQUIV="Content-Style-Type" CONTENT="text/css">
+
+<LINK REL="STYLESHEET" HREF="gobolinux_wsl2002_english.css">
+<LINK REL="STYLESHEET" HREF="../../style.css">
+
+<LINK REL="next" HREF="node4.html">
+<LINK REL="previous" HREF="node2.html">
+<LINK REL="up" HREF="gobolinux_wsl2002_english.html">
+<LINK REL="next" HREF="node4.html">
+</HEAD>
+
+<BODY >
+<!--Navigation Panel-->
+<A NAME="tex2html43"
+  HREF="node4.html">
+<IMG WIDTH="37" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="next"
+ SRC="file:/usr/share/latex2html/icons/next.png"></A> 
+<A NAME="tex2html41"
+  HREF="gobolinux_wsl2002_english.html">
+<IMG WIDTH="26" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="up"
+ SRC="file:/usr/share/latex2html/icons/up.png"></A> 
+<A NAME="tex2html35"
+  HREF="node2.html">
+<IMG WIDTH="63" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="previous"
+ SRC="file:/usr/share/latex2html/icons/prev.png"></A>   
+<BR>
+<B> Next:</B> <A NAME="tex2html44"
+  HREF="node4.html">4 The GoboLinux hierarchy</A>
+<B> Up:</B> <A NAME="tex2html42"
+  HREF="gobolinux_wsl2002_english.html">AN ALTERNATIVE FOR THE</A>
+<B> Previous:</B> <A NAME="tex2html36"
+  HREF="node2.html">2 Characteristics of the</A>
+<BR>
+<BR>
+<!--End of Navigation Panel-->
+
+<H1><A NAME="SECTION00030000000000000000"></A><A NAME="sec:Outros"></A>
+<BR>
+3 Alternative approaches
+</H1>
+
+<P>
+Practically all operating systems developed after the creation of
+UNIX use the model of directory trees. The different organizations
+applied to the directory hierarchy of those systems reflect the changes
+both in the way how computers are used and in their storage capacity.
+Below, we describe the directory trees existing in Mac OS X and AtheOS,
+desktop operating systems that possess a certain degree of UNIX heritage.
+
+<P>
+The adoption of a kernel and tools based, respectively, on Mach 3.0
+and FreeBSD brought to Apple Computer the challenge to combine the
+UNIX hierarchy with a look and feel familiar to Mac OS users. Mac
+OS X ([<A
+ HREF="node7.html#Apple2001">1</A>]) uses an uncommon strategy to achieve this
+feat. In its graphical interface, a Macintosh directory tree is presented,
+containing directories such as <TT>/System/Library</TT> and <TT>/Network/<I>Remote_Station</I></TT>.
+Actually, these directories are a subset of the real directory tree.
+Also, the interface displays some directories in locations other than
+their physical storage points. For instance, <TT>/Mac OS X</TT> is
+a link to the root directory, and some directories, such as <TT>/Applications</TT>,
+appear in the interface as <TT>/Mac OS X/Applications</TT>. Accessing
+the file system through a text-based shell, ``hidden'' UNIX directories
+such as <TT>/usr</TT> and <TT>/etc</TT> become accessible. Note that
+this approach is only possible in a proprietary environment, where
+the entire user interface of the system is developed by a single company.
+In a system like Linux this would be impossible, given the heterogeneity
+of graphical user interfaces available.
+
+<P>
+The directory hierarchy of the AtheOS operating system ([<A
+ HREF="node7.html#Skauen2002">5</A>])
+is partially based on the UNIX tree. In AtheOS, for example, the <TT>/usr</TT>
+directory is used for the intents that, in UNIX, <TT>/opt</TT> is
+used. This is made feasible through the 
+directory convention. The AtheOS libraries recognize this as the ``directory
+where the currently running executable file resides'', analogously
+as , the UNIX indicator to the user's home
+directory. Unfortunately, Linux being a UNIX clone, it cannot employ
+solutions as this one, since this causes considerable portability
+problems (a text-based Linux application can be easily ported to AtheOS,
+but the opposite is not true).
+
+<P>
+There are programs that try to present alternatives to provide, to
+some degree, a reorganization of the directory hierarchy. Two of the
+most used programs of this kind are <I>GNU Stow</I> ([<A
+ HREF="node7.html#Morin2001">4</A>])
+and <I>Encap</I> ([<A
+ HREF="node7.html#Encap2002">2</A>]). Both follow the basic idea presented
+by the <I>Depot</I> software ([<A
+ HREF="node7.html#Colyer1992">7</A>]), developed at Carnegie
+Mellon. The principle is to maintain two directory trees: a ``real''
+one, where the files are sorted by application; and another one, sorted
+in the traditional way, containing links to the files located at the
+first tree<A NAME="tex2html3"
+  HREF="footnode.html#foot73"><SUP>3</SUP></A>. GNU Stow intends to be a simplified alternative to Depot, since,
+contrary to Depot, it does not maintain a database. When using Stow,
+the application should be compiled with paths relative to <TT>/usr/local</TT>
+and installed with paths relative to <TT>/usr/local/stow/<I>application</I></TT>.
+Encap uses similar systematics, with a rudimentary support for version
+control (the package manager software, <I>epkg</I>, tries to detect
+versions through the name of the application created under <TT>/usr/local/encap</TT>,
+for example, <TT>sed-2.0</TT> and <TT>sed-3.0.2</TT>).
+
+<P>
+<HR>
+<!--Navigation Panel-->
+<A NAME="tex2html43"
+  HREF="node4.html">
+<IMG WIDTH="37" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="next"
+ SRC="file:/usr/share/latex2html/icons/next.png"></A> 
+<A NAME="tex2html41"
+  HREF="gobolinux_wsl2002_english.html">
+<IMG WIDTH="26" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="up"
+ SRC="file:/usr/share/latex2html/icons/up.png"></A> 
+<A NAME="tex2html35"
+  HREF="node2.html">
+<IMG WIDTH="63" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="previous"
+ SRC="file:/usr/share/latex2html/icons/prev.png"></A>   
+<BR>
+<B> Next:</B> <A NAME="tex2html44"
+  HREF="node4.html">4 The GoboLinux hierarchy</A>
+<B> Up:</B> <A NAME="tex2html42"
+  HREF="gobolinux_wsl2002_english.html">AN ALTERNATIVE FOR THE</A>
+<B> Previous:</B> <A NAME="tex2html36"
+  HREF="node2.html">2 Characteristics of the</A>
+<!--End of Navigation Panel-->
+<ADDRESS>
+Hisham H. Muhammad
+2002-10-28
+</ADDRESS>
+</BODY>
+</HTML>

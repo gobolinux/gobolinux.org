@@ -1,0 +1,99 @@
+<h1>Rootless GoboLinux</h1>
+
+<p>
+If you want to have a taste of how GoboLinux feels like before
+installing the real thing, you have two options.
+</p>
+<p>
+The first, recommended one, is to 
+<a href="?page=downloads">download our CD image</a>, which is
+also a "live CD", that is, a bootable Linux setup running GoboLinux
+itself. You'll be able to check out our alternative directory
+hierarchy and see for yourself how things are organized.
+</p>
+<p>
+The second option, is to make a minimal installation of
+the scripts and directory hierarchy inside your home directory. We
+call it "Rootless GoboLinux". 
+</p>
+
+<p>
+After installing Rootless, you will be able to install packages using 
+the GoboLinux scripts and execute them inside your user environment, 
+doing it the GoboLinux way. However, you won't be able to generate valid 
+GoboLinux binary packages since all paths in your installations will be 
+relative your particular home directory. GoboLinux Recipes should be 
+compatible with normal and Rootless installations.
+</p>
+
+<p>
+Rootless GoboLinux was created so that people who are using GoboLinux
+at home can take advantage of our directory tree inside their user accounts
+at places where they can't decide which Linux distribution they use
+(eg, at work or at the university's lab). Don't hesitate to 
+<a href="http://lists.gobolinux.org/mailman/listinfo/gobolinux-users">contact us</a> for more information if needed.
+</p>
+
+<h3>Installing Rootless</h3>
+
+<p>
+In order to install Rootless GoboLinux, all you have to do is to download and run the 
+<a href=http://svn.gobolinux.org/tools/trunk/Scripts/bin/CreateRootlessEnvironment>CreateRootlessEnvironment script</a> 
+(you will need to run "chmod +x CreateRootlessEnvironment" in order to be able to execute the downloaded file).
+</p>
+<p>
+The above mentioned script does some simple tasks. Basically:
+</p>
+<ul>
+<li>Creation of stub "Programs" and "System" directories</li>
+<li>Installation of the Scripts package</li>
+<li>Creation of a 'StartRootless' scripts, which is sourced within ~/.zshrc or ~/.bashrc</li>
+</ul>
+
+<h4>Requirements:</h4>
+
+<p>
+CreateRootlessEnvironment and the GoboLinux scripts assume the basics of a GNU userland
+available (which is usually not an issue in Linux-based systems, but may not be the case
+in other ones). Before running the script, make sure at least these tools are available in your
+$PATH:
+</p>
+
+<ul>
+<li><a href="http://ftp.gnu.org/pub/gnu/bash/">GNU Bash</a></li>
+<li><a href="http://ftp.gnu.org/pub/gnu/coreutils/">GNU CoreUtils</a></li>
+<li><a href="http://ftp.gnu.org/pub/gnu/sed/">GNU Sed</a></li>
+<li><a href="http://ftp.gnu.org/pub/gnu/wget/">GNU Wget</a></li>
+</ul>
+
+<h3>Uninstalling Rootless</h3>
+<p>
+If you need for any reason to remove Rootless later, it's just a matter of taking away ~/Programs,
+ ~/System and ~/.Settings -- pretty simple.
+</p>
+
+<!--
+</p>
+<h3>Instructions: </h3>
+<li>Download the 
+above file and extract it to in your home directory.</li> <br/>
+<li>If your are using <b>bash</b>, add the following line to your .bashrc:
+<br/><i>. ~/Programs/Rootless/Settings/StartGobo</i></li><br/>
+<li>If you want to use <b>zsh</b>, Rootless come with a specially prepared zshrc file, that can be used adding
+the following line to your .zshrc file. Notice that in this case, you don't need to source explicitly the "StartGobo" file. 
+<br/><i>. ~/Programs/Rootless/Settings/zshrc-rootless</i></li>
+</p>
+
+<br/><br/>
+<p>
+The rootless installation contains by default some packages:
+<li><i>Atools, Mtail, Scripts</i>: packages identical to the
+used in normal GoboLinux installations;</li>
+<li><i>Rootless</i>: contains files that are specific to Rootless GoboLinux (so you can
+easily upgrade your Rootless GoboLinux when a new version comes out); and</li>
+<li><i>EquivalentPaths</i>: contains a system call wrapper (activated calling ". equivalet_paths.rc")
+that enables you to run some packages compiled for "/Programs" inside your "~/Programs". Notice
+that it is not activated by default, since it is still in a development stage.</li>
+</p>
+
+-->

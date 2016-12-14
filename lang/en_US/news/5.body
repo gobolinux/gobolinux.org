@@ -1,0 +1,13 @@
+<p>
+Five months after the first alpha version, GoboLinux version 006
+is now the official stable release. There are too many improvements
+to list here, the greatest ones being <tt>/System/Links/Shared</tt>,
+FiboSandbox, and last but never the least, GoboHide. As usual,
+the ISO is compiled for i686 and is a "live CD" so you can try out 
+GoboLinux without actually installing it, so you have no 
+reason not to check it out. :)
+</p><p>
+Existing users don't need to reinstall from scratch (actually the idea
+is to never have to reinstall from scratch!).  An upgrade mini-HOWTO
+will soon be posted on our mailing list.
+</p>

@@ -1,0 +1,180 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 3.2 Final//EN">
+
+<!--Converted with jLaTeX2HTML 2002 (1.62) JA patch-1.4
+patched version by:  Kenshi Muto, Debian Project.
+LaTeX2HTML 2002 (1.62),
+original version by:  Nikos Drakos, CBLU, University of Leeds
+* revised and updated by:  Marcus Hennecke, Ross Moore, Herb Swan
+* with significant contributions from:
+  Jens Lippmann, Marek Rouchal, Martin Wilck and others -->
+<HTML>
+<HEAD>
+<TITLE>4 The GoboLinux hierarchy</TITLE>
+<META NAME="description" CONTENT="4 The GoboLinux hierarchy">
+<META NAME="keywords" CONTENT="gobolinux_wsl2002_english">
+<META NAME="resource-type" CONTENT="document">
+<META NAME="distribution" CONTENT="global">
+
+<META HTTP-EQUIV="Content-Type" CONTENT="text/html; charset=iso-8859-1">
+<META NAME="Generator" CONTENT="jLaTeX2HTML v2002 JA patch-1.4">
+<META HTTP-EQUIV="Content-Style-Type" CONTENT="text/css">
+
+<LINK REL="STYLESHEET" HREF="gobolinux_wsl2002_english.css">
+<LINK REL="STYLESHEET" HREF="../../style.css">
+
+<LINK REL="next" HREF="node5.html">
+<LINK REL="previous" HREF="node3.html">
+<LINK REL="up" HREF="gobolinux_wsl2002_english.html">
+<LINK REL="next" HREF="node5.html">
+</HEAD>
+
+<BODY >
+<!--Navigation Panel-->
+<A NAME="tex2html53"
+  HREF="node5.html">
+<IMG WIDTH="37" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="next"
+ SRC="file:/usr/share/latex2html/icons/next.png"></A> 
+<A NAME="tex2html51"
+  HREF="gobolinux_wsl2002_english.html">
+<IMG WIDTH="26" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="up"
+ SRC="file:/usr/share/latex2html/icons/up.png"></A> 
+<A NAME="tex2html45"
+  HREF="node3.html">
+<IMG WIDTH="63" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="previous"
+ SRC="file:/usr/share/latex2html/icons/prev.png"></A>   
+<BR>
+<B> Next:</B> <A NAME="tex2html54"
+  HREF="node5.html">5 Experience</A>
+<B> Up:</B> <A NAME="tex2html52"
+  HREF="gobolinux_wsl2002_english.html">AN ALTERNATIVE FOR THE</A>
+<B> Previous:</B> <A NAME="tex2html46"
+  HREF="node3.html">3 Alternative approaches</A>
+<BR>
+<BR>
+<!--End of Navigation Panel-->
+
+<H1><A NAME="SECTION00040000000000000000"></A><A NAME="sec:Gobo"></A>
+<BR>
+4 The GoboLinux hierarchy
+<BR>
+</H1>
+
+<P>
+The basic idea behind the GoboLinux hierarchy is to combine ideas
+from the previously presented operating systems and the link system
+introduced by Depot, creating a new hierarchy that maintains total
+compatibility with the UNIX tree. Like in Depot, each program (<I>Gimp</I>,
+<I>Fileutils</I>, <I>Glibc</I>, <I>Qt</I>, etc.) is installed in its
+entirety inside a separate directory. Inside this directory, standard
+UNIX directories are typically created, containing files that in the
+traditional UNIX directory tree would be copied to <TT>/usr/bin</TT>
+(or <TT>/bin</TT>), <TT>/usr/sbin</TT> (or <TT>/sbin</TT>), <TT>/usr/lib</TT>
+(or <TT>/lib</TT>), and so on.
+
+<P>
+For this purpose, a <TT>/Programs</TT> directory was estabilished,
+containing a subdirectory for each installed program. Each of those
+subdirectories has, on its turn, a subdirectory for each version of
+the specific program, and a link labeled <TT>Current</TT> pointing
+to the currently used version. Each program also has a <TT>Settings</TT>
+directory storing the program's configuration files (which would be
+normally stored at <TT>/etc</TT>). Notice that this directory is unique
+for all versions of the program. This design choice eases the version
+control, since the personal configurations are preserved in the event
+of an upgrade or downgrade.
+
+<P>
+Installation of programs from source is made through scripts. In the
+case of programs with configuration files generated using <I>GNU
+autoconf</I> (which is the majority of free software packages) the script
+uses the <TT>-prefix</TT> parameter to define the destination of
+the files being installed. For example, when installing the <I>Qt</I>
+library, version 2.3.2, the command <TT>configure</TT> <TT>-prefix=/Programs/Qt/2.3.3</TT>
+is automatically executed, and the required directories are created.
+For programs that do not provide this parameter in their configuration
+files, the <I>configure</I> script (or the <I>Makefiles</I> themselves)
+will be adjusted, automatically, through scripts that attempt to replace
+the paths contained in the file; or, in a few cases, manually.
+
+<P>
+Once a new version of a program is installed, links are created from
+each file in the application at directories that centralize those
+links according to file types. For example, <TT>/System/Links/Executables</TT>
+stores links for executable files of all programs (contained in the
+<TT>bin</TT> and <TT>sbin</TT> directories). This way, all executables
+can be called or accessed from a single directory (same happening
+to th libraries, headers and manuals / info files). This approach
+is different from the ones used by the symbolic link management systems
+discussed on Section <A HREF="node3.html#sec:Outros"><IMG  ALIGN="BOTTOM" BORDER="1" ALT="[*]"
+ SRC="file:/usr/share/latex2html/icons/crossref.png"></A>, as the generated links structure
+does not reflect the UNIX hierarchy, but a functional categorization
+of the links.
+
+<P>
+
+<DIV ALIGN="CENTER"><A NAME="fig:gobolinux"></A><A NAME="282"></A>
+<TABLE>
+<CAPTION ALIGN="BOTTOM"><STRONG>Figure:</STRONG>
+The GoboLinux directory hierarchy</CAPTION>
+<TR><TD><IMG
+ WIDTH="514" HEIGHT="269" BORDER="0"
+ SRC="img1.png"
+ ALT="\begin{figure}\texttt{\footnotesize /~~~~~~~~~~~~~~~~~~~~~~~}{\footnotesize Root...
+...tnotesize dev file system}{\footnotesize )}{\footnotesize\par }
+\par\end{figure}"></TD></TR>
+</TABLE>
+</DIV>
+
+<P>
+Figure <A HREF="node4.html#fig:gobolinux"><IMG  ALIGN="BOTTOM" BORDER="1" ALT="[*]"
+ SRC="file:/usr/share/latex2html/icons/crossref.png"></A> describes in greater detail the general
+directory hierarchy as proposed. An important treat of this structure
+is the nonexistence of a global <TT>share</TT> directory (programs
+can have their own <TT>share</TT> directories). This decision is explained
+by the fact that, even though the <TT>share</TT> directory permits
+sharing of data between different applications, in practice this directory
+serves a repository for application-specific files that has no place
+on the UNIX hierarchy (such as icons and fonts). This way, we opted
+not to have a <TT>/System/Links/Shared</TT> directory, because the
+different <TT>share</TT> directories of each application have no relation
+between them.
+
+<P>
+Compatibility with the UNIX legacy is obtained through creation of
+extra links not present in the above diagram, such as <TT>/etc
+-&gt; /System/Settings</TT>, <TT>/bin -&gt; /System/Links/Executables</TT> and
+<TT>/lib -&gt; /System/Links/Libraries</TT>, mirroring the GoboLinux
+tree into the UNIX tree. Unlike previous proposals that attempted
+to organize the directory tree maintaining historical compatibility,
+in GoboLinux there is a single point for installation of programs,
+without a legacy tree in parallel.
+
+<P>
+<HR>
+<!--Navigation Panel-->
+<A NAME="tex2html53"
+  HREF="node5.html">
+<IMG WIDTH="37" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="next"
+ SRC="file:/usr/share/latex2html/icons/next.png"></A> 
+<A NAME="tex2html51"
+  HREF="gobolinux_wsl2002_english.html">
+<IMG WIDTH="26" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="up"
+ SRC="file:/usr/share/latex2html/icons/up.png"></A> 
+<A NAME="tex2html45"
+  HREF="node3.html">
+<IMG WIDTH="63" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="previous"
+ SRC="file:/usr/share/latex2html/icons/prev.png"></A>   
+<BR>
+<B> Next:</B> <A NAME="tex2html54"
+  HREF="node5.html">5 Experience</A>
+<B> Up:</B> <A NAME="tex2html52"
+  HREF="gobolinux_wsl2002_english.html">AN ALTERNATIVE FOR THE</A>
+<B> Previous:</B> <A NAME="tex2html46"
+  HREF="node3.html">3 Alternative approaches</A>
+<!--End of Navigation Panel-->
+<ADDRESS>
+Hisham H. Muhammad
+2002-10-28
+</ADDRESS>
+</BODY>
+</HTML>

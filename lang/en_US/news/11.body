@@ -1,0 +1,10 @@
+<p> 
+The <a href="?page=packages">packages</a> page lists two 
+new repositories: <a 
+href="http://gobolinux.org/packages/incoming">incoming</a>, which 
+includes packages in testing period, to be included in the official 
+package set, and <a 
+href="http://gobolinux.org/packages/contrib">contrib</a>, including 
+packages contributed by users. Now, additions to this repositories  
+also get listed in the "Latest Packages" sidebar. 
+</p> 

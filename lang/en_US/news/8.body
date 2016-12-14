@@ -1,0 +1,10 @@
+<p>
+Once you have downloaded GoboLinux 006, please check the
+<a href="index.php?page=doc/006/release_notes">release notes</a>
+for important information concerning installation and use
+of the system.
+</p><p>
+On a related note, <a href="index.php?page=doc/006/scripts">docs were
+added</a> explaining how the GoboLinux scripts manage the /Programs and
+/System/Links trees.
+</p>

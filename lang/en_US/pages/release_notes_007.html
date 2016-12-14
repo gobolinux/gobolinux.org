@@ -1,0 +1,58 @@
+<h2>GoboLinux 007 - Release notes / Known issues</h2>
+
+<p>
+This page collects relevant information concerning GoboLinux version
+007. This file can be considered a companion to the documentation included in
+the CD, and will be regularly updated as we get feedback in the mailing list.
+</p>
+
+<h3>
+Known bugs/issues
+</h3>
+
+<h4>
+On the installed system
+</h4>
+
+<ul>
+<li>
+makeinfo binary from Texinfo is was not correctly linked (due to an conflict with TeTex makeinfo).
+Running "SymlinkProgram -c overwrite Texinfo" is recommended for everybody that installed 007.
+<li>
+GDKXFT has a missing dependency in the CD, the FreeType package.
+Download it at the packages pages if you plan to use GDKXFT.
+<li>
+Though listed in the menu.lst file, GRUB is not compiled with splashimage
+support. The graphical bootloader from the CD is IsoLinux.
+<li>
+The patches stored in /Depot/Sources/Linux are not correct. To use the
+kernel sources, revert the patches with patch -R and, if desired, apply
+only the GoboHide patch. To access the compressed loopback image from 
+the ISO, compile the <a href="http://developer.linuxtag.net/knoppix/sources/cloop_2.00-1.tar.gz">cloop module</a> separately.
+<li>
+Problems have been reported with supermount. It is not enabled by default,
+and we reccomend avoiding its use.
+</ul>
+
+
+
+<h4>
+Running LiveCD
+</h4>
+
+<ul>
+<li>
+Some programs available inside CD didn't run as well as they should. Running 
+a 'full' GoboLinux within CD is a recent feature and is being improved gradually.
+Some detected problems are listed bellow (if you know a solution to some of them, 
+<a href="mailto:NO_SPAM___gobo@gobolinux.org">email us</a>):<br>
+<b>-</b> TeTex does not work;<br>
+<b>-</b> To run some application within KDE without using an terminal (e.g., menus, ALT+F2), 
+you need to specify the full path to it (/bin/<application> is enough). The PATH environment 
+variable seems not to be used.<br>
+</ul>
+<ul>
+<li>
+Up to now, we did'nt have any unsolved booting problem with the GoboLinux 007  CD.
+ If the CD does not boot in your machine, try disabling the DMA option for your CDROM in the BIOS.
+</ul>

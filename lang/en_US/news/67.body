@@ -1,0 +1,3 @@
+It's with great pleasure that we announce GoboLinux 003 for ARM CPUs. This is the first ARM release compiled entirely with our <a href="http://embedded.gobolinux.org">Bootstrap</a> tool, which uses the infrastructure offered by <a href="?page=chrootcompile">ChrootCompile</a>.
+
+The full announcement can be found <a href="http://www.wotfun.com/pipermail/gobolinux-users/2007-January/004352.html">here</a>. Please consider subscribing to the <a href="http://lists.gobolinux.org/mailman/listinfo/gobolinux-arm">GoboLinux-ARM mailing list</a> to get more information on this port.

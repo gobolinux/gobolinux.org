@@ -1,0 +1,1787 @@
+#LyX 1.1 created this file. For more info see http://www.lyx.org/
+\lyxformat 218
+\textclass article
+\language portuges
+\inputencoding auto
+\fontscheme times
+\graphics default
+\paperfontsize 10
+\spacing single 
+\papersize a4paper
+\paperpackage a4
+\use_geometry 1
+\use_amsmath 0
+\paperorientation portrait
+\leftmargin 2.5cm
+\topmargin 3cm
+\rightmargin 2.5cm
+\bottommargin 2.5cm
+\secnumdepth 3
+\tocdepth 3
+\paragraph_separation indent
+\defskip smallskip
+\quotes_language english
+\quotes_times 2
+\papercolumns 1
+\papersides 1
+\paperpagestyle empty
+
+\layout Standard
+
+
+\latex latex 
+
+\backslash 
+pagestyle{empty}
+\layout Title
+
+
+\noun on 
+Uma nova proposta para a árvore de diretórios unix
+\layout Author
+
+Hisham Muhammad\SpecialChar ~
+\SpecialChar ~
+\SpecialChar ~
+\SpecialChar ~
+\SpecialChar ~
+\SpecialChar ~
+\SpecialChar ~
+\SpecialChar ~
+\SpecialChar ~
+André Detsch
+\newline 
+
+\layout Date
+
+Programa de Pós-Graduação em Computação Aplicada - PIPCA 
+\newline 
+Centro de Ciências Exatas e Tecnológicas
+\newline 
+UNISINOS - Universidade do Vale do Rio dos Sinos
+\newline 
+São Leopoldo - RS - Brasil
+\newline 
+
+\family sans 
+\size small 
+{hisham,detsch}@exatas.unisinos.br
+\family default 
+\size default 
+
+\newline 
+
+\layout Standard
+
+
+\series bold 
+Resumo.
+
+\series default 
+ Este artigo propõe a hierarquia de diretórios 
+\noun on 
+gobolinux
+\noun default 
+ como nova árvore para sistemas operacionais baseados no 
+\noun on 
+unix
+\noun default 
+, em especial o Linux.
+ Esta nova abordagem tem como principais vantagens a melhor organização
+ funcional e facilidade de gerência e instalação de software a partir do
+ código fonte, uma vez que a estrutura de pacotes é explicitada na própria
+ árvore de diretórios.
+ 
+\layout Standard
+
+
+\series bold 
+Abstract.
+
+\series default 
+ This work proposes the 
+\noun on 
+gobolinux
+\noun default 
+ directory hierarchy, as a new tree for 
+\noun on 
+unix
+\noun default 
+-based operating systems, such as Linux.
+ Highlights of this new approach are a greater functional organization and
+ takes advantage of installation from source code to provide a improved
+ software management, making the structure of packages explicit in the directory
+ tree.
+\layout Standard
+
+
+\latex latex 
+
+\backslash 
+thispagestyle{empty}
+\layout Section
+
+Introdução
+\latex latex 
+
+\backslash 
+vspace{-0.2cm}
+\layout Comment
+
+A árvore 
+\noun on 
+unix
+\noun default 
+ foi estabelecida na era Paleozóica em um contexto X.
+\layout Standard
+
+O sistema operacional 
+\noun on 
+unix
+\noun default 
+ surgiu em ambientes onde os usuários acessavam um servidor central de aplicaçõe
+s através de estações com capacidade de armazenamento reduzido (ou mesmo
+ inexistente).
+ Muitas das características deste sistema, entre elas a estrutura de armazenamen
+to de dados em forma de árvore de diretórios, refletem isto.
+ O modelo de armazenamento em árvore mostra-se adequado até hoje; entretanto,
+ a lógica por trás da hierarquia de diretórios do 
+\noun on 
+unix
+\noun default 
+ baseia-se em premissas que hoje em dia não correspondem mais à realidade
+ da grande maioria das instalações Linux existentes.
+ O sistema Linux cada vez mais é instalado em estações pessoais que armazenam
+ e executam as aplicações do usuário.
+ Neste contexto, não há um 
+\begin_inset Quotes eld
+\end_inset 
+
+servidor de aplicações
+\begin_inset Quotes erd
+\end_inset 
+
+, e ainda assim persistem convenções como a existência de diferentes repositório
+s para bibliotecas (
+\family typewriter 
+\size small 
+/lib
+\family default 
+\size default 
+, 
+\family typewriter 
+\size small 
+/usr/lib
+\family default 
+\size default 
+ e 
+\family typewriter 
+\size small 
+/usr/local/lib
+\family default 
+\size default 
+).
+\layout Standard
+
+Em virtude do ritmo rápido de desenvolvimento do software livre (
+\emph on 
+
+\begin_inset Quotes eld
+\end_inset 
+
+release early, release often
+\begin_inset Quotes erd
+\end_inset 
+
+
+\emph default 
+ 
+\begin_inset LatexCommand \cite{Raymond2001}
+
+\end_inset 
+
+), o processo de instalação e remoção de programas tornou-se comum e freqüente,
+ diferentemente do que ocorria quando do estabelecimento da hierarquia de
+ diretórios do 
+\noun on 
+unix
+\noun default 
+, na qual as distribuições do Linux usualmente se baseiam.
+ Os critérios de organização da árvore de diretórios tradicional não levam
+ em conta estas necessidades; torna-se interessante realizar uma revisão
+ destes critérios e buscar uma alternativa.
+\layout Standard
+
+Este artigo apresenta uma árvore de diretórios idealizada a partir das necessida
+des e características de uso dos sistemas Linux atuais e compatível com
+ o legado 
+\noun on 
+unix
+\noun default 
+.
+ Inicialmente são discutidos aspectos da hierarquia clássica (Seção 
+\begin_inset LatexCommand \ref{sec:Atual}
+
+\end_inset 
+
+).
+ A seguir, é apresentada uma visão geral das abordagens empregadas nas árvores
+ de diretórios de outros sistemas (Seção 
+\begin_inset LatexCommand \ref{sec:Outros}
+
+\end_inset 
+
+).
+ Na Seção 
+\begin_inset LatexCommand \ref{sec:Gobo}
+
+\end_inset 
+
+ é descrita a hierarquia concebida, enquanto na Seção 
+\begin_inset LatexCommand \ref{sec:Experiencia}
+
+\end_inset 
+
+ relatam-se experiências relativas ao uso deste modelo.
+ Finalmente, a Seção 
+\begin_inset LatexCommand \ref{sec:Concl}
+
+\end_inset 
+
+ conclui o artigo.
+\latex latex 
+
+\backslash 
+vspace{-0.4cm}
+\layout Comment
+
+É para a era e contexto (desktópico) atual válido ainda?
+\layout Section
+
+Características da hierarquia atual
+\begin_inset LatexCommand \label{sec:Atual}
+
+\end_inset 
+
+
+\latex latex 
+
+\backslash 
+vspace{-0.2cm}
+\layout Comment
+
+"semi-figura"
+\layout Comment
+
+Explicações sobre arvore 
+\noun on 
+unix
+\noun default 
+ (cópia do site mesmo) 
+\layout Standard
+
+Na árvore 
+\noun on 
+unix
+\noun default 
+ os diretórios servem a dois propósitos: diferenciar categorias de arquivos
+ e diferenciar a sua localização na rede.
+ Os arquivos da categoria 
+\begin_inset Quotes eld
+\end_inset 
+
+executável
+\begin_inset Quotes erd
+\end_inset 
+
+ de todas as aplicações são armazenados em seis diretórios: 
+\family typewriter 
+\size small 
+/bin
+\family default 
+\size default 
+, 
+\family typewriter 
+\size small 
+/usr/bin
+\family default 
+\size default 
+, 
+\family typewriter 
+\size small 
+/usr/local/bin
+\family default 
+\size default 
+, 
+\family typewriter 
+\size small 
+/sbin/
+\family default 
+\size default 
+, 
+\family typewriter 
+\size small 
+/usr/sbin/
+\family default 
+\size default 
+ e 
+\family typewriter 
+\size small 
+/usr/local/sbin
+\begin_float footnote 
+\layout Standard
+
+Arquivos do X Window System são, historicamente uma exceção a esta regra,
+ possuindo toda uma hierarquia 
+\emph on 
+Unix-like
+\emph default 
+ sob 
+\family typewriter 
+/usr/X11R6/
+\end_float 
+, onde o critério de escolha é a localização física (local ou remota).
+ Alguns programas, todavia, acabam sendo instalados em localizações diferentes
+ dos critérios acima listados por questões de compatibilidade, fazendo com
+ que a especificação da árvore 
+\noun on 
+unix
+\noun default 
+ possua uma série de detalhes e exceções.
+ Por exemplo, existe uma lista arbitrária de quais executáveis devem estar
+ presentes no diretório 
+\family typewriter 
+\size small 
+/bin
+\family default 
+\size default 
+, independentemente dos critérios apontados.
+\layout Standard
+
+Alguns programas assumem que determinados arquivos estejam localizados em
+ diretórios específicos (por exemplo, 
+\family typewriter 
+\size small 
+/lib/cpp, /usr/bin/python
+\family default 
+\size default 
+).
+ Isto é uma fonte de incompatibilidades mesmo entre diferentes distribuições
+ do Linux que seguem o modelo tradicional de diretórios.
+ Mas o maior problema causado por esta abordagem é a dificuldade na remoção
+ de programas, uma vez que arquivos de diferentes aplicações ficam 
+\begin_inset Quotes eld
+\end_inset 
+
+misturados
+\begin_inset Quotes erd
+\end_inset 
+
+ no mesmo diretório e diferentes arquivos de uma mesma aplicação ficam espalhado
+s por diferentes diretório.
+\layout Comment
+
+Workarounds: Pacotes
+\layout Standard
+
+A maneira encontrada pelas empresas e grupos que produzem distribuições
+ do Linux para manter uma correspondência entre os arquivos e as aplicações
+ das quais são parte é através do conceito de 
+\emph on 
+
+\begin_inset Quotes eld
+\end_inset 
+
+gerenciamento de pacotes
+\begin_inset Quotes erd
+\end_inset 
+
+
+\emph default 
+, que consiste em realizar as instalações e remoções de software através
+ de um programa que mantém uma base de dados que relaciona os arquivos existente
+s no sistema aos aplicativos de que fazem parte.
+ A principal limitação deste método é o fato de que a instalação de aplicativos
+ a partir da compilação do código-fonte provoca inconsistência na base de
+ dados.
+ 
+\layout Standard
+
+Uma prática comum atualmente é procurar manter a hierarquia 
+\family typewriter 
+/usr
+\family default 
+ mantida pelo gerenciador de pacotes e instalar os programas compilados
+ a partir do código-fonte na hierarquia 
+\family typewriter 
+/usr/local
+\family default 
+.
+ Isto mantém a base de dados consistente mas não resolve a questão de como
+ remover programas compilados a partir do fonte.
+\layout Comment
+
+/opt é o reconhecimento da existência do problema
+\layout Standard
+
+O padrão de hierarquia 
+\noun on 
+unix
+\noun default 
+ define ainda um diretório extra, 
+\family typewriter 
+/opt
+\family default 
+, para a instalação de grupos de aplicativos de forma separada do resto
+ do sistema, o que pode ser considerado um reconhecimento da existência
+ dos problemas enumerados acima.
+ Ainda assim, isto causa um conflito de critérios no próprio padrão.
+ Ao instalar localmente um aplicativo qualquer, um conjunto de critérios
+ ditaria a sua localização no 
+\family typewriter 
+/opt/
+\emph on 
+aplicativo
+\emph default 
+/bin
+\family default 
+, e segundo outros critérios, no 
+\family typewriter 
+/usr/local/bin
+\family default 
+, dependendo de como é interpretado o padrão.
+\latex latex 
+
+\backslash 
+vspace{-0.4cm}
+\layout Section
+
+Abordagens alternativas
+\begin_inset LatexCommand \label{sec:Outros}
+
+\end_inset 
+
+
+\latex latex 
+
+\backslash 
+vspace{-0.2cm}
+\layout Standard
+
+Praticamente todos os sistemas operacionais desenvolvidos após o 
+\noun on 
+unix
+\noun default 
+ utilizam o modelo de árvore de diretórios.
+ As diferentes organizações aplicadas para a hierarquia de diretórios dos
+ sistemas refletem as mudanças tanto na forma da qual os computadores são
+ utilizados como na capacidade de armazenamento destes.
+ Abaixo são descritas as árvores de diretórios presentes no MAC OS X e AtheOS,
+ sistemas desktop que possuem certo grau de herança 
+\noun on 
+unix
+\noun default 
+.
+\layout Comment
+
+MAC OS X ...
+\layout Standard
+
+A adoção de um kernel e ferramentas baseadas, respectivamente, no Mach 3.0
+ e FreeBSD trouxe à Apple Computer o desafio de combinar uma hierarquia
+ 
+\noun on 
+unix
+\noun default 
+ à interface e lógica de funcionamento familiar aos usuários do Mac OS.
+ O Mac OS X (
+\begin_inset LatexCommand \cite{Apple2001}
+
+\end_inset 
+
+) utiliza uma estratégia incomum para atingir este resultado.
+ Na interface gráfica é exibida uma árvore de diretórios Macintosh, contendo
+ diretórios como 
+\family typewriter 
+/System/Library
+\family default 
+ e 
+\family typewriter 
+/Network/
+\emph on 
+Estacao_Remota
+\family default 
+.
+
+\emph default 
+ Na verdade, estes diretórios formam um subconjunto da verdadeira árvore
+ de diretórios.
+ Além disso, a interface exibe alguns diretórios em localizações diferentes
+ da real.
+ Por exemplo, o diretório 
+\family typewriter 
+/Mac OS X
+\family default 
+ é um link para o diretório raiz, e alguns diretórios, como 
+\family typewriter 
+/Applications
+\family default 
+, aparecem na interface apenas como 
+\family typewriter 
+/Mac OS X/Applications
+\family default 
+.
+ Acessando-se o sistema de arquivos através de um shell, tornam-se acessíveis
+ diretórios 
+\noun on 
+unix
+\noun default 
+ como 
+\family typewriter 
+/usr
+\family default 
+ e 
+\family typewriter 
+/etc
+\family default 
+.
+ Note que esta abordagem é somente possível em um ambiente proprietário,
+ onde toda a interface primária do sistema é desenvolvida por apenas uma
+ empresa.
+ Em um sistema como o Linux, tal abordagem seria impossível, devido à heterogene
+idade das interfaces gráficas existentes.
+\layout Comment
+
+AtheOS ...
+\layout Standard
+
+O sistema operacional AtheOS (
+\begin_inset LatexCommand \cite{Skauen2002}
+
+\end_inset 
+
+) utiliza uma hierarquia parcialmente baseada na árvore 
+\noun on 
+unix
+\noun default 
+.
+ No AtheOS, por exemplo, o diretório 
+\family typewriter 
+/usr
+\family default 
+ é usado com a finalidade que, no 
+\noun on 
+unix
+\noun default 
+, é a do o 
+\family typewriter 
+/opt
+\family default 
+.
+ Um aspecto de design interessante aplicado por este sistema é a possibilidade
+ de re-localização de um aplicativo após instalado.
+ Isto é possibilitado pelo diretório 
+\family typewriter 
+\i \^{ }
+
+\family default 
+, reconhecido pela API do sistema como sendo 
+\begin_inset Quotes eld
+\end_inset 
+
+o diretório onde se localiza o executável
+\begin_inset Quotes erd
+\end_inset 
+
+, analogamente ao 
+\family typewriter 
+\i \~{ }
+
+\family default 
+, que representa 
+\begin_inset Quotes eld
+\end_inset 
+
+o diretório 
+\emph on 
+home
+\emph default 
+ do usuário
+\begin_inset Quotes erd
+\end_inset 
+
+.
+ Infelizmente, o Linux, por ser um clone do 
+\noun on 
+unix
+\noun default 
+, não pode utilizar soluções como a apresentada acima, que trariam problemas
+ grandes de portabilidade (uma aplicação Linux sem interface gráfica pode
+ ser facilmente portada para o AtheOS, mas a recíproca não é verdadeira).
+ 
+\layout Comment
+
+alternativas incompletas para 
+\noun on 
+unix
+\noun default 
+ (stow, encap)
+\layout Standard
+
+Existem programas que tentam prover alternativas, ainda que incompletas,
+ para gerar um certo grau de reorganização da árvore de diretórios.
+ Dois dos mais utilizados são o 
+\emph on 
+GNU Stow
+\emph default 
+ (
+\begin_inset LatexCommand \cite{Morin2001}
+
+\end_inset 
+
+) e o 
+\emph on 
+Encap
+\emph default 
+ (
+\begin_inset LatexCommand \cite{Encap2002}
+
+\end_inset 
+
+).
+ Ambos seguem a idéia básica apresentada pelo software 
+\emph on 
+Depot
+\emph default 
+ (
+\begin_inset LatexCommand \cite{Colyer1992}
+
+\end_inset 
+
+), desenvolvido em Carnegie Mellon.
+ O princípio é manter duas árvores de diretórios: uma real, onde os arquivos
+ são organizados por aplicativos; e outra organizada da forma tradicional,
+ contendo links para os arquivos localizados na primeira árvore
+\begin_float footnote 
+\layout Standard
+
+O sistema operacional AtheOS também utiliza uma técnica similar para manter
+ compatibilidade com aplicações UNIX.
+\end_float 
+.
+ O 
+\emph on 
+GNU Stow
+\emph default 
+ pretende ser uma alternativa simplificada ao 
+\emph on 
+Depot
+\emph default 
+, uma vez que, ao contrário do 
+\emph on 
+Depot
+\emph default 
+, não requer uma base de dados.
+ Ao utilizar o 
+\emph on 
+Stow
+\emph default 
+, deve-se compilar a aplicação com os caminhos baseados em 
+\family typewriter 
+/usr/local
+\family default 
+ e instalá-la em relação a 
+\family typewriter 
+/usr/local/stow/
+\emph on 
+aplicativo
+\family default 
+\emph default 
+.
+ O Encap utiliza uma sistemática bastante parecida, adicionando alguns recursos,
+ como um suporte rudimentar a controle de versões (o programa gerenciador
+ de pacotes, 
+\emph on 
+epkg
+\emph default 
+, tenta detectar versões através do nome do aplicativo criado em 
+\family typewriter 
+/usr/local/encap
+\family default 
+, por exemplo, 
+\family typewriter 
+sed-2.0
+\family default 
+ e 
+\family typewriter 
+sed-3.0.2
+\family default 
+).
+\latex latex 
+
+\backslash 
+vspace{-0.4cm}
+\layout Section
+
+Hierarquia 
+\noun on 
+gobolinux
+\noun default 
+
+\begin_inset LatexCommand \label{sec:Gobo}
+
+\end_inset 
+
+
+\latex latex 
+
+\backslash 
+vspace{-0.2cm}
+\layout Comment
+
+"semi-figura"
+\layout Comment
+
++ nao precisa mais pacote gerencia versatil (usuario instalando...) 
+\layout Comment
+
+facilidade de ter versoes diferentes de programas 
+\layout Comment
+
+faz mais sentido
+\layout Comment
+
+- workaraounds para programas burros (links usr/bin, /etc, etc.) 
+\layout Comment
+
+programas não autoconf
+\layout Standard
+
+A idéia básica por trás da hierarquia 
+\noun on 
+gobolinux
+\noun default 
+ é combinar idéias dos outros sistemas apresentados com o sistema de links
+ introduzido pelo 
+\emph on 
+Depot
+\emph default 
+, criando uma nova hierarquia que mantém compatibilidade total com a árvore
+ 
+\noun on 
+unix
+\noun default 
+.
+ Assim como no 
+\emph on 
+Depot
+\emph default 
+ as versões dos programas
+\begin_float footnote 
+\layout Standard
+
+define-se programa como sendo um grupo de aplicativos ou bibliotecas
+\end_float 
+ (
+\emph on 
+Gimp
+\emph default 
+, 
+\emph on 
+Fileutils
+\emph default 
+, 
+\emph on 
+GLibC
+\emph default 
+, 
+\emph on 
+Qt
+\emph default 
+, etc.) são instaladas, na sua totalidade, dentro de um diretório próprio.
+ Dentro deste diretório tipicamente são criados subdiretórios 
+\family typewriter 
+bin
+\family default 
+, 
+\family typewriter 
+sbin
+\family default 
+, 
+\family typewriter 
+lib
+\family default 
+, 
+\family typewriter 
+man
+\family default 
+ e 
+\family typewriter 
+info
+\family default 
+ que contém os arquivos que, na estrutura tradicional de diretórios 
+\noun on 
+unix
+\noun default 
+, seriam copiados para 
+\family typewriter 
+/usr/bin
+\family default 
+ (ou 
+\family typewriter 
+/bin
+\family default 
+), 
+\family typewriter 
+/usr/sbin
+\family default 
+ (ou 
+\family typewriter 
+/sbin
+\family default 
+), 
+\family typewriter 
+/usr/lib
+\family default 
+ (ou 
+\family typewriter 
+/lib
+\family default 
+) e assim por diante.
+\layout Standard
+
+Para tanto, foi estabelecido um diretório 
+\family typewriter 
+/Programs
+\family default 
+ que contém um subdiretório para cada programa instalado.
+ Cada um destes subdiretórios possui, por sua vez, um subdiretório para
+ cada versão do programa em questão assim como um link Current que aponta
+ para o subdiretório contendo a versão em uso.
+ Cada programa possui também um diretório Settings que armazena os arquivos
+ de configuração referentes ao programa (arquivos que estariam tipicamente
+ localizados no 
+\family typewriter 
+/etc
+\family default 
+).
+ Note que este diretório é único para todas as versões do programa.
+ Esta característica facilita o controle de versão, uma vez que são mantidas
+ as configurações personalizadas do aplicativo em caso de upgrade ou downgrade.
+\layout Standard
+
+A instalação de programas a partir dos fontes é feita através de scripts.
+ No caso de programas com arquivo de configuração de instalação (
+\emph on 
+configure
+\emph default 
+) gerado a partir do 
+\emph on 
+GNU autoconf
+\emph default 
+ (grande maioria dos softwares livres) o script utiliza o parâmetro 
+\family typewriter 
+--prefix
+\family default 
+ para definir o destino dos arquivos sendo instalados.
+ Por exemplo, no caso de se instalar o 
+\emph on 
+Qt
+\emph default 
+ 2.3.2, o script executará o comando 
+\family typewriter 
+configure --prefix=/Programs/Qt/2.3.2/
+\family default 
+.
+ No caso de programas cuja instalação não permite a passagem deste parâmetro,
+ o 
+\emph on 
+configure
+\emph default 
+ (ou o próprio 
+\emph on 
+Makefile
+\emph default 
+) deve ser ajustado, automaticamente, através de scripts que buscam substituir
+ os caminhos contidos no arquivo ou mesmo, em alguns casos específicos,
+ manualmente.
+\layout Standard
+
+Uma vez instalada uma (nova) versão de algum programa, são criados (automaticame
+nte, via scripts) links para seus arquivos em diretórios que centralizam
+ estes links de acordo com o tipo.
+ Por exemplo, o diretório 
+\family typewriter 
+/System/Links/Executables
+\family default 
+ armazena links para os arquivos executáveis de todos os programas (contidos
+ nos subdiretórios 
+\family typewriter 
+bin
+\family default 
+ e 
+\family typewriter 
+sbin
+\family default 
+).
+ Desta forma, todos os executáveis podem ser chamados (ou acessados) a partir
+ de um único diretório (o mesmo ocorrendo com as bibliotecas, headers e
+ info / man pages).
+ Esta abordagem se difere das adotadas nos sistemas de gerenciamento de
+ links simbólicos discutidos na Seção 
+\begin_inset LatexCommand \ref{sec:Outros}
+
+\end_inset 
+
+ a partir do momento em que a estrutura de links gerada não reflete a hierarquia
+ 
+\noun on 
+unix
+\noun default 
+, mas sim uma divisão funcional dos arquivos.
+\layout Comment
+
+Stow e encap nao fazem isso -- isso e importante
+\layout Comment
+
+---
+\layout Comment
+
+nao tem share global.
+ cada app pode ter seu share 
+\layout Comment
+
+
+\begin_inset Quotes eld
+\end_inset 
+
+share
+\begin_inset Quotes erd
+\end_inset 
+
+ refere-se compartilhado por todos os usuarios, nao entre programas, na
+ pratica e um repositorio de arquivos especificos da aplicacao que nao tem
+ um lugar proprio na hierarquia , p.ex.
+ icones e fontes - nao faz sentido ter um /S/L/Shared, pois os arquivos
+ dos diferentes share nao tem relacao entre si
+\layout Standard
+
+A figura 
+\begin_inset LatexCommand \ref{fig:gobolinux}
+
+\end_inset 
+
+ descreve com maiores detalhes a estrutura geral da hierarquia de diretórios
+ proposta.
+ Uma característica importante desta estrutura é a inexistência de um diretório
+ 
+\family typewriter 
+share
+\family default 
+ global (apesar dos programas poderem ter seus próprios diretórios 
+\family typewriter 
+share
+\family default 
+).
+ Esta decisão se explica pelo fato de que, apesar deste diretório possibilitar
+ o compartilhamento de dados entre diferentes programas, na prática este
+ diretório acaba servindo apenas como repositório de arquivos específicos
+ da aplicação que não têm um lugar próprio na hierarquia 
+\noun on 
+unix
+\noun default 
+ (por exemplo, ícones e fontes).
+ Desta forma optou-se por não criar um diretório 
+\family typewriter 
+/System/Links/Shared
+\family default 
+ pois os arquivos dos diferentes 
+\family typewriter 
+share
+\family default 
+ não têm relação entre si.
+\layout Standard
+
+\begin_float fig 
+\layout Standard
+
+
+\family typewriter 
+\size footnotesize 
+/\SpecialChar ~
+\SpecialChar ~
+\SpecialChar ~
+\SpecialChar ~
+\SpecialChar ~
+\SpecialChar ~
+\SpecialChar ~
+\SpecialChar ~
+\SpecialChar ~
+\SpecialChar ~
+\SpecialChar ~
+\SpecialChar ~
+\SpecialChar ~
+\SpecialChar ~
+\SpecialChar ~
+\SpecialChar ~
+\SpecialChar ~
+\SpecialChar ~
+\SpecialChar ~
+\SpecialChar ~
+\SpecialChar ~
+\SpecialChar ~
+\SpecialChar ~
+
+\family default 
+Diretório raiz
+\layout Standard
+
+
+\family typewriter 
+\size footnotesize 
+|--Programs\SpecialChar ~
+\SpecialChar ~
+\SpecialChar ~
+\SpecialChar ~
+\SpecialChar ~
+\SpecialChar ~
+\SpecialChar ~
+\SpecialChar ~
+\SpecialChar ~
+\SpecialChar ~
+\SpecialChar ~
+\SpecialChar ~
+\SpecialChar ~
+
+\family default 
+Programas
+\layout Standard
+
+
+\family typewriter 
+\size footnotesize 
+|--Mount\SpecialChar ~
+\SpecialChar ~
+\SpecialChar ~
+\SpecialChar ~
+\SpecialChar ~
+\SpecialChar ~
+\SpecialChar ~
+\SpecialChar ~
+\SpecialChar ~
+\SpecialChar ~
+\SpecialChar ~
+\SpecialChar ~
+\SpecialChar ~
+\SpecialChar ~
+\SpecialChar ~
+\SpecialChar ~
+
+\family default 
+Ponto de montagem de sistemas de arquivos locais ou remotos
+\layout Standard
+
+
+\family typewriter 
+\size footnotesize 
+|--Users\SpecialChar ~
+\SpecialChar ~
+\SpecialChar ~
+\SpecialChar ~
+\SpecialChar ~
+\SpecialChar ~
+\SpecialChar ~
+\SpecialChar ~
+\SpecialChar ~
+\SpecialChar ~
+\SpecialChar ~
+\SpecialChar ~
+\SpecialChar ~
+\SpecialChar ~
+\SpecialChar ~
+\SpecialChar ~
+
+\family default 
+Áreas dos usuários
+\layout Standard
+
+
+\family typewriter 
+\size footnotesize 
+|--System\SpecialChar ~
+\SpecialChar ~
+\SpecialChar ~
+\SpecialChar ~
+\SpecialChar ~
+\SpecialChar ~
+\SpecialChar ~
+\SpecialChar ~
+\SpecialChar ~
+\SpecialChar ~
+\SpecialChar ~
+\SpecialChar ~
+\SpecialChar ~
+\SpecialChar ~
+\SpecialChar ~
+
+\layout Standard
+
+
+\family typewriter 
+\size footnotesize 
+|\SpecialChar ~
+\SpecialChar ~
+\SpecialChar ~
+|--Boot\SpecialChar ~
+\SpecialChar ~
+\SpecialChar ~
+\SpecialChar ~
+\SpecialChar ~
+\SpecialChar ~
+\SpecialChar ~
+\SpecialChar ~
+\SpecialChar ~
+\SpecialChar ~
+\SpecialChar ~
+\SpecialChar ~
+\SpecialChar ~
+
+\family default 
+Arquivos necessários para o boot (
+\emph on 
+kernel
+\emph default 
+ e 
+\emph on 
+bootloader
+\emph default 
+)
+\layout Standard
+
+
+\family typewriter 
+\size footnotesize 
+|\SpecialChar ~
+\SpecialChar ~
+\SpecialChar ~
+|--Links\SpecialChar ~
+\SpecialChar ~
+\SpecialChar ~
+\SpecialChar ~
+\SpecialChar ~
+\SpecialChar ~
+\SpecialChar ~
+\SpecialChar ~
+\SpecialChar ~
+\SpecialChar ~
+\SpecialChar ~
+\SpecialChar ~
+
+\layout Standard
+
+
+\family typewriter 
+\size footnotesize 
+|\SpecialChar ~
+\SpecialChar ~
+\SpecialChar ~
+|\SpecialChar ~
+\SpecialChar ~
+\SpecialChar ~
+|--Executables\SpecialChar ~
+\SpecialChar ~
+
+\family default 
+Links para os arquivos dos subdiretórios 
+\family typewriter 
+bin
+\family default 
+ e 
+\family typewriter 
+sbin
+\family default 
+ dos programas
+\layout Standard
+
+
+\family typewriter 
+\size footnotesize 
+|\SpecialChar ~
+\SpecialChar ~
+\SpecialChar ~
+|\SpecialChar ~
+\SpecialChar ~
+\SpecialChar ~
+|--Headers\SpecialChar ~
+\SpecialChar ~
+\SpecialChar ~
+\SpecialChar ~
+\SpecialChar ~
+\SpecialChar ~
+
+\family default 
+Links para os arquivos do subdiretório 
+\family typewriter 
+include
+\family default 
+ dos programas
+\layout Standard
+
+
+\family typewriter 
+\size footnotesize 
+|\SpecialChar ~
+\SpecialChar ~
+\SpecialChar ~
+|\SpecialChar ~
+\SpecialChar ~
+\SpecialChar ~
+|--Libraries\SpecialChar ~
+\SpecialChar ~
+\SpecialChar ~
+\SpecialChar ~
+
+\family default 
+Links para os arquivos do subdiretório 
+\family typewriter 
+lib
+\family default 
+ dos programas
+\layout Standard
+
+
+\family typewriter 
+\size footnotesize 
+|\SpecialChar ~
+\SpecialChar ~
+\SpecialChar ~
+|\SpecialChar ~
+\SpecialChar ~
+\SpecialChar ~
+
+\backslash 
+--Manuals\SpecialChar ~
+\SpecialChar ~
+\SpecialChar ~
+\SpecialChar ~
+\SpecialChar ~
+\SpecialChar ~
+
+\layout Standard
+
+
+\family typewriter 
+\size footnotesize 
+|\SpecialChar ~
+\SpecialChar ~
+\SpecialChar ~
+|\SpecialChar ~
+\SpecialChar ~
+\SpecialChar ~
+\SpecialChar ~
+\SpecialChar ~
+\SpecialChar ~
+\SpecialChar ~
+|--info\SpecialChar ~
+\SpecialChar ~
+\SpecialChar ~
+\SpecialChar ~
+\SpecialChar ~
+
+\family default 
+Links para os arquivos do subdiretório 
+\family typewriter 
+info
+\family default 
+ dos programas
+\layout Standard
+
+
+\family typewriter 
+\size footnotesize 
+|\SpecialChar ~
+\SpecialChar ~
+\SpecialChar ~
+|\SpecialChar ~
+\SpecialChar ~
+\SpecialChar ~
+\SpecialChar ~
+\SpecialChar ~
+\SpecialChar ~
+\SpecialChar ~
+
+\backslash 
+--man{1-9}\SpecialChar ~
+
+\family default 
+Links para os arquivos dos subdiretórios 
+\family typewriter 
+man/man{1-9}
+\family default 
+ dos programas
+\layout Standard
+
+
+\family typewriter 
+\size footnotesize 
+|\SpecialChar ~
+\SpecialChar ~
+\SpecialChar ~
+|--Settings\SpecialChar ~
+\SpecialChar ~
+\SpecialChar ~
+\SpecialChar ~
+\SpecialChar ~
+\SpecialChar ~
+\SpecialChar ~
+\SpecialChar ~
+\SpecialChar ~
+
+\family default 
+Arquivos de configuração e link para os arquivos dos subdir.
+ 
+\family typewriter 
+Settings
+\layout Standard
+
+
+\family typewriter 
+\size footnotesize 
+|\SpecialChar ~
+\SpecialChar ~
+\SpecialChar ~
+
+\backslash 
+--Variable\SpecialChar ~
+\SpecialChar ~
+\SpecialChar ~
+\SpecialChar ~
+\SpecialChar ~
+\SpecialChar ~
+\SpecialChar ~
+\SpecialChar ~
+\SpecialChar ~
+
+\family default 
+Dados Variáveis
+\layout Standard
+
+
+\family typewriter 
+\size footnotesize 
+|\SpecialChar ~
+\SpecialChar ~
+\SpecialChar ~
+\SpecialChar ~
+\SpecialChar ~
+\SpecialChar ~
+\SpecialChar ~
+
+\backslash 
+--Temp\SpecialChar ~
+\SpecialChar ~
+\SpecialChar ~
+\SpecialChar ~
+\SpecialChar ~
+\SpecialChar ~
+\SpecialChar ~
+\SpecialChar ~
+\SpecialChar ~
+
+\family default 
+Arquivos Temporários
+\layout Standard
+
+
+\family typewriter 
+\size footnotesize 
+|--proc\SpecialChar ~
+\SpecialChar ~
+\SpecialChar ~
+\SpecialChar ~
+\SpecialChar ~
+\SpecialChar ~
+\SpecialChar ~
+\SpecialChar ~
+\SpecialChar ~
+\SpecialChar ~
+\SpecialChar ~
+\SpecialChar ~
+\SpecialChar ~
+\SpecialChar ~
+\SpecialChar ~
+\SpecialChar ~
+\SpecialChar ~
+
+\family default 
+Arquivos de Status do Kernel (gerenciado pelo 
+\emph on 
+proc file system
+\emph default 
+)
+\layout Standard
+
+
+\family typewriter 
+\size footnotesize 
+
+\backslash 
+--dev\SpecialChar ~
+\SpecialChar ~
+\SpecialChar ~
+\SpecialChar ~
+\SpecialChar ~
+\SpecialChar ~
+\SpecialChar ~
+\SpecialChar ~
+\SpecialChar ~
+\SpecialChar ~
+\SpecialChar ~
+\SpecialChar ~
+\SpecialChar ~
+\SpecialChar ~
+\SpecialChar ~
+\SpecialChar ~
+\SpecialChar ~
+\SpecialChar ~
+
+\family default 
+Arquivos de Dispositivos (gerenciado pelo 
+\emph on 
+dev file system
+\emph default 
+)
+\layout Caption
+
+Hierarquia de diretórios 
+\noun on 
+gobolinux
+\noun default 
+
+\begin_inset LatexCommand \label{fig:gobolinux}
+
+\end_inset 
+
+
+\end_float 
+\layout Standard
+
+A compatibilidade com o legado 
+\noun on 
+unix
+\noun default 
+ é obtida através da criação de links extras não presentes no diagrama acima,
+ como por exemplo, 
+\family typewriter 
+/etc -> /System/Settings
+\family default 
+, 
+\family typewriter 
+/bin->System/Links/Executables
+\family default 
+ e 
+\family typewriter 
+/lib -> /System/Links/Libraries
+\family default 
+, que espelham a árvore 
+\noun on 
+gobolinux
+\noun default 
+ na árvore 
+\noun on 
+unix
+\noun default 
+.
+ Diferentemente das propostas anteriores que visaram organizar a hierarquia
+ de diretórios mantendo a compatibilidade histórica, no 
+\noun on 
+gobolinux
+\noun default 
+ há apenas um ponto de instalação de programas, sem manter paralelamente
+ uma árvore 
+\emph on 
+legacy
+\emph default 
+.
+\latex latex 
+
+\backslash 
+vspace{-0.4cm}
+\layout Section
+
+Experiência
+\begin_inset LatexCommand \label{sec:Experiencia}
+
+\end_inset 
+
+
+\latex latex 
+
+\backslash 
+vspace{-0.2cm}
+\layout Comment
+
+Prática 2 formas:
+\layout Comment
+
+- a partir de uma ditribuição tradicional, substituição gradual
+\layout Comment
+
+- from scratch
+\layout Standard
+
+A experiência prática com a estrutura de diretórios apresentada neste artigo
+ pode ser dividida em duas partes.
+ Em um primeiro momento, partiu-se de uma distribuição baseada em pacotes
+ e, gradativamente, as atualizações de programas eram feitas seguindo-se
+ a nova estrutura, desinstalando o pacote referente à versão anterior do
+ mesmo.
+ Nesta etapa, amadureceu-se as idéias estruturais e verificou-se a validade
+ e viabilidade das mesmas.
+\layout Standard
+
+Já numa segunda etapa, optou-se por compilar todo o sistema seguindo-se
+ a hierarquia 
+\noun on 
+gobolinux
+\noun default 
+, com o intuito de se ter um total controle de todos os arquivos instalados
+ na máquina.
+ Para isso, foi utilizada como base a documentação criada pelo projeto 
+\begin_inset Quotes eld
+\end_inset 
+
+Linux From Scratch
+\begin_inset Quotes erd
+\end_inset 
+
+ (
+\begin_inset LatexCommand \cite{Beekmans2002}
+
+\end_inset 
+
+).
+\latex latex 
+
+\backslash 
+vspace{-0.4cm}
+\layout Section
+
+Conclusões
+\begin_inset LatexCommand \label{sec:Concl}
+
+\end_inset 
+
+
+\latex latex 
+
+\backslash 
+vspace{-0.2cm}
+\layout Standard
+
+Conforme apresentado na Seção 
+\begin_inset LatexCommand \ref{sec:Outros}
+
+\end_inset 
+
+, a busca de alternativas para reorganizar a árvore de diretórios 
+\noun on 
+unix
+\noun default 
+ é asssunto de uma série de projetos.
+ Este artigo apresentou uma nova proposta de estruturação de diretórios
+ 
+\noun on 
+unix
+\noun default 
+, que difere dos projetos anteriores principalmente no fato de não se manter,
+ paralelo à arvore de diretórios principal, uma árvore 
+\emph on 
+legacy
+\emph default 
+, possibilitando uma maior auto-consistência e elegância.
+ A experiência prática mostrou a total viabilidade e compatilbilidade das
+ idéias apresentadas, além de evidenciar as facilidades introduzidas pela
+ nova estrutura.
+\layout Standard
+
+Maiores informações sobre o 
+\noun on 
+gobolinux
+\noun default 
+ podem ser obtidas em: 
+\newline 
+
+\family typewriter 
+http://cscience.org/~gobo/gobolinux.html
+\family default 
+.
+\layout Bibliography
+\bibitem {Apple2001}
+
+
+\size small 
+Apple Computer Inc., 
+\emph on 
+
+\begin_inset Quotes eld
+\end_inset 
+
+Inside Mac OS X - System Overview
+\begin_inset Quotes erd
+\end_inset 
+
+
+\emph default 
+, ISBN: 1400524806, 292p., Fev.
+ 2001.
+\latex latex 
+
+\backslash 
+vspace{-0.2cm}
+\layout Bibliography
+\bibitem {Encap2002}
+
+
+\size small 
+\emph on 
+
+\begin_inset Quotes eld
+\end_inset 
+
+Encap Archive
+\begin_inset Quotes erd
+\end_inset 
+
+
+\emph default 
+, Computing and Communications Services Office at the University of Illinois
+ at Urbana-Champaign, 
+\family typewriter 
+http://www.encap.org
+\family default 
+, 2002.
+\latex latex 
+
+\backslash 
+vspace{-0.2cm}
+\layout Bibliography
+\bibitem {Raymond2001}
+
+
+\size small 
+Eric Raymond, 
+\emph on 
+
+\begin_inset Quotes eld
+\end_inset 
+
+The Cathedral & The Bazaar
+\begin_inset Quotes erd
+\end_inset 
+
+
+\emph default 
+, O'Reilly and Associates, hardback edition, Jan.
+ 2001.
+\layout Bibliography
+\bibitem {Morin2001}
+
+
+\size small 
+Guillaume Morin, Bob Glickstein, 
+\emph on 
+
+\begin_inset Quotes eld
+\end_inset 
+
+GNU Stow
+\begin_inset Quotes erd
+\end_inset 
+
+
+\emph default 
+, 
+\family typewriter 
+http://www.gnu.org/software/stow/stow.html
+\family default 
+, 2001.
+\latex latex 
+
+\backslash 
+vspace{-0.2cm}
+\layout Bibliography
+\bibitem {Skauen2002}
+
+
+\size small 
+Kurt Skauen, 
+\emph on 
+
+\begin_inset Quotes eld
+\end_inset 
+
+AtheOS
+\begin_inset Quotes erd
+\end_inset 
+
+
+\emph default 
+, 
+\family typewriter 
+http://www.atheos.cx
+\family default 
+, 2002.
+\latex latex 
+
+\backslash 
+vspace{-0.2cm}
+\layout Bibliography
+\bibitem {Beekmans2002}
+
+
+\size small 
+Gerard Beekmans
+\emph on 
+, 
+\begin_inset Quotes eld
+\end_inset 
+
+Linux From Scratch
+\begin_inset Quotes erd
+\end_inset 
+
+
+\emph default 
+, 
+\family typewriter 
+http://www.linuxfromscratch.org/
+\family default 
+, acessado em 17/03/2002
+\latex latex 
+
+\backslash 
+vspace{-0.2cm}
+\layout Bibliography
+\bibitem {Colyer1992}
+
+
+\size small 
+Wallace Colyer, Walter Wong, 
+\emph on 
+
+\begin_inset Quotes eld
+\end_inset 
+
+Depot: A Tool for Managing Software Environments
+\begin_inset Quotes erd
+\end_inset 
+
+
+\emph default 
+, Usenix LISA VI Conference, 1992.
+\latex latex 
+
+\backslash 
+vspace{-0.2cm}
+\the_end

@@ -1,0 +1,8 @@
+<p>
+The first ISO of the development series that'll lead
+to GoboLinux 007 is out. This alpha release is
+concerned mainly with the structural changes/enhancements
+of the filesystem layout, so it contains no extra  
+packages. The ISO image (260MB) contains
+the live CD and an installable base system.
+</p>

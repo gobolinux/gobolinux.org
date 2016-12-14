@@ -1,0 +1,250 @@
+<h1>The GoboLinux FAQ</h1>
+
+<h3>What the heck is GoboLinux?</h3>
+
+<p>
+GoboLinux is a Linux distribution that features a new filesystem
+organization, which departs from the traditional Unix heritage of Linux
+systems. Basically, this means that it is not based in directories such as
+/usr and /etc. The main idea of the alternative hierarchy is to
+store all files belonging to an application in its own separate subtree;
+therefore we have directories such as /Programs/FooPlayer/1.0/lib.
+</p>
+<p>
+To allow the system to find these files, they are logically grouped in
+directories such as /System/Index/bin, which, you guessed it,
+indexes all executable files inside the Programs hierarchy.
+</p>
+<p>
+To maintain backwards compatibility with traditional Unix/Linux apps,
+there are symbolic links that mimic the Unix tree, such as "/usr/bin ->
+/System/Index/bin", and "/sbin -> /System/Index/bin"
+(this example shows that arbitrary differentiations between files of the
+same category were also removed).
+</p>
+<p>
+<a href="?page=at_a_glance">Here is a more visual overview</a>.
+</p>
+
+<h3>Did you redesign the tree to make it more newbie-friendly?</h3>
+
+<p>
+No. In fact, it was motivated to fulfill the needs of users who
+prefer to install applications from the original source packages instead
+of relying on the distribution. That is the main reason
+why each application gets its own directory: so you can install it from
+source there and then remove it with an "rm -rf". So, you see, GoboLinux
+was designed focusing the experienced user who doesn't like things to be
+automagical. Our scripts merely automate procedures, but they don't
+"make decisions", and whenever they have to, they ask first.
+</p>
+<p>
+The binary package collection was created as a way to avoid duplication
+of effort between users. The Compile project was created to store
+"compilation rules" of the original source packages of the applications,
+given that there is no single standard on how to compile apps on Linux.
+We do not wish to estabilish a "packaging standard" such as RPM. We
+think that there is no real need for "packages" if the original .tar.gz
+is properly made. For instance, when an application uses the GNU
+AutoTools (autoconf, automake...), compiling for GoboLinux is trivial;
+for non-trivial cases, Compile takes care of accumulating the necessary
+knowledge on how to compile things.
+</p>
+<p>
+However, given the more logical directory tree, GoboLinux is often
+considered a more conceptually friendly distribution, as its structure
+is more logical and less hindered by historical limitations. But we do
+not target beginners as a specific goal (at least not in short or mid term).
+</p>
+
+<h3>Is GoboLinux "ready"?</h3>
+
+<p>
+Yes, it is ready in the sense that you can, today, have a full operating
+system running 100% on GoboLinux, like many people around the world do.
+</p>
+
+<h3>What is its current status?</h3>
+
+<p>
+This can be split in two questions, one about the status of the
+GoboLinux tools, and one about the availability of packages.
+</p>
+<p>
+GoboLinux relies on a series of tools that automate various tasks, such
+as generation, installation and removal of packages, and most
+importantly, maintainance of the symbolic links that keep the system
+consistent. These tools are fairly stable, as they are a few years old
+by now.
+</p>
+<p>
+Another important issue when using a distribution is the availability of
+packages, ie, software that you can download in binary form and install
+in it straight away. In this aspect, GoboLinux still lags
+behind other estabilished distributions, as we don't have a large community
+of developers and we are not based on another distribution as many
+distros are, so we don't have another pool of packages to base ourselves from.
+We have, however, all packages needed to get a running system (all
+packages that are part of "Linux From Scratch" and "Beyond Linux From
+Scratch" projects, for example), plus many others, such as KDE and all
+related packages, and the list <a href="?page=packages">just won't stop growing</a>.
+Also, we have an even larger set of <a href="?page=recipes">compilation recipes</a>
+for use with the <a href="?page=compile">GoboLinux Compile</a> tool, which allows
+one to create packages from source.
+</p>
+
+<h3>Who created GoboLinux? What are its origins?</h3>
+
+<p>
+The concept was created by Hisham Muhammad.
+The first version of GoboLinux was created by Hisham and 
+André Detsch.
+</p>
+<p>
+GoboLinux has matured over a period of two years. Initially it started
+as a way to install programs cleanly inside a regular user account at
+the University (since we didn't have the real Linux tree available anyway,
+it was an opportunity to redesign the tree).
+</p>
+<p>
+One day, after The Great Filesystem Crash in Hisham's computer,
+he had to reinstall the whole system. That's when the idea came to
+use, in the new system, only the alternative tree (which in the
+pre-crash system, already held about 80% of all installed software).
+André was also considering reinstalling his Linux system, so they
+gathered one weekend at his house, and ran the entire Linux From
+Scratch procedure, changing it to use the alternative
+directory tree. The result was jokingly named GoboLinux, and as 
+it usually happens, the name stuck.
+</p>
+
+<h3>Who develops GoboLinux?</h3>
+
+<p>
+From its inception (described in the previous answer) on, we started
+getting more and more users, many of which, in the true spirit
+of Free Software, also became contributors the project. As in every
+project, people come and go, so it's impossible to list all names
+here, but check out the <a href="?page=devteam">dev team page</a>.
+</p>
+
+<h3>What are your goals about GoboLinux?</h3>
+
+<p>
+Our first goal is to have a system that we enjoy using, that won't get
+destroyed by package managing software that tries to
+administrate our machine for us. Most Linux distributions try to make
+life easier to the novice user, but this way they are making life much
+harder for the more seasoned user. We don't claim that GoboLinux is
+easier, only that it "makes more sense". However, people who use it say
+that it is indeed easier to administrate, given that it lets you
+understand your system better (if you are willing to understand it).
+</p>
+<p>
+As they say, "world domination is just a secondary goal". :)
+</p>
+
+<h3>Is there a performance loss in using symbolic links, making GoboLinux
+a bad choice for, say, heavily loaded servers?</h3>
+
+<p>
+The short answer: theoretically yes, but no, we never measured it
+(to know why "theoretically", read "the long answer"). 
+</p>
+<p>
+The long answer: the actual impact of the use of symbolic links is
+probably lower than you think. In a regular Linux distribution,
+libraries are already accessed through symbolic links. In GoboLinux, our
+links point directly to the actual file, so there is really one level of
+indirection to reach a library. 
+</p>
+<p>
+For example, take libc.so.6. It is in /lib, which is a link to
+/System/Index/lib, but the actual file is in
+/Programs/Glibc/Current, where Current is a link to 2.2.3, and inside
+Glibc's lib directory you have that libc.so.6 is in fact a link to
+libc-2.2.3.so. That's a lot of links right? However, libraries are
+acessed like this: the directory /System/Index/lib (which is not a
+link) is the only one stored in ldconfig's configuration (and
+LD_LIBRARY_PATH). There libc.so.6 points directly to
+/Programs/Glibc/2.2.3/lib/libc-2.2.3.so (no links in this whole path).
+So we have exactly one level of indirection, just as in regular Linux
+distributions. You may *see* a lot of links, but they are there mostly
+to ease the system's management.
+</p>
+<p>
+Applications are also compiled with the --prefix set to their "homes" at
+/Programs/App/version, so when a program looks for a datafile it does
+not go through links. Reaching executables involves going through one
+link, but, unlike regular Linux distributions it does not have to search
+through items of a PATH (and any modern filesystem's tree structuring
+of a directory is probably more optimized than the shell's traversal through
+elements of $PATH. Of course, there's always the shell's hash, but then,
+there's always the filesystem cache).
+</p>
+
+<h3>Why do you use GoboHide? Can't you modify all programs to live in
+the GoboLinux hierarchy?</h3>
+
+<p>
+We persuade them to cope with the GoboLinux tree with compilation 
+options whenever possible. However, there are many programs that can't
+cope completely, featuring hardcoded paths in their sources and whatnot.
+Ultimately any free software can be patched to cope, but we don't 
+have enough manpower for such a task and maintain it afterwards. 
+It would be, at the very least, a big hassle, so we generally like to reduce 
+the applied patches to the minimum.
+At least /bin, /lib and /sbin are critical. We have made tests in a chrooted 
+environment and it's funny to see all the weird things that happen when those 
+are missing.
+</p>
+
+<h3>What is /Depot? What is /Files?</h3>
+
+<p>
+/Depot is a "free area" to store your documents, such as media files,
+downloaded stuff, etc. You can think of it as a "community area", a "home
+for all users" (some UNIX systems have a /pub directory for this purpose).
+GoboLinux as a system ignores the contents of /Depot  it only exists to
+encourage users to store their random files under a single place and keep
+the rest of the system clean.
+</p>
+<p>
+/Files, on the other hand, is a standard GoboLinux directory. Inside it,
+there are directories such as Fonts and Plugins, where shared files that
+are required by applications but not necessarily part of them are kept.
+</p>
+
+<h3>Who is Gobo?</h3>
+
+<p>
+Apart from Fibo, his loyal servant, no one who saw him survived to tell
+the story. Beyond that, we never risked digging any deeper into the subject.
+</p>
+
+<h3>What nonsense is this?</h3>
+
+<p>
+Don't ask.
+</p>
+
+<h3>Are you serious?</h3>
+
+<p>
+Of course not. :-) You may disregard the two questions above -- they are
+just one of the many internal jokes in the GoboLinux world. Gobo does
+not exis-- uh, what's that? AAAAAHHHH!!!! <font color="white">;-) just
+kidding</font>
+</p>
+
+<h3>Are you still there?</h3>
+
+<p>
+Yes.
+</p>
+
+<h3>Good! Who is the mascot? Is that Fibo?</h3>
+
+<p>
+No, the mascot is called Que. He's a penguin wearing Fibo's clothes.
+</p>

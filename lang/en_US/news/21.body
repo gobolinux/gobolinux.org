@@ -1,0 +1,13 @@
+<p>
+A new release of the Scripts package is available for download 
+<a href="http://gobolinux.org/packages/binary/007/Scripts--20031106-detsch--i686.tar.bz2">
+here</a>.
+It fixes an important bug regarding the activation of the sandbox feature. 
+Therefore, the upgrade is highly recommended. Installation of the Scripts
+package is identical to that of any other package (no special bootstrapping
+is required).
+</p><p>
+If you have an 006 based GoboLinux, turn it 007-compatible using the 
+<a href="http://gobolinux.org/download/scripts/GoboLinux006-007--1.1.tar.bz2">
+Conversion Script</a> before to install this new version of the Scripts.
+</p>

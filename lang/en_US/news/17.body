@@ -1,0 +1,9 @@
+<p>
+One week late and not with all promissed features, the 007beta
+was released. The missing feature is the hardware detection; it is a work in
+progress, and we expect that it will be ready for the 007gamma release.
+This release only contains the Base System. The live CD now uses the cloop module from
+knoppix, and the installation process was improved, supporting profiles.
+For more information join the <a href="http://lists.gobolinux.org/mailman/listinfo/gobolinux-users">
+mailing list</a>.
+</p>

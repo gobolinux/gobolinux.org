@@ -1,0 +1,157 @@
+<h2>
+Roadmap
+</h2>
+
+<h3>
+Road to 012
+</h3>
+
+<p>
+Another version, another roadmap. We took a long time
+to write this one, which ended up delaying its release
+time after time after time. I usually like to take this
+space to write some looking-back review of the development
+of the project (release milestones are always a good moment
+for that), but I feel I just can't delay this roadmap any
+longer. On the bright side, this roadmap was more collaboratively
+written than any of the previous ones. :) 
+</p>
+
+<p>
+Having said that, I feel the next release will be a turning point
+in terms of user experience, even if there are no big architectural
+changes. And the reason of that is Manager, Andr&eacute;'s graphical
+frontend for Compile and Scripts.
+Another big change is that GoboLinux 012 might mark the end of an
+era. It is consensus among the GoboLinux team that the project
+needs to enter a new stage. We'll need some changes in the way
+the overall project is handled, which mean gradually adopting more
+of a "bazaar" model -- developments like Compile give us a way to
+decentralize the development in a structured, documented manner.
+No set decisions were made yet -- only general ideas sketched --
+but discussions should following in the mailing list. On the 
+bright side, the end of an era is the beginning of another. :)
+</p>
+
+<p>
+Well, so it turns out I managed to write my usual bit of blurb.
+Enough of it, on to the features!
+</p>
+
+<ul>
+<li>
+<b>Upgrade milestones.</b> KDE 3.3, Qt 3.3.3, GCC 3.4.x (whatever is latest --
+will someone please stop those guys from releasing versions?)
+</li>
+<li>
+<b>Kernel 2.6.x by default.</b> Including integration of UDEV. Probably a 2.4.x 
+kernel will not be shipped within the installation CD, but a precompilled image 
+will still be available for download at the site.
+</li>
+<li>
+<b>Integration of Manager.</b> Manager is a graphical front-end
+that makes easier to manage the packages from a GoboLinux system. 
+012 version will feature a stable and feature-complete version of Manager.
+</li>
+<li>
+<b>New Compile version.</b> Including: Minor changes on the user-interaction code, 
+that enable easy integration with front-ends; Better support for systems without 
+Internet access; General improvements and fixes, specially regarding the use of 
+'NewVersion'; Better modularity, specially regarding Recipes finding and fetching.
+Compile 2 dreams (currently in a -- very advanced I must say -- planning stage)
+are post-012 material.
+</li>
+<li>
+<b>SquashFS.</b> In replacement to cloop, SquashFS will be used to compress the 
+data from the GoboLinux ISO. SquashFS provides (slighty) better compress ratios, 
+much faster compression (requiring much less memory than cloop's compression)
+and same performance as cloop while reading compressed data.
+
+</li>
+<li>
+<b>Improved hardware detection.</b> No major changes, but the hardware database used
+by the detection tools will be brought up-to-date.
+</li>
+<li>
+<b>Selectable superuser name.</b> Set during installation process. Yes, "root" by default.
+</li>
+</ul>
+
+<p>
+Some things from the 011 roadmap still hold true as to-do work:
+</p>
+
+<ul>
+<li>
+<b>New bootscripts.</b> (I promise they're coming this time!) They are
+going to be as simple as the current ones, but more modular than the
+current ones. While some scenarios need extra complexity (daemon
+management, dependency-based boot) others just need a few programs
+to be launched in a certain order at startup and "that's it". We
+believe it is possible to support both in an elegant manner. And
+do all of this in a themeable way, of course. ;-) 
+</li>
+<li>
+<b>Improved shell agnosticism.</b> As zsh users, we don't like it when we are
+forced into a bash-world. So, we won't try to force users of other
+shells into a zsh-world, either. This means a change in the way
+environment variables are handled, and the adoption of wrapper scripts
+instead of shell functions and aliases whenever possible.
+</li>
+</ul>
+
+<p>
+Some things from the 007 roadmap still hold true as to-do work:
+</p>
+
+<ul>
+<li>
+<b>Automate the base system build process.</b> Compile already holds most if
+not all of the recipes necessary to build the Base system, and we have a
+mostly-automated build script to generate the ISO image, but we haven't
+got to the point where we can shoot "go" in one end of the pipeline and
+get a ready-to-ship ISO in the other end. I'd dare to say that by now we're
+mostly comfortable with the level of automation we've got, but more is always
+better.
+</li>
+<li>
+<b>Improve the collection of packages.</b> This is an obvious, but tiring item,
+which will always be on every roadmap. Ideally we want every package
+shipped in the CD to be in its latest stable release, but situations like
+Glibc compatibility are always complicated (especially when the devs say
+things like <a href="http://lists.gnu.org/archive/html/info-gnu/2004-08/msg00002.html">here's
+the latest release, but don't use it</a>).
+</li>
+<li>
+<b>Improve documentation.</b> Documentation has improved slowly, and
+not as steadily as we'd like. Help is greatly appreciated on this
+regard.
+</li>
+</ul>
+
+<h3>
+The i386 port
+</h3>
+
+<p>
+There was considerable work on i386 since the last release, and as you can see
+in the downloads page, we finally have a beta. It's not known at this stage
+if 012 will come out in i686 and i386 flavors. Ultimately, I think demand
+will dictate that. As far as I remember, there were not many (or any?) reports
+on the mailing list about the i386 beta. Since the team is overloaded with
+tasks (GoboLinux-related and otherwise), i386 is low-priority now. We keep
+a working version because of the social project we're involved with, but I
+personally don't know if a release-quality ISO (with live-CD GUI and other
+fluff) is coming. [Disclaimer: I'm not the best person to talk about this
+though, so if the other guys want to update this text, please feel free to
+do so.] On the bright side, information regarding the status of the i386
+port is now much more precise than it was in the previous roadmaps. :)
+</p>
+
+<h3>
+The long run
+</h3>
+
+<p>
+(Who can tell what the future holds? Gobo?)
+</p>

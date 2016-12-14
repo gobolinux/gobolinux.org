@@ -1,0 +1,274 @@
+<h1>The Unix tree rethought: an introduction to GoboLinux</h1>
+
+<p><i>Hisham Muhammad, May 09 2003.</i></p>
+
+<p>
+
+Lately, there has been lots of discussion on the current state of Linux
+as a desktop system, and articles pop up <a
+href="http://www.kuro5hin.org/story/2003/2/23/115919/628">here</a> and 
+there, occasionally with very good ideas. However, none
+have surprised me more than <a
+href="http://slashdot.org/article.pl?sid=03/04/29/1958212&mode=thread">this
+one</a>. It was all very hyphothetical, but had pretty radical ideas on
+how the thought the Linux directory tree should be reorganized. This was
+clearly the most polemical part of the article, and raised many
+discussions whether something like this could actually be implemented.
+And that's the reason for my surprise: we had this implemented for over
+an year. <a href="http://www.gobolinux.org">GoboLinux</a> is a Linux
+distribution based on an alternative directory tree, which has evolved
+from a custom <a href="http://www.linuxfromscratch.org">LFS</a>
+installation to a distro that's used and maintained by a small group of
+people today. It was interesting to see that there's a lot of people
+interested in ideas similar to ours. So, maybe it's time for us to come
+out of the shadows.
+
+</p><hr><p><b>
+
+A bit of history
+
+</b></p><p>
+
+We all remember the time when talking about Linux distributions for the
+desktop meant arguing which has the best installer. Much has evolved
+since: the easy, graphical installers are here, but we're <a
+href="http://www.linuxworld.com/2003/0401.tsu.html">not quite there
+yet</a>. Among the usual rants on "why (insert pet peeve here) is the
+problem", some interesting ideas come up from time to time. More 
+interestingly, some people started to believe maybe it's time for more
+adventurous attempts.
+
+</p><p>
+
+Oddly, GoboLinux did not start as one of those. The whole thing started
+when I had to install programs at the University.  As I had no write
+access to the standard Unix directories, I created my own directories
+under <tt>$HOME</tt> the way I saw fit. I upgraded the programs from
+source constantly, and couldn't use a package manager. My solution was
+the most obvious one: to place each program in its own directory, such
+as <tt>~/Programs/AfterStep</tt>. Soon the environment variables
+(<tt>PATH</tt>, <tt>LD_LIBRARY_PATH</tt>...) got bigger and bigger, so I
+created centralized directories for each class of files, containing
+symbolic links: <tt>~/Libraries</tt>, <tt>~/Headers</tt> and so on. A
+natural evolution was to write shell scripts to handle the links,
+<tt>configure</tt>s and <tt>Makefiles</tt>. 
+
+</p><p>
+
+This system proved itself to be very convenient to use. At my home
+system, I started to gradually remove pre-compiled packages and
+recompile them with those scripts. I was moving towards a completely
+custom Linux system, which I jokingly called LodeLinux. When I had it
+about 80% complete, the Great Filesystem Crash struck. It was time to
+start it all over again, but this time through a different route:
+instead of "deconstructing" an existing distribution, me ( <a
+href="http://cscience.org/~lode">Hisham Muhammad</a>) and a friend, <a
+href="http://cscience.org/~detsch">André Detsch</a>, spent two
+days building a modified <a href="http://www.linuxfromscratch.org">Linux
+From Scratch</a> system. Without much fuss, on March 20, 2002, GoboLinux
+was born. A month later, we presented an article at the  <a
+href="http://www.cpad.pucrs.br/wsl2002/">3rd. Workshop on Free
+Software</a> called "A new proposal for the Unix directory tree". 
+
+</p><p><b>
+
+What is it all about?
+
+</b></p><p>
+
+GoboLinux is definitely <b>not</b> "yet another Linux distro for the
+desktop". It is entirely based on an alternative directory structure.
+Every program lives in its own directory: you'll find XFree86 4.3 at
+<tt>/Programs/XFree86/4.3/</tt>, and <tt>ping</tt> at
+<tt>/Programs/Netkit-Base/0.17/bin/ping</tt>. To see what programs
+are installed in the system, all you need to do is <tt>ls /Programs</tt>.
+
+</p><p>
+
+For each category of files, there is a directory under
+<tt>/System/Links</tt> grouping files from each application as symbolic
+links: <tt>Executables</tt>, <tt>Libraries</tt>, <tt>Headers</tt>,
+<tt>Shared</tt> and <tt>Manuals</tt>. For compatibility, each "legacy"
+directory is a link to a corresponding category. Therefore, <tt>/bin</tt>,
+<tt>/sbin</tt>, <tt>/usr/bin</tt>, <tt>/usr/local/bin</tt> (and so on) are
+all symlinks to <tt>/System/Links/Executables</tt>. Environment variables
+are also simplified: <tt>export PATH=/System/Links/Executables</tt> is
+enough.
+
+</p><p>
+
+In short, what he have is a database-less package management system:
+the directory structure itself organizes the system (wasn't that its
+original purpose, after all?). Each program directory (for example,
+<tt>/Programs/KDE</tt>) holds version directories (<tt>/Programs/KDE/3.0</tt>,
+<tt>/Programs/KDE/3.1.1</tt>), and a version-neutral directory for
+settings (<tt>/Programs/KDE/Settings</tt>), to keep files that would
+normally be in <tt>/etc</tt>. Keeping two or more versions of a library
+is trivial. When most distributions switched to GCC 3 they released a
+new major version, mostly incompatible with previous ones. When the 006
+series of GoboLinux adopted GCC 3, it was just a matter of keeping old
+versions of libraries alongside the new ones, while they were gradually
+phased out. No "compat" packages involved.
+
+</p><p>
+
+Most tasks in GoboLinux are automated by a collection of scripts. To
+create a GoboLinux package, just type something like <tt>CreatePackage
+CoreUtils</tt>. All this command does is storing <tt>CoreUtils/5.0/</tt>
+and <tt>CoreUtils/Settings</tt> in a .tar.bz2 file called
+<tt>CoreUtils--5.0--i686.tar.bz2</tt>. A link called 
+<tt>/Programs/CoreUtils/Current</tt> indicates which version is
+currently in effect. This is used by the scripts as a 'default version'.
+Installation of a program is handle by three scripts:
+<tt>PrepareProgram</tt>, which creates the
+<tt>/Program/</tt><program-name> hierarchy and passes the proper
+options to <tt>configure</tt>. <tt>SymlinkProgram</tt> creates the
+links at <tt>/System/Links</tt>. A wrapper script, <tt>CompileProgram</tt>
+covers the common <tt>configure && make && make install</tt> case (with
+a number of command-line options to handle special cases).
+
+</p><p><b>
+
+Alternative boot scripts
+
+</b></p><p>
+
+Since we felt like we were "starting from scratch" and we really wanted
+to make a system where everything just made sense for us, we also took
+the time to rethink the boot scripts. I felt the two historical models
+(System V and BSD) were overkill for our common desktop-machine setup.
+GoboLinux uses a simpler system: two scripts, <tt>Init</tt> and <tt>Done</tt>,
+do most of the job. Additional scripts, such as <tt>Multi</tt> and 
+<tt>Single</tt>, take care of the runlevels. These files are simply
+sequences of commands, prepended by the word <tt>Exec</tt> and a message
+string. Here's an excerpt of <tt>Init</tt>:
+
+</p><pre>
+Exec "Setting clock..." SetClock
+Exec "Loading keymap..." loadkeys "$KeymapLayout"
+Exec "Bringing up the loopback interface..." ifconfig lo 127.0.0.1
+</pre><p>
+
+More elaborate tasks such as <tt>SetClock</tt> are defined as shell
+functions in a <tt>Tasks</tt> file (these tasks can also be called from
+the command-line using the <tt>RunTask</tt> script). Configurable
+settings are defined as environment variables in the <tt>Options</tt>
+file. The wrapper function <tt>Exec</tt> allows for a nifty additional
+feature: boot themes. The boot sequence can look Slackware-like (with
+the standard error/output messages), RedHat-like (with lots of OK's), or
+<a href="">GoboLinux-like</a> (the latter uses a modified version of the
+<a href="http://lpp-themes.sourceforge.net/">Linux Progress Patch</a>).
+
+</p><p><b>
+
+The "legacy" tree
+
+</b></p><p>
+
+Unfortunately, not all programs have the flexibility to be installed
+anywhere. Occasionally, hardcoded paths creep in even in programs that
+belong to userland, and should, at least theoretically, allow themselves
+to be installed inside, say, a user's home directory.
+
+</p><p>
+
+As much as I'd like to see this done in the long term, patching all
+applications is not an option. For this reason, GoboLinux keeps, as
+stated earlier, a legacy tree where all usual Unix paths are mapped to
+GoboLinux equivalents, so, if a <tt>Makefile</tt> looks for
+<tt>/usr/X11R6/include/X11/Xaw3d/XawInit.h</tt>, it will find it, 
+although it is at 
+<tt>/Programs/Xaw3d/1.5/include/X11/Xaw3d/XawInit.h</tt>, where it
+belongs. When two applications have a directory entry with the same
+name, the GoboLinux scripts recursively expand them. Both XFree86 and
+Xaw3d have <tt>X11</tt> under <tt>include</tt>. A directory
+<tt>/System/Links/Headers/X11</tt> is created automatically, holding
+links from both <tt>X11</tt> directories.
+
+</p><p>
+
+Another interesting feature is that the GoboLinux scripts execute
+<tt>make install</tt> using a special user id that only has write
+permissions inside the program's source directories and the program's
+entry under <tt>/Programs</tt>. This way, files can't "escape" from
+the GoboLinux hierarchy and slip directory into the legacy tree.
+
+</p><p>
+
+The GoboLinux directory structure brings a fresh, clean look the Linux
+system, but the presence of the legacy tree, while necessary, takes some
+of this beauty away. Mac OS X uses a "dirty trick" to cover up its Unix
+nature: the Finder won't show the Unix directories, but you can see them
+from the command line. In Linux we have many different ways for looking
+at the filesystem (shells, file managers, browsers...), so we had to go
+deeper to have a cleanly-looking system. GoboHide is a (obviously
+optional) kernel patch plus userland application written by <a
+href="http://cscience.org/~lucasvr">Lucas Correia Villa Real</a> and
+Felipe Damásio that effectively implements "hidden files" on
+Linux (way beyond dot-files, which are implemented on UI-level just like
+Finder does).
+
+<p>
+Here's what <tt>ls /</tt> looks like on GoboLinux:
+</p>
+<pre>
+Depot  Mount     System
+Files  Programs  Users
+</pre>
+
+<p><b>
+
+Related work
+
+</b><p>
+
+As you read this, you have probably found many familiar concepts (not to
+mention directory names). GoboLinux has clearly found inspiration in
+other operating systems, like Mac OS X, BeOS and <a
+href="http://www.atheos.cx">AtheOS</a>, but I think that the notion that
+they build "something different" using an existing Unix base (be it
+using a Unix kernel as in OS X or using GNU tools as in AtheOS) was the
+most important influence of all. Right now there are several other
+projects, in various stages of development, that use the Linux Kernel as
+a foundation and feature alternative directory trees. Interestingly,
+most of them are clones or heavily inspired by a specific proprietary 
+operating system: <a
+href="http://lemmit.kaplinski.com/home/green/Linux/">ROX OS</a> intends
+to be a RiscOS-like system, <a
+href="http://www.linuxstep.org/">LinuxSTEP</a> is a project based on
+GNUstep aiming for a NeXT-like system, and <a
+href="http://www.blueeyedos.com/">BlueEyedOS</a> aims for a
+source-level-compatible BeOS clone.
+
+</p><p>
+
+GoboLinux, on the other hand, is not a clone of anything else. It uses
+standard Linux desktop software. We believe that the well-organized
+directory structure makes it a good testbed for new ideas -- possibilities
+are wide open.
+
+</p><p><b>
+
+Where are we now?
+
+</b></p><p>
+
+<p>
+
+GoboLinux has evolved immensely during the last year. At <a
+href="http://www.gobolinux.org">gobolinux.org</a> you can find an ISO
+image of our latest release, 006. It's a bootable "live CD" running
+GoboLinux in a chrooted read-only filesystem, so you can walk around the
+directory structure and have a peek on how GoboLinux feels like. The CD
+also features the usual installer scripts and extra packages. There's no
+flashy graphical installer yet, but I think the ease-of-use of the
+installation reflects the overal ease-of-use of the system as a whole
+(unlike it happens on many distributions).
+
+</p><p>
+
+Despite of the very small userbase (we have never really announced it
+anywhere yet), the project has progressed quickly and has been fully
+usable for quite a while right now (most GoboLinux developers use it
+as their only operating system, and a few others do so, too).
+

@@ -1,0 +1,148 @@
+This is TeX, Version 3.14159 (Web2C 7.3.1) (format=latex 2002.7.8)  28 OCT 2002 20:25
+**./images.tex
+(./images.tex
+LaTeX2e <2000/06/01>
+Babel <v3.7h> and hyphenation patterns for american, french, german, ngerman, i
+talian, portuges, nohyphenation, loaded.
+
+(/usr/share/texmf/tex/latex/base/article.cls
+Document Class: article 2000/05/19 v1.4b Standard LaTeX document class
+(/usr/share/texmf/tex/latex/base/size10.clo
+File: size10.clo 2000/05/19 v1.4b Standard LaTeX file (size option)
+)
+\c@part=\count79
+\c@section=\count80
+\c@subsection=\count81
+\c@subsubsection=\count82
+\c@paragraph=\count83
+\c@subparagraph=\count84
+\c@figure=\count85
+\c@table=\count86
+\abovecaptionskip=\skip41
+\belowcaptionskip=\skip42
+\bibindent=\dimen102
+) (/usr/share/texmf/tex/latex/base/ifthen.sty
+Package: ifthen 1999/09/10 v1.1b Standard LaTeX ifthen package (DPC)
+) (/usr/share/texmf/tex/latex/psnfss/times.sty
+Package: times 2000/01/12 PSNFSS-v8.1 Times font as default roman (SPQR) 
+) (/usr/share/texmf/tex/latex/base/fontenc.sty
+Package: fontenc 2000/08/30 v1.91 Standard LaTeX package
+(/usr/share/texmf/tex/latex/base/t1enc.def
+File: t1enc.def 2000/08/30 v1.91 Standard LaTeX file
+LaTeX Font Info:    Redeclaring font encoding T1 on input line 38.
+)) (/usr/share/texmf/tex/latex/base/inputenc.sty
+Package: inputenc 2000/07/01 v0.996 Input encoding file 
+(/usr/share/texmf/tex/latex/base/latin1.def
+File: latin1.def 2000/07/01 v0.996 Input encoding file 
+)) (/usr/share/texmf/tex/latex/misc/geometry.sty
+Package: geometry 1999/10/07 v2.2 Page Geometry
+(/usr/share/texmf/tex/latex/graphics/keyval.sty
+Package: keyval 1999/03/16 v1.13 key=value parser (DPC)
+\KV@toks@=\toks14
+)
+\geom@cnth=\count87
+\geom@cntv=\count88
+(/usr/share/texmf/tex/latex/config/geometry.cfg)) (/usr/share/texmf/tex/generic
+/babel/babel.sty
+Package: babel 2001/03/01 v3.7h The Babel package
+(/usr/share/texmf/tex/generic/babel/english.ldf
+Language: english 2001/02/07 v3.3k English support from the babel system
+(/usr/share/texmf/tex/generic/babel/babel.def
+File: babel.def 2001/03/01 v3.7h Babel common definitions
+\babel@savecnt=\count89
+\U@D=\dimen103
+)
+\l@canadian = a dialect from \language\l@english 
+)) (/usr/share/texmf/tex/latex/graphics/color.sty
+Package: color 1999/02/16 v1.0i Standard LaTeX Color (DPC)
+(/usr/share/texmf/tex/latex/config/color.cfg)
+Package color Info: Driver file: dvips.def on input line 125.
+(/usr/share/texmf/tex/latex/graphics/dvips.def
+File: dvips.def 1999/02/16 v3.0i Driver-dependant file (DPC,SPQR)
+) (/usr/share/texmf/tex/latex/graphics/dvipsnam.def
+File: dvipsnam.def 1999/02/16 v3.0i Driver-dependant file (DPC,SPQR)
+))
+\sizebox=\box26
+\lthtmlwrite=\write3
+No file images.aux.
+\openout1 = `images.aux'.
+
+LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 123.
+LaTeX Font Info:    ... okay on input line 123.
+LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 123.
+LaTeX Font Info:    ... okay on input line 123.
+LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 123.
+LaTeX Font Info:    ... okay on input line 123.
+LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 123.
+LaTeX Font Info:    ... okay on input line 123.
+LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 123.
+LaTeX Font Info:    ... okay on input line 123.
+LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 123.
+LaTeX Font Info:    ... okay on input line 123.
+LaTeX Font Info:    Try loading font information for T1+ptm on input line 123.
+(/usr/share/texmf/tex/latex/psnfss/t1ptm.fd
+File: t1ptm.fd 2000/01/12 PSNFSS-v8.1 font definitions for T1/ptm.
+)
+----------------------- Geometry parameters
+mode: a4paper 
+h-parts: 2.5cm, 455.24411pt, 2.5cm
+v-parts: 3cm, 688.5567pt, 2.5cm
+----------------------- Page layout dimensions
+\paperwidth  597.50787pt
+\paperheight 845.04684pt
+\textwidth  349.0pt
+\textheight 701.64497pt
+\oddsidemargin  -1.1381pt
+\evensidemargin -1.1381pt
+\topmargin  0.0pt
+\headheight 0.0pt
+\headsep    0.0pt
+\footskip   0.0pt
+\hoffset 0.0pt
+\voffset 0.0pt
+\mag 1000
+(1in=72.27pt, 1cm=28.45pt)
+-----------------------
+
+latex2htmlLength hsize=349.0pt
+
+latex2htmlLength vsize=701.64497pt
+
+latex2htmlLength hoffset=0.0pt
+
+latex2htmlLength voffset=0.0pt
+
+latex2htmlLength topmargin=0.0pt
+
+latex2htmlLength topskip=0.00003pt
+
+latex2htmlLength headheight=0.0pt
+
+latex2htmlLength headsep=0.0pt
+
+latex2htmlLength parskip=0.0pt plus 1.0pt
+
+latex2htmlLength oddsidemargin=-1.1381pt
+
+latex2htmlLength evensidemargin=-1.1381pt
+
+LaTeX Font Info:    Try loading font information for T1+pcr on input line 151.
+(/usr/share/texmf/tex/latex/psnfss/t1pcr.fd
+File: t1pcr.fd 2000/01/12 PSNFSS-v8.1 font definitions for T1/pcr.
+)
+l2hSize :figure108:168.65585pt::0.0pt::349.0pt.
+[1
+
+
+
+] (images.aux) ) 
+Here is how much of TeX's memory you used:
+ 1380 strings out of 20882
+ 16285 string characters out of 197282
+ 64677 words of memory out of 350001
+ 4358 multiletter control sequences out of 10000+15000
+ 11759 words of font info for 21 fonts, out of 400000 for 1000
+ 16 hyphenation exceptions out of 10000
+ 25i,5n,19p,201b,315s stack positions out of 3000i,100n,1500p,50000b,4000s
+
+Output written on images.dvi (1 page, 1532 bytes).

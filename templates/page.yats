@@ -1,0 +1,18 @@
+<<@templates/header.yats>>
+<script>
+window.onload = function() {
+<<@js/gobolinux/arrowfade.js>>
+<<@js/gobolinux/lines.js>>
+}
+</script>
+</head>
+<body>
+<<@templates/top_menu.yats>>
+<canvas id="parallax_lines">
+</canvas>
+<div class="top_space">
+<<#page>>
+</div></div>
+<<@templates/footer.yats>>
+</body>
+</html>

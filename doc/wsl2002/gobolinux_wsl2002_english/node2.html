@@ -1,0 +1,137 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 3.2 Final//EN">
+
+<!--Converted with jLaTeX2HTML 2002 (1.62) JA patch-1.4
+patched version by:  Kenshi Muto, Debian Project.
+LaTeX2HTML 2002 (1.62),
+original version by:  Nikos Drakos, CBLU, University of Leeds
+* revised and updated by:  Marcus Hennecke, Ross Moore, Herb Swan
+* with significant contributions from:
+  Jens Lippmann, Marek Rouchal, Martin Wilck and others -->
+<HTML>
+<HEAD>
+<TITLE>2 Characteristics of the current hierarchy</TITLE>
+<META NAME="description" CONTENT="2 Characteristics of the current hierarchy">
+<META NAME="keywords" CONTENT="gobolinux_wsl2002_english">
+<META NAME="resource-type" CONTENT="document">
+<META NAME="distribution" CONTENT="global">
+
+<META HTTP-EQUIV="Content-Type" CONTENT="text/html; charset=iso-8859-1">
+<META NAME="Generator" CONTENT="jLaTeX2HTML v2002 JA patch-1.4">
+<META HTTP-EQUIV="Content-Style-Type" CONTENT="text/css">
+
+<LINK REL="STYLESHEET" HREF="gobolinux_wsl2002_english.css">
+<LINK REL="STYLESHEET" HREF="../../style.css">
+
+<LINK REL="next" HREF="node3.html">
+<LINK REL="previous" HREF="node1.html">
+<LINK REL="up" HREF="gobolinux_wsl2002_english.html">
+<LINK REL="next" HREF="node3.html">
+</HEAD>
+
+<BODY >
+<!--Navigation Panel-->
+<A NAME="tex2html33"
+  HREF="node3.html">
+<IMG WIDTH="37" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="next"
+ SRC="file:/usr/share/latex2html/icons/next.png"></A> 
+<A NAME="tex2html31"
+  HREF="gobolinux_wsl2002_english.html">
+<IMG WIDTH="26" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="up"
+ SRC="file:/usr/share/latex2html/icons/up.png"></A> 
+<A NAME="tex2html25"
+  HREF="node1.html">
+<IMG WIDTH="63" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="previous"
+ SRC="file:/usr/share/latex2html/icons/prev.png"></A>   
+<BR>
+<B> Next:</B> <A NAME="tex2html34"
+  HREF="node3.html">3 Alternative approaches</A>
+<B> Up:</B> <A NAME="tex2html32"
+  HREF="gobolinux_wsl2002_english.html">AN ALTERNATIVE FOR THE</A>
+<B> Previous:</B> <A NAME="tex2html26"
+  HREF="node1.html">1 Introduction</A>
+<BR>
+<BR>
+<!--End of Navigation Panel-->
+
+<H1><A NAME="SECTION00020000000000000000"></A><A NAME="sec:Atual"></A>
+<BR>
+2 Characteristics of the current hierarchy
+<BR>
+</H1>
+
+<P>
+In the UNIX tree, directories serve two purposes: differentiate categories
+of files and differentiate their location in the network. Files of
+the ``executable'' category from all applications are stored in
+six directories: <TT>/bin</TT>, <TT>/usr/bin</TT>, <TT>/usr/local/bin</TT>,
+<TT>/sbin</TT>, <TT>/usr/sbin</TT> and <TT>/usr/local/sbin<A NAME="tex2html2"
+  HREF="footnode.html#foot255"><SUP>2</SUP></A></TT>, where the criteria of choice to determine which of those six directories
+is used for a given file is basically its physical location (local
+or remote). Still, some programs are installed in other locations
+than those dictated by the above rules. For instance, the File System
+Hierarchy standard has an arbitrary list of which executable files
+should be stored at the <TT>/bin</TT> directory.
+
+<P>
+Some programs assume that certain files are stored in specific locations
+(for example, <TT>/lib/cpp</TT>, <TT>/usr/bin/python</TT>). This is
+a source of incompatibilities, even between different Linux distributions
+that follow the traditional model of directories. But the biggest
+problem caused by this approach is the difficulty in the removal of
+programs, since files of different applications are mixed in the same
+directories and different files from a single application are spread
+throughout a number of directories.
+
+<P>
+The solution used by companies and organizations that develop Linux
+distributions in order to maintain a correspondence between individual
+files and applications is <I>``package managing''</I>, that is,
+installing and removing software using a program that maintains a
+database that relates existing files in the system to the applications
+from which they were originated. The main limitation of this method
+is the fact that installation of applications from source code generates
+inconsistencies in the database.
+
+<P>
+A common practice is to keep the <TT>/usr</TT> hierarchy maintained
+by the package manager and target the installation of programs compiled
+locally to <TT>/usr/local</TT>. This keeps the database consistent,
+but does not solve the issue on how to remove programs installed from
+source.
+
+<P>
+The UNIX hierarchy standard defined an extra directory, <TT>/opt</TT>,
+to allow groups of applications to be installed separately from the
+rest. This can be considered an acknowledgment of the existence of
+the problems enumerated above. Further, this causes a conflict of
+criteria in the standard itself.
+
+<P>
+<HR>
+<!--Navigation Panel-->
+<A NAME="tex2html33"
+  HREF="node3.html">
+<IMG WIDTH="37" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="next"
+ SRC="file:/usr/share/latex2html/icons/next.png"></A> 
+<A NAME="tex2html31"
+  HREF="gobolinux_wsl2002_english.html">
+<IMG WIDTH="26" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="up"
+ SRC="file:/usr/share/latex2html/icons/up.png"></A> 
+<A NAME="tex2html25"
+  HREF="node1.html">
+<IMG WIDTH="63" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="previous"
+ SRC="file:/usr/share/latex2html/icons/prev.png"></A>   
+<BR>
+<B> Next:</B> <A NAME="tex2html34"
+  HREF="node3.html">3 Alternative approaches</A>
+<B> Up:</B> <A NAME="tex2html32"
+  HREF="gobolinux_wsl2002_english.html">AN ALTERNATIVE FOR THE</A>
+<B> Previous:</B> <A NAME="tex2html26"
+  HREF="node1.html">1 Introduction</A>
+<!--End of Navigation Panel-->
+<ADDRESS>
+Hisham H. Muhammad
+2002-10-28
+</ADDRESS>
+</BODY>
+</HTML>

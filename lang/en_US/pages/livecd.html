@@ -1,0 +1,295 @@
+<h1>Tweaking the GoboLinux LiveCD: a tutorial</h1> 
+ 
+<p> This is a quick guide to the internals of how the GoboLinux Live CD 
+is constructed. It will get you up to speed with the tools that build 
+the CD, allowing you to make customizations. With this we hope to lower 
+the entry barrier to potential contributors to the distro's development. 
+</p> 
+ 
+<h2>Prerequisites</h2> 
+ 
+<p> This tutorial assumes you're running a GoboLinux system, with the 
+most recent version of the <span class="pkg">Scripts</span> package 
+installed. Your kernel needs to support <a 
+href="http://www.fsl.cs.sunysb.edu/project-unionfs.html">UnionFS</a>, <a 
+href="http://squashfs.sourceforge.net/">SquashFS</a> and <a 
+href="http://en.wikipedia.org/wiki/Cramfs">CramFS</a>. You also need the  
+<span class="pkg">SquashFS-Tools</span> installed. All of this is 
+available from the GoboLinux repositories. </p> 
+ 
+<div class="Warning Box"> 
+<table><tr><td> 
+<img class="BoxIcon" src="<<root>>/images/warning.png" alt="Warning"/> 
+</td><td> 
+ 
+This tutorial assumes all steps are performed with superuser privileges 
+(become superuser with <span class="cmd">su</span> or use <a 
+href="http://www.courtesan.com/sudo/"><span 
+class="cmd">sudo</span></a>). This is because the tools need to create 
+device nodes, unpack files keeping privileges and suid bits and perform 
+mounts using UnionFS. As usual, care must be taken when performing tasks 
+as superuser, when running pre-release software downloaded through SVN 
+and especially, when doing both, as it's the case here. Proceed at your 
+own risk. 
+ 
+</td></tr></table> 
+</div> 
+ 
+<h2>The tools</h2> 
+ 
+<p> To get started, you need to install the <span class="pkg">BuildLiveCD</span> 
+package. 
+You can install it by typing: </p> 
+ 
+<pre> 
+Compile buildlivecd 
+</pre> 
+ 
+<p> A number of other GoboLinux tools and packages will be involved in 
+the process of building the CD, but this is the only one you need to 
+install in your <span class="dir">/Programs</span> directory. We'll get 
+to them in detail one by one, but here's an overview: </p> 
+ 
+<ul> 
+ 
+<li><span class="pkg">InitRDScripts</span> - this is the "Scripts" package for the 
+mini-GoboLinux environment in which the CD kernel is loaded </li> 
+ 
+<li><span class="pkg">LiveCD</span> - scripts that are specific to the Live CD 
+environment, having to do mostly with its initialization. </li> 
+ 
+<li><span class="pkg">ConfigTools</span> - some scripts that tweak configuration files 
+to 
+match the system where they're running. </li> 
+ 
+<li><span class="pkg">Installer</span> - the actual installation program, that copies 
+the 
+contents of the CD to the hard disc </li> 
+ 
+<li><span class="pkg">AbsTK</span> - <a href="http://www.gobolinux.org/abstk">Abstract 
+Tool Kit</a>: the interface abstraction library that allows the 
+Installer to have both text-mode and graphic interfaces. </li> 
+ 
+</ul> 
+ 
+<h2>The CD mastering environment</h2> 
+ 
+<p> Once you have BuildLiveCD installed in your system, you can set up 
+the CD mastering environment. A single command creates the necessary 
+directories and downloads all needed packages: <span 
+class="cmd">UpdateEnvironment</span>. Run it in an empty directory; 
+in our examples we'll use <span class="dir">/Depot/LiveCD</span>. </p> 
+ 
+<pre> 
+mkdir /Depot/LiveCD 
+cd /Depot/LiveCD 
+UpdateEnvironment 
+</pre> 
+ 
+<p> Note that this will download hundreds of megabytes worth of 
+packages, so this may take a while. </p> 
+ 
+<div class="DevInfo Box"> 
+<table><tr><td> 
+<img class="BoxIcon" src="<<root>>/images/goboicon.png" alt="Dev Info"/> 
+</td><td> 
+ 
+<b>For GoboLinux devs</b>: This script downloads some files from SVN and 
+stores a local copy of the SVN repository under <span 
+class="dir">LocalSVN/</span>. To ease development, you may want to have 
+a copy with write access enabled, instead of the default anonymous SVN 
+copy. To do this, pass your <a 
+href="http://savannah.nongnu.org">Savannah</a> username as an additional 
+parameter to <span class="cmd">UpdateEnvironment</span>. 
+ 
+<pre> 
+UpdateEnvironment hisham 
+</pre> 
+ 
+If your username in the local machine is not the same as your Savannah 
+username, you can pass it as a <i>second</i> parameter (since you're 
+running as superuser, the script will "sudo" to your user account when 
+running <span class="cmd">svn</span>). 
+ 
+</td></tr></table> 
+</div> 
+ 
+<h2>Building the CD</h2> 
+ 
+<p> The whole process of building the CD is wrapped by the <span 
+class="cmd">CompressAndBuildISO</span> script. In your first run, you 
+can simply call it with no parameters and it will go through the whole 
+process: </p> 
+ 
+<pre> 
+CompressAndBuildISO 
+</pre> 
+ 
+<p> The script is composed of a few stages -- when you make a 
+modification that affects only one of the later stages, you can pass a 
+parameter to have it skip the earlier ones, in order to save time. The 
+stages are: </p> 
+ 
+<ul> 
+ 
+<li><span class="cmd">rolayer</span> - Constructs the directory tree with the contents 
+of 
+the LiveCD: uncompresses packages building a <span 
+class="dir">/Programs</span> tree, files into <span 
+class="dir">/Files</span>, and generates a <span 
+class="dir">/System</span> directory with the necessary symbolic links 
+and system files. </li> 
+ 
+<li><span class="cmd">squashfs</span> - Compresses this newly-constructed system into 
+several SquashFS images: one for <span class="dir">/Files</span>, a few 
+ones for sections of the big <span class="dir">/Programs</span> tree, 
+and one for the rest (<span class="dir">/System</span>, <span 
+class="dir">/Mount</span>, <span class="dir">/Users</span>...). This is 
+done so that modifications on part of the filesystem do not trigger a 
+full regeneration of the entire system's "squashed image" (a process 
+which takes several minutes even on a 2+GHz machine). </li> 
+ 
+<li><span class="cmd">initrd</span> - Because the actual system is stored in the CD in a 
+compressed format, its contents cannot be directly accessed by the disc 
+bootloader. The bootloader launches instead an InitRD ("initial 
+RAM-disk") image, a mini-GoboLinux system that serves the sole purpose 
+of hosting the kernel, mounting the SquashFS system, and booting into 
+it. This step of <span class="cmd">CompressAndBuildISO</span> creates 
+the CramFS image of this mini-GoboLinux to be used as the InitRD. </li> 
+ 
+<li><span class="cmd">iso</span> - In the final step, the ISO 9960 file system is 
+generated, containing the bootloader, the kernel, the InitRD image and 
+the SquashFS files. </li> 
+ 
+</ul> 
+ 
+<h2>A walkthrough of the Live CD boot process</h2> 
+ 
+<h3>The CD bootloader</h3> 
+ 
+<p> <i>To be written</i> </p> 
+ 
+<h3>The InitRD environment</h3> 
+ 
+<p> <i>To be completed</i> </p> 
+ 
+<p> The InitRD environment is a mini-GoboLinux system created by the 
+<span class="cmd">MakeInitRDTree</span> script, which was called when 
+you run <span class="cmd">CompressAndBuildISO</span>. You will find it 
+at the <span class="dir">Output/InitRD</span> directory. </p> 
+ 
+<p> Do not modify <span class="dir">Output/InitRD</span> directly: its 
+contents are rewritten when <span class="cmd">CompressAndBuildISO</span> 
+runs through the <span class="cmd">initrd</span> step. To tweak the 
+InitRD scripts, modify instead the local SVN copy of <span 
+class="cmd">InitRDScripts</span>, located at <span 
+class="cmd">LocalSVN/tools/InitRDScripts</span>. </p> 
+ 
+<p> Currently, this part of the build environment is not very friendly 
+to customized versions. If you want to keep a custom version of the 
+InitRD, you need to replace <span class="dir">LocalSVN/InitRD</span> 
+with your own copy after running <span 
+class="cmd">UpdateEnvironment</span>. </p> 
+ 
+<div class="DevInfo Box"> 
+<table><tr><td> 
+<img class="BoxIcon" src="<<root>>/images/goboicon.png" alt="Dev Info"/> 
+</td><td> 
+ 
+<b>For GoboLinux devs</b>: To have your changes done permanently, there 
+are a few different places where they may need to be applied: 
+ 
+<ul> 
+ 
+<li>Changes to <span class="dir">/Programs/InitRDScripts</span> should 
+be comitted to the GoboLinux SVN. If your <span 
+class="dir">LocalSVN/</span> copy was created with write access, it's 
+only a matter of running <span class="cmd">svn commit</span>. </li> 
+ 
+<li>Other entries in <span class="dir">/Programs</span> are fetched from 
+the <span class="dir">initrd-packages/</span> repository (see the <span 
+class="cmd">MakeInitRDTree</span> script for details). </li> 
+ 
+<li>The directory structure and other configuration files are generated 
+by <span class="cmd">MakeInitRDTree</span>, so if you change that, 
+modify it accordingly so that a clean rebuild creates the files and 
+structure as you intend it. </li> 
+ 
+</ul> 
+ 
+</td></tr></table> 
+</div> 
+
+<p>At the end of the <span class="cmd">startGoboLinux</span> script of
+the <span class="cmd">InitRDScripts</span> package, the SquashFS images
+are mounted, the pivot operation to make it the root directory is performed
+and <span class="cmd">init</span> is called to proceed with the boot process.
+</p>
+
+<h3>Inside SquashFS</h3>
+
+<p> From there on, we're inside a GoboLinux system very much like the one that's
+installed in the hard disk. In fact, the same packages are used. When <span class="cmd">init</span>
+runs, it calls the <span class="cmd">BootDriver</span> from the BootScripts package.
+The <span class="cmd">BootDriver</span> detects it is running from the Live CD, so 
+instead of running its usual bootscripts, it calls the <span class="cmd">StartLiveCD</span>
+script from the <span class="cmd">LiveCD</span> package. That script is responsible for
+the rest of the initialization.
+</p>
+
+<h3>The SquashFS structure</h3> 
+ 
+<p> The main LiveCD environment (i.e., the directory tree you see once 
+the LiveCD booted) is stored as a series of SquashFS images. These 
+images are built from two layers: one read-only layer that is the actual 
+filesystem, (<span class="dir">Programs</span>, <span 
+class="dir">Files</span>, <span class="dir">System</span>, etc.), and a 
+read-write layer that sits on top for debugging purposes, containing 
+assorted files that you may have created while logged in using <span 
+class="cmd">ChrootEnvironment</span>. </p> 
+ 
+<p> The main, first layer is generated at <span 
+class="dir">Output/ROLayer</span>. This is built out of packages listed 
+in <span class="dir">Archives/Packages</span> that are combined to build 
+<span class="dir">/Programs</span>, additional files under <span 
+class="dir">Archives/Ext</span> that are unpacked to their proper locations, 
+plus a series of files and directories that are generated on-the-fly by 
+the <span class="cmd">BuildRoot</span> script. <span 
+class="cmd">BuildRoot</span> is called by <span 
+class="cmd">CompressAndBuildISO</span> during the <span 
+class="cmd">rolayer</span> step. </p> 
+ 
+<p> Keep in mind that when you make modifications that alter the LiveCD 
+environment itself, you need to regenerate the SquashFS image. To do 
+this, pass an additional parameter to <i>CompressAndBuildISO</i>:  </p> 
+ 
+<pre> 
+CompressAndBuildISO squashfs 
+</pre> 
+ 
+<div class="DevInfo Box"> 
+<table><tr><td> 
+<img class="BoxIcon" src="<<root>>/images/goboicon.png" alt="Dev Info"/> 
+</td><td> 
+ 
+<b>For GoboLinux devs</b>: To have your changes done permanently, you 
+need to consult your changes in the <span class="dir">Output/RWLayer</span> and 
+apply them to the relevant recipes which will generate new packages. 
+ 
+<p> The package set for the CD is currently at the <span 
+class="dir">livecd-packages</span> repository (see <span 
+class="cmd">UpdateEnvironment</span> for details). When modifying the package 
+set, you also need to update the <span  
+class="dir">/Programs/BuildLiveCD/Current/Data/Packages-List-*</span> 
+files. </p> 
+ 
+After modifying packages, a full rebuild starting from <span 
+class="cmd">rolayer</span> is needed to keep your <span 
+class="dir">Output</span> directory in sync with the package repository: 
+ 
+<pre> 
+CompressAndBuildISO rolayer 
+</pre> 
+
+</td></tr></table> 
+</div>

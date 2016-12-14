@@ -1,0 +1,169 @@
+
+<h1>GoboLinux at a glance</h1>
+
+<h2>What is GoboLinux? </h2>
+
+<p>
+GoboLinux is a modular Linux distribution: it organizes the programs in your system
+in a new, logical way. Instead of having parts of a program thrown at <tt>/usr/bin</tt>,
+other parts at <tt>/etc</tt> and yet more parts thrown at <tt>/usr/share/something/or/another</tt>,
+<span class="hilite">each program gets its own directory tree</span>, keeping them all neatly separated and
+allowing you to see everything that's installed in the system and which files belong
+to which programs in a simple and obvious way.
+</p>
+
+<p>
+This is what you see in the root of a GoboLinux system:
+</p>
+
+<div class="console"><div class="padding"><pre><span class="prompt">~]</span> cd /
+<span class="prompt">/]</span> ls
+<span class="dir">Programs
+Users
+System
+Data
+Mount
+</span></pre></div></div>
+
+<p>
+<tt>/Programs</tt> is where all programs reside. No exceptions. You can explore what is
+installed in the system by looking inside it:
+</p>
+
+<div class="console"><div class="padding"><pre>
+<span class="prompt">/]</span> cd /Programs
+<span class="prompt">/Programs]</span> ls
+<span class="dir">
+AfterStep     E2FSProgs    Htop        NTP          Subversion
+ALSA-Driver   Ed           HTTPD       OpenOffice   Sudo
+ALSA-Lib      Eject        Hydrogen    OpenSSH      Swfdec
+ALSA-OSS      Elinks       IBM-Java2   OpenSSL      Synaptics
+ALSA-Utils    Ethereal     ID3Lib      Pango        SysFSUtils
+Ardour        Expat        IEEE80211   Patch        Sysklogd
+Audacity      File         IMLib2      Perl         TCL
+Aumix         Firefox      InetUtils   Pkgconfig    TeTeX
+Autoconf      Flac         Intltool    PodXTPro     Texinfo
+Automake      Flex         IpodSlave   Popt         TIFF
+Bash          Fontconfig   Iptables    PPP          TiMidity++
+</span>
+...           ...          ...         ...          ...
+</pre></div></div>
+
+Each program entry contains all files for that program, stored in a versioned subdirectory.
+
+<div class="console"><div class="padding"><pre>
+<span class="prompt">/Programs]</span> find Bash
+Bash
+Bash/4.4
+Bash/4.4/bin
+Bash/4.4/bin/<span></span>sh
+Bash/4.4/bin/<span></span>bash
+Bash/4.4/bin/<span></span>bashbug
+Bash/4.4/info
+Bash/4.4/info/bash.info
+Bash/4.4/man
+Bash/4.4/man/man1
+Bash/4.4/man/man1/bash.1
+...
+</pre></div></div>
+
+Multiple versions of a program can be maintained simultaneously, so you can alternate between them as you desire, or even use both at the same time when necessary.
+
+<div class="console"><div class="padding"><pre>
+<span class="prompt">/Programs]</span> ls -l OpenOffice
+total 8
+d<span></span>rwxr-xr-x  9 root root 4096 2005-09-22 01:07 <span class="dir">1.1.4</span>
+d<span></span>rwxr-xr-x  3 root root 4096 2005-09-23 04:36 <span class="dir">2.0</span>
+lrwxrwxrwx  1 root root    5 2005-09-23 04:36 <span class="symlink">Current</span> -> <span class="dir">2.0</span>
+
+<span class="prompt">/Programs] </span>ls -l GTK+
+total 12
+d<span></span>rwxr-xr-x  10 root root 4096 2005-10-02 01:39 <span class="dir">1.2.10</span>
+d<span></span>rwxr-xr-x   9 root root 4096 2005-08-21 05:48 <span class="dir">2.6.7</span>
+lrwxrwxrwx   1 root root    6 2005-10-02 01:39 <span class="symlink">Current</span> -> <span class="dir">2.6.7</span>
+d<span></span>rwxr-xr-x   4 root root 4096 2005-10-02 01:39 <span class="dir">Settings</span>
+</pre></div></div>
+
+<hr/>
+
+<h2>How can this possibly work?</h2>
+
+Just like we use the filesystem to store the programs in an organized way, we also use it to <span class="hilite">index the files by category</span> so that the system can find a needed file without scanning hundreds of program entries. In GoboLinux, this is done with a series of directories containing <i>symbolic links</i> pointing to the actual files. Notice also how this gives you a handy view of "what package does file XYZ belong to".
+
+<div class="console"><div class="padding"><pre>
+<span class="prompt">/System/Index/lib]</span> ls -l | cut -b 49-
+...
+<span class="symlink">libgtk-1.2.so.0</span> -> <span class="exec">/Programs/GTK+/1.2.10/lib/libgtk-1.2.so.0.9.1</span>
+<span class="symlink">libgtk-1.2.so.0.9.1</span> -> <span class="exec">/Programs/GTK+/1.2.10/lib/libgtk-1.2.so.0.9.1</span>
+<span class="symlink">libgtk.a</span> -> /Programs/GTK+/1.2.10/lib/libgtk.a
+<span class="symlink">libgtk.la</span> -> /Programs/GTK+/1.2.10/lib/libgtk.la
+<span class="symlink">libgtk.so</span> -> <span class="exec">/Programs/GTK+/1.2.10/lib/libgtk-1.2.so.0.9.1</span>
+<span class="symlink">libgtk-x11-2.0.la</span> -> /Programs/GTK+/2.6.7/lib/libgtk-x11-2.0.la
+<span class="symlink">libgtk-x11-2.0.so</span> -> <span class="exec">/Programs/GTK+/2.6.7/lib/libgtk-x11-2.0.so.0.600.7</span>
+<span class="symlink">libgtk-x11-2.0.so.0</span> -> <span class="exec">/Programs/GTK+/2.6.7/lib/libgtk-x11-2.0.so.0.600.7</span>
+<span class="symlink">libhfs.a</span> -> /Programs/CDRTools/2.01/lib/libhfs.a
+<span class="symlink">libhistory.a</span> -> /Programs/Readline/5.0/lib/libhistory.a
+<span class="symlink">libhistory.so</span> -> <span class="exec">/Programs/Readline/5.0/lib/libhistory.so.5.0</span>
+<span class="symlink">libhistory.so.5</span> -> <span class="exec">/Programs/Readline/5.0/lib/libhistory.so.5.0</span>
+...
+</pre></div></div>
+
+The system is then configured to use these indices when looking for files:
+
+<div class="console"><div class="padding"><pre>
+<span class="prompt">~]</span> cat /etc/ld.so.conf
+/System/Index/lib
+
+<span class="prompt">~]</span> echo $PATH
+/System/Index/bin
+
+...
+</pre></div></div>
+
+<p>
+You will find indices for all main categories of files in the system: executables, libraries, headers, shared data files, manuals, and so on. Indexing is recursive, so if a series of programs share a directory definition to store a certain type of file, they automatically get their own index too (<tt>/System/Index/share/aclocal</tt> is an example).
+</p>
+
+<p>
+Another important property of link-based indexing is that any references to non-existing files automatically become broken links, and therefore inactive. This makes it easy to spot and fix problems and, most importantly, ensures that the <span class="hilite">the index is always in sync</span> with the actual functional state of the system. Say goodbye to the old problem of having the package manager complain that libXYZ is not installed even though you can see that it <i>is there</i>. If it's live in the links index, it's live in the system, and vice-versa.
+</p>
+
+<hr/>
+
+<h2>But what about Unix compatibility?</h2>
+
+<p>
+The GoboLinux system layout seems to be a major departure from the Unix tradition. Does this mean all programs need to adjusted so that they work with the new layout? Fortunately, the answer is <i>no</i>. Through a mapping of traditional paths into their GoboLinux counterparts, we <span class="hilite">transparently retain compatibility with the Unix legacy</span>.
+</p>
+
+<div class="console"><div class="padding"><pre>
+<span class="prompt">~]</span> ls -l /dev/null | cut -b 45-
+<span class="device">/dev/null</span>
+
+<span class="prompt">~]</span> ls -l /bin/<span></span>sh | cut -b 45-
+<span class="symlink">sh</span> -> <span class="exec">/Programs/Bash/4.4/bin/<span></span>bash</span>
+
+<span class="prompt">~]</span> ls -l /usr/include/stdio.h | cut -b 45-
+<span class="symlink">stdio.h</span> -> /Programs/Glibc/2.24/include/stdio.h
+</pre></div></div>
+
+<p>
+There is no rocket science to this: <tt>/bin</tt> is a link to <tt>/System/Index/bin</tt>. And as a matter of fact, so is <tt>/usr/bin</tt>. And <tt>/usr/sbin</tt>... all "binaries" directories map to the same place. Amusingly, this makes us even <i>more</i> compatible than some more standard-looking distributions. In GoboLinux, all standard paths work for all files, while other distros may struggle with incompatibilites such as scripts breaking when they refer to <tt>/usr/bin/foo</tt> when the file is actually in <tt>/usr/local/bin/foo</tt>.
+</p>
+
+<p>
+You may have noticed that the Unix paths did not show up in the system root listing in the very first example. They are actually there, but they are concealed from view using the <a href="?page=doc/articles/gobohide">GoboHide</a> kernel extension. This is for aesthetic purposes only and purely optional, though: GoboLinux <span class="hilite">does not require modifications in the kernel</span> or any other system components. But our users seem to like it a lot. :-)
+</p>
+
+<hr/>
+
+<h2>More!</h2>
+
+<p>
+An online tour can only take you so far. There is no substitute to giving it a try yourself: GoboLinux is conveniently distributed as a <span class="hilite">Live CD</span>, so you can explore the ins and outs of the system running it straight from the disc, even before installing it to your hard drive. <a href="?page=downloads">Download a disc image</a> and have fun -- if you're a newcomer, you'll probably find the more organized structure to be more comfortable as well; if you're a seasoned user, you'll certainly enjoy the finer control that a more modular, transparent system will give you.
+</p>
+
+</div> <!-- content_page -->
+</div> <!-- content_wrap -->
+</div> <!-- top_space -->
+

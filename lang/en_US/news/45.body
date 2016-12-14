@@ -1,0 +1,8 @@
+<p>
+After considerable improvements regarding device management (new version of Udev and Hotplug), GoboLinux 012rc1 is available for <a href="http://gobolinux.org/index.php?lang=en_US&page=downloads">download</a>. Hardware-related configuration scripts were also reogranized, and are now concentrated in a 'ConfigTools' package. Many tests and stability enhancements were performed last two weeks, giving this iso a release candidate status.
+</p>
+<p>012 final is planned to no latter that 30/05 (hard deadline). The 
+only 
+planned changes are some translations strings (pt_BR and de_DE) at the 
+installer. 
+</p>
