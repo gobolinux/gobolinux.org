@@ -1,8 +1,8 @@
 <<@templates/header.yats>>
 <script>
-window.onload = function() {
+document.addEventListener("DOMContentLoaded", function(event) { 
 <<@js/gobolinux/lines.js>>
-}
+});
 </script>
 </head>
 <body>

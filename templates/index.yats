@@ -2,10 +2,10 @@
 <style>
 </style>
 <script>
-window.onload = function() {
+document.addEventListener("DOMContentLoaded", function(event) { 
 <<@js/gobolinux/unfade.js>>
 <<@js/gobolinux/lines.js>>
-}
+});
 </script>
 </head>
 <body id="intro_body">
