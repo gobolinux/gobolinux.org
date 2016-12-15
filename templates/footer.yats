@@ -1,12 +1,9 @@
 
 <div class="spacer"></div>
 
-<div class="spacer content3">
-   <div class="fineprint"> 
-      <p>
-         © 2002-<span id="now">2016</span> GoboLinux.org.<br/>
-         <a href="mailto:gobo AT gobolinux DOT org">gobo AT gobolinux DOT org</a>
-      </p>
-   </div>
+<div class="content3 fineprint"> 
+   <p>
+      © 2002-<span id="now">2016</span> GoboLinux.org.<br/>
+      <a href="mailto:gobo AT gobolinux DOT org">gobo AT gobolinux DOT org</a>
+   </p>
 </div>
-

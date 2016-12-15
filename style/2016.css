@@ -2,7 +2,6 @@ body {
    margin: 0px;
    background-color: black;
    font-family: "Open Sans", sans-serif;
-   font-size: calc(10px + 0.5vw);
 }
 
 a {
@@ -138,9 +137,6 @@ li.top_menu a:hover {
 
 .content_title {
    color: #cccccc;
-   width: 80%;
-   min-width: 800px;
-   max-width: 1024px;
    margin: 0 auto;
    font-size: 200%;
 }
@@ -152,9 +148,7 @@ li.top_menu a:hover {
 }
 
 .main_column {
-   width: 80%;
-   min-width: 800px;
-   max-width: 1024px;
+   overflow: auto;
 }
 
 .content_page {
@@ -259,9 +253,6 @@ li.top_menu a:hover {
 }
 #down_arrow_2 {
    height: 2.5vw;
-   width: 80%;
-   max-width: 1024px;
-   min-width: 800px;
 }
 #down_arrow_3 {
    background-color: white;
@@ -276,15 +267,16 @@ li.top_menu a:hover {
 @media (max-width: 999px) {
    * {
       font-size: 3.5vw;
+      max-height: 999999px; /* http://stackoverflow.com/questions/11289166/chrome-on-android-resizes-font */
+   }
+   #top_menu, .top_menu {
+      font-size: 2.5vw;
    }
    .content_title h1 {
       font-size: 8vw;
    }
    .content_page h2 {
       font-size: 5vw;
-   }
-   .mascot {
-      width: 9vw;
    }
    #intro {
       padding-bottom: 10%;
@@ -298,17 +290,28 @@ li.top_menu a:hover {
    #right_content {
       width: 80%;
    }
+   .content_title, .main_column, #down_arrow_2 {
+      width: 90%;
+   }
 }
 
 @media (min-width: 1000px) {
    html {
       height: 100%;
    }
+   body {
+      font-size: calc(10px + 0.5vw);
+   }
    body#intro_body {
       height: 100%;
    }
    #intro {
       min-height: 90%;
+   }
+   .content_title, .main_column, #down_arrow_2 {
+      min-width: 800px;
+      max-width: 1024px;
+      width: 80%;
    }
 }
 
