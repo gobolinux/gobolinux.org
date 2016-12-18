@@ -107,6 +107,28 @@ local function apply_template(filename, tags, lang)
    return template 
 end
 
+local function add_meta_tags(page)
+   local first_image = page:match("<img [^>]*social_thumbnail[^>]*>")
+   if first_image then
+      first_image = first_image:match("<img [^>]*src=\"([^\"]+)\"[^>]*>")
+   else
+      first_image = page:match("<img [^>]*src=\"([^\"]+)\"[^>]*>")
+   end
+   local first_header = page:match("<h1>([^<]+)</h1>") or page:match("<h2>([^<]+)</h2>")
+   if first_image then
+      page = page:gsub("<title>", unindent([[
+         <meta property="og:image" content="]]..first_image..[[" />
+         <title>]]), 1)
+   end
+   if first_header then
+      first_header = first_header:gsub("\n*", "")
+      page = page:gsub("<title>", unindent([[
+         <meta property="og:title" content="]]..first_header..[[" />
+         <title>]]), 1)
+   end
+   return page
+end
+
 local function render_with(page_name, template, src_dir, dst_dir, lang, extra_tags)
    io.stdout:write(page_name.." -> ")
    local tags = {
@@ -116,6 +138,7 @@ local function render_with(page_name, template, src_dir, dst_dir, lang, extra_ta
       setmetatable(tags, { __index = extra_tags })
    end
    local rendered = apply_template(template, tags, lang)
+   rendered = add_meta_tags(rendered)
    local output_filename = dst_dir.."/"..(page_name:gsub("%.[^%.]*$", ""))..".html"
    os.execute("mkdir -p "..dst_dir)
    local fd = io.open(output_filename, "w")
