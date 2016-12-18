@@ -12,7 +12,7 @@ end
 
 local verbose = false
 
-local ok = true
+local all_ok = true
 
 local function unindent(txt)
    return txt:gsub("^%s*", ""):gsub("\n%s*", "\n"):gsub("%s$", "")
@@ -79,7 +79,8 @@ local function apply_template(filename, tags, lang)
    end
    if not fd then
       io.stderr:write("Failed opening "..filename.."\n")
-      ok = false
+      all_ok = false
+      os.exit(1)
       return ""
    end
    local template = fd:read("*a")
@@ -213,7 +214,8 @@ local function process_news(dir, out_dir, lang)
    return news_posts[max_id]
 end
 
-for lang in lfs.dir("lang") do
+--for lang in lfs.dir("lang") do
+for _, lang in ipairs({"en_US"}) do
    if lang ~= "." and lang ~= ".." then
       local out_lang = (lang == "en_US") and "" or lang
       local out_dir = "output/"..out_lang
@@ -229,6 +231,7 @@ for lang in lfs.dir("lang") do
          end
       end)
       if not ok then
+         all_ok = false
          if verbose then
             print(err)
          end
@@ -240,5 +243,5 @@ os.execute("rm -rf output/images")
 os.execute("cp -a images output/")
 os.execute("cp -a doc/ output/")
 
-os.exit(ok and 0 or 1)
+os.exit(all_ok and 0 or 1)
 
