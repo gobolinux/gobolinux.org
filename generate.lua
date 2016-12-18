@@ -134,6 +134,7 @@ local function render_with(page_name, template, src_dir, dst_dir, lang, extra_ta
    io.stdout:write(page_name.." -> ")
    local tags = {
       page = src_dir.."/"..page_name,
+      current_year = os.date("%Y"),
    }
    if extra_tags then
       setmetatable(tags, { __index = extra_tags })
