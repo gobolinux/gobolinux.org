@@ -7,7 +7,7 @@ local root_dir = lfs.currentdir().."/output"
 if arg[1] == "hisham" then
    root_dir = "http://hisham.hm/tmp/016"
 elseif arg[1] == "gobolinux" then
-   root_dir = "http://gobolinux.org"
+   root_dir = "https://gobolinux.org"
 end
 
 local verbose = false
