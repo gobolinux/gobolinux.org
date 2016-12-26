@@ -3,5 +3,5 @@ Due to the new kernel bug announced
 <a href="http://linuxreviews.org/news/2004-06-11_kernel_crash/index.html">here</a>,
 newer kernel images were provided to fix the kernels shipped with GoboLinux. 
 Instructions for doing the update are available at the 
-<a href="index.php?page=kernel">kernel repository</a>.
+<a href="?page=kernel">kernel repository</a>.
 </p>
