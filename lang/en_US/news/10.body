@@ -1,6 +1,6 @@
 <p>
 In the <a href="index.php?documentation">documentation</a> page you
-can find the link to the project <a href="index.php?page=roadmap">roadmap</a>.
+can find the link to the project <a href="?page=roadmap">roadmap</a>.
 It points the general direction the project is heading to and what things
 we are working on first, in the way to the next version. Check it out!
 </p>

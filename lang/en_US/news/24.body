@@ -2,7 +2,7 @@
 Many posts from the mailing list provide valuable information,
 but usually they end up buried in the list archives.
 To solve this problem, a new section was added to the
-<a href="index.php?page=documentation">Documentation</a>
+<a href="?page=documentation">Documentation</a>
 page, featuring those messages from the
 GoboLinux developers, formatted as informal articles. Three
 articles from the past month were added, and new ones are

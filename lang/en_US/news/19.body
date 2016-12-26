@@ -1,7 +1,7 @@
 <p>
 <img src="../images/007release.jpg" alt="GoboLinux 007" align="right"/>
 After some weeks of intensive work, GoboLinux 007 final 
- is available for download (<a href="http://gobolinux.org/index.php?page=downloads">download it!</a>).
+ is available for download (<a href="?page=downloads">download it!</a>).
 Since 006, there were major improvements all over the system, including the 
 funcionality required to pack "Environment", "Daemons" and "Default Settings" 
 information within packages (using the "Resources" directory). The LiveCD 

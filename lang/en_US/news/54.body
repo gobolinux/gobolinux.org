@@ -1,6 +1,6 @@
 <p>    
 After some weeks of intense work on preparing new compilation   
-<a href="http://www.gobolinux.org/index.php?page=compile">Recipes</a>  
+<a href="?page=compile">Recipes</a>  
 and binary packages (prepared with our   
 <a  
 href="http://cvs.savannah.nongnu.org/viewcvs/tools/ChrootCompile/?root=goboscripts">ChrootCompile  
