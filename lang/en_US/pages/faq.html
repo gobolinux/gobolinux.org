@@ -33,14 +33,14 @@ No. In fact, it was motivated to fulfill the needs of users who
 prefer to install applications from the original source packages instead
 of relying on the distribution. That is the main reason
 why each application gets its own directory: so you can install it from
-source there and then remove it with an "rm -rf". So, you see, GoboLinux
+source there and then remove it with an "rm -rf", and to make it easy
+to switch versions of a given package back and forth. So, you see, GoboLinux
 was designed focusing the experienced user who doesn't like things to be
 automagical. Our scripts merely automate procedures, but they don't
 "make decisions", and whenever they have to, they ask first.
 </p>
 <p>
-The binary package collection was created as a way to avoid duplication
-of effort between users. The Compile project was created to store
+The Compile project was created to store
 "compilation rules" of the original source packages of the applications,
 given that there is no single standard on how to compile apps on Linux.
 We do not wish to estabilish a "packaging standard" such as RPM. We
@@ -64,6 +64,13 @@ Yes, it is ready in the sense that you can, today, have a full operating
 system running 100% on GoboLinux, like many people around the world do.
 </p>
 
+<p>
+Note, however, that it is neither a beginner-oriented distribution,
+or an end-user binary-oriented distribution like Ubuntu. To use
+GoboLinux today, the user is expected to be proficient with the
+command-line and willing to compile and configure their software.
+</p>
+
 <h3>What is its current status?</h3>
 
 <p>
@@ -79,18 +86,21 @@ by now.
 </p>
 <p>
 Another important issue when using a distribution is the availability of
-packages, ie, software that you can download in binary form and install
-in it straight away. In this aspect, GoboLinux still lags
+packages, ie, software that you can install straight away.
+First, keep in mind that GoboLinux is currently a source-based
+distribution — that is, while we do have tools for creating binary packages,
+that is not our main focus; building packages from source using the
+<a href="?page=compile">Compile</a> tool is.
+</p>
+
+<p>
+In terms of number of packages, GoboLinux still lags
 behind other estabilished distributions, as we don't have a large community
 of developers and we are not based on another distribution as many
 distros are, so we don't have another pool of packages to base ourselves from.
 We have, however, all packages needed to get a running system (all
-packages that are part of "Linux From Scratch" and "Beyond Linux From
-Scratch" projects, for example), plus many others, such as KDE and all
-related packages, and the list <a href="?page=packages">just won't stop growing</a>.
-Also, we have an even larger set of <a href="?page=recipes">compilation recipes</a>
-for use with the <a href="?page=compile">GoboLinux Compile</a> tool, which allows
-one to create packages from source.
+packages that are part of "Linux From Scratch", for example),
+plus many others, and the list <a href="?page=recipes">just won't stop growing</a>.
 </p>
 
 <h3>Who created GoboLinux? What are its origins?</h3>
@@ -133,7 +143,7 @@ here, but check out the <a href="?page=devteam">dev team page</a>.
 <p>
 Our first goal is to have a system that we enjoy using, that won't get
 destroyed by package managing software that tries to
-administrate our machine for us. Most Linux distributions try to make
+administer our machine for us. Most Linux distributions try to make
 life easier to the novice user, but this way they are making life much
 harder for the more seasoned user. We don't claim that GoboLinux is
 easier, only that it "makes more sense". However, people who use it say
@@ -173,9 +183,7 @@ distributions. You may *see* a lot of links, but they are there mostly
 to ease the system's management.
 </p>
 <p>
-Applications are also compiled with the --prefix set to their "homes" at
-/Programs/App/version, so when a program looks for a datafile it does
-not go through links. Reaching executables involves going through one
+Reaching executables involves going through one
 link, but, unlike regular Linux distributions it does not have to search
 through items of a PATH (and any modern filesystem's tree structuring
 of a directory is probably more optimized than the shell's traversal through
@@ -199,20 +207,13 @@ environment and it's funny to see all the weird things that happen when those
 are missing.
 </p>
 
-<h3>What is /Depot? What is /Files?</h3>
+<h3>What is /Data?</h3>
 
 <p>
-/Depot is a "free area" to store your documents, such as media files,
-downloaded stuff, etc. You can think of it as a "community area", a "home
-for all users" (some UNIX systems have a /pub directory for this purpose).
-GoboLinux as a system ignores the contents of /Depot  it only exists to
-encourage users to store their random files under a single place and keep
-the rest of the system clean.
-</p>
-<p>
-/Files, on the other hand, is a standard GoboLinux directory. Inside it,
-there are directories such as Fonts and Plugins, where shared files that
-are required by applications but not necessarily part of them are kept.
+/Data is a standard GoboLinux directory for transient data,
+that is used by applications but not part of them. Inside it,
+there are directories such as Variable (equivalent to /var),
+and Compile, where all data for ongoing compilations is kept.
 </p>
 
 <h3>Who is Gobo?</h3>
