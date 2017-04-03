@@ -1,70 +1,66 @@
 <h2>  
-GoboLinux: what is it all about? 
+GoboLinux: What makes it unique? 
 </h2>  
-  
-<p><i>  
-This page originally just contained a quick list of reminders for  
-the users who installed GoboLinux (it was actually a HTML-ization  
-of a textfile contained within the /Depot/Docs directory of the  
-ISO). Since it is one-click away from Slashdot right now, I think  
-people deserve a better introduction to what GoboLinux is all about.  
-</i></p>  
-  
-<p>  
-For those who are interested and would like a more complete  
-introduction, I recommend the  <a  
-href="http://www.kuro5hin.org/story/2003/5/9/05015/62649">Kuro5hin article I posted</a>.  
+
+<p>
+GoboLinux has a directory structure different from other
+Linux distributions. In GoboLinux, all files for a program, including
+executables, headers and libraries, are installed
+below a single directory that belongs to that program. So the <pre>ping</pre> utility might reside in
 </p>  
-  
-<p>  
-Now, a quick overview.  
-</p>  
-  
-<p>  
-In GoboLinux, each program lives in its own directory, like this:  
-</p>  
+
 <pre>  
 /Programs/Netkit-Base/0.17/bin/ping  
+</pre>
+<p>
+and <pre>libpng.so.3</pre> in 
+</p>
+<pre>
 /Programs/LibPNG/1.2.5/lib/libpng.so.3  
-(and so on)  
-</pre>  
+</pre>
 <p>  
-For each category of files, there is a directory under <tt>/System/Links</tt>  
-collecting symlinks of the programs' files.  
+To be visible to other software, these files are symlinked
+into standard locations in the
+new directory hierarchy under <tt>/System/Index</tt>: 
 </p>  
 <pre>  
-/System/Links/Executables/ping  
-/System/Links/Libraries/libpng.so.3  
-(and so on)  
+/System/Index/Executables/ping  
+/System/Index/Libraries/libpng.so.3  
 </pre>  
 <p>  
-Traditional Unix paths are also symlinks, to the <tt>/System/Links</tt>  
-strucutre:  
+Traditional Unix paths are also symlinks to the <tt>/System/Index</tt>  
+directory structure:  
 </p>  
 <pre>  
-/bin -> /System/Links/Executables  
-/usr/bin -> /System/Links/Executables  
-/usr/lib -> /System/Links/Libraries  
-(and so on)  
+/bin -> /System/Index/Executables  
+/usr/bin -> /System/Index/Executables  
+/usr/lib -> /System/Index/Libraries  
 </pre>  
-<p>  
-This system provides many niceties: it makes it easy for different versions  
-of libraries to coexist, it's easy to uninstall software compiled from  
-source, and it does not require a database-oriented package management  
-system. In case you're wondering, we do have a basic dependency tracking  
-system going. Other unusual stuff: it doesn't use either SysV nor BSD  
-bootscripts (in favor of a simpler, custom system); the default user #0  
-is named "gobo" instead of "root" (just because -- you can set it to  
-anything you like).  
-</p>  
-<p>  
-The project is one-and-a-half year old, and it is on a quite usable  
-state.   
-</p>  
-<hr/>  
-<p>  
-This page originally pointed here:   
-<a href="?page=older_docs/quickdifflist">Quick list of differences  
-between GoboLinux and a traditional Linux system</a>  
-</p>  
-  
+<p>
+So for example, a shell script 
+expecting to run <tt>/usr/bin/ping</tt>, will continue to
+do so under GoboLinux.
+</p>
+<p>
+This architecture -- installing each program under its own
+directory, and making executables, headers other resources available 
+via symlinks -- has significant advantages:
+<ul>
+<li>different versions  of libraries can coexist</li>
+<li> it's trivial to uninstall software</li>
+<li> there is no need for a package database.</li>
+</ul>
+</p>
+<p>
+In fact, the scope of the task of managing software with
+this organization is so constrained that most utility
+programs needed to adminster the system could be reasonably
+implemented as shell scripts, which GoboLinux developers
+chose to do.
+</p>
+<p>
+Managing dependency relations among software is accomplished
+through the <a href="?page=compile">GoboLinux build
+system</a> and its library 
+of <a href="?page=recipes">"compile recipes"</a>. 
+</p>
