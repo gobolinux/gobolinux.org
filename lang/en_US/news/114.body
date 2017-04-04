@@ -1,0 +1,27 @@
+<p>
+We are pleased to announce GoboLinux 016.01 after roughly 3 months and a half
+from the release of 016. While it features some essential package upgrades,
+this revision aims at providing a more stable foundation for those who want to
+try it out.
+</p>
+<p>
+The list of improvements over 016 is extensive. The following is a high level
+summary of what's new since 016:
+</p>
+<ul>
+<li> Enabled support for Core2 processors </li>
+<li> Improved support for UEFI systems and virtualized platforms </li>
+<li> Improved detection of other operating systems when creating the GRUB config file </li>
+<li> Support for installation on external hard drives </li>
+<li> Fixes the SSL certificates paths </li>
+<li> Fixes SSL support in our Compile tool </li>
+<li> Fixes the /usr/libexec compatibility link </li>
+<li> Inclusion of CryptSetup to enable mounting of encrypted partitions from the Live ISO </li>
+<li> Inclusion of Listener, a daemon that automatically cleans up broken links when entries from /Programs are removed </li>
+<li> Inclusion of APulse 0.1.9 as a replacement for Pulse Audio (required by Firefox 52.0 onwards) </li>
+</ul>
+<p>
+The Live ISO can be downloaded from our <a
+href="https://github.com/gobolinux/LiveCD/releases/tag/016.01">GitHub
+page</a>, from where you can also review the full change logs.
+</p>

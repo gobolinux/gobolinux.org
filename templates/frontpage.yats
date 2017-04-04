@@ -1,5 +1,5 @@
 <div id="intro">
-<img id="logo" src="<<root>>/images/gobolinux016.png"/>
+<img id="logo" src="<<root>>/images/gobolinux016.01.png"/>
 <div id="intro_text">
 <<@frontpage/overview.yats>>
 </div>
