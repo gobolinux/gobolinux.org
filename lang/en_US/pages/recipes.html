@@ -1,10 +1,25 @@
 <h1>Recipes</h1>
 
-<p>
-In the free software world, compiling programs from source is commonplace. As you might expect, the vast majority of programs don't ship configured by default to use the GoboLinux directory hierarchy... though most are quite happy to use it. Those that aren't can be persuaded -- as a last resort, there's always the compatibility "legacy" directories. Most of the time, you won't have to deal with it, though: compilation rules for hundreds of programs are already automated in the <a href="?page=compile">Compile</a> program and its "recipes" tree.
-</p>
+Before building and installing software, it must be
+configured to suit the OS directory structure. That is why
+each Linux distribution has its own packaging system and own
+configuration rules. 
 
-<p>
-Search recipes in the <a href="http://recipes.gobolinux.org">Recipes repository</a>.
-</p>
+GoboLinux has an unorthodox directory layout, and programs
+may need some persuasion to install files in the correct
+locations. 
 
+Program can either be configured to use the Gobo install
+directories, or as a fallback they can use the legacy
+directories (/usr, /bin, /var, /etc) that Gobo provides for
+compatibility.
+
+Usually you won't have to deal with these issues. GoboLinux
+has compilation rules called <a
+href=https://github.com/gobolinux/Documentation/wiki/Recipe>
+recipes</a> for thousands of programs. These recipes are
+used by the <a href="?page=compile">Compile</a> program to
+build software for GoboLinux.  </p>
+
+<p> You can search for recipes in the <a
+href="http://recipes.gobolinux.org">Recipe store</a>.  </p>
