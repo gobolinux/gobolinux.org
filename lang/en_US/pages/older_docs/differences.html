@@ -24,17 +24,17 @@ into standard locations in the
 new directory hierarchy under <tt>/System/Index</tt>: 
 </p>  
 <pre>  
-/System/Index/Executables/ping  
-/System/Index/Libraries/libpng.so.3  
+/System/Index/bin/ping
+/System/Index/lib/libpng.so.3
 </pre>  
 <p>  
 Traditional Unix paths are also symlinks to the <tt>/System/Index</tt>  
 directory structure:  
 </p>  
 <pre>  
-/bin -> /System/Index/Executables  
-/usr/bin -> /System/Index/Executables  
-/usr/lib -> /System/Index/Libraries  
+/bin -> /System/Index/bin
+/usr/bin -> /System/Index/bin
+/usr/lib -> /System/Index/lib
 </pre>  
 <p>
 So for example, a shell script 
