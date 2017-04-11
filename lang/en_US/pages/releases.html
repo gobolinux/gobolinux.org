@@ -218,7 +218,7 @@ Thanks to everybody who contributed by testing the development snapshots, submit
 
 <hr/>
 
-<h2>GoboLinux 014.1</h2>
+<h2>GoboLinux 014.01</h2>
 
 <p><i>
 Our first "point" release. We knew we didn't have the time to make a full release that year,
@@ -226,7 +226,7 @@ but we wanted to get a release out of the door. So we planned to make a minor up
 In the end, even that ended up taking a lot of work!
 </i></p>
 
-<h3>GoboLinux 014.1</h3>
+<h3>GoboLinux 014.01</h3>
 
 <p><i>Last updated: 2008-04-02 23:02</i></p>
 
@@ -278,6 +278,88 @@ Major upgrades include the Enlightenment 18 desktop and kernel version 3.14.2,
 as well as new versions of the GoboLinux management tools. Please check the
 <a href="?page=release_notes_015">Release Notes</a> for
 details and download instructions.
+</p>
+
+
+<hr/>
+
+<h2>GoboLinux 016</h2>
+
+<p><i>
+Finally, the 64-bit release. GoboLinux 016 was released almost 2.5 years after 015,
+but it included lots of changes. Lucas did the heavylifting of the "backend" stuff
+from the kernel, building packages and making sure it booted correctly in various
+system configurations, and Hisham worked on the "frontend" stuff, heavily customizing
+the Awesome WM configuration to make it a nice-looking and friendly desktop.
+</i></p>
+<p><i>
+For the release, Hisham also redesigned the website. It was the first complete
+revamp of the site since 2006.
+</i></p>
+
+<h3>Introducing GoboLinux 016</h3>
+
+<p><i>Last updated: 2016-12-15 13:51</i></p>
+
+<p>
+We are extremely happy to announce <a href="?page=gobolinux016">GoboLinux
+016</a>. This release, built for x86-64, is a complete update of the core
+system.
+</p>
+
+<p>
+The flagship feature of this release is <b>Runner</b>, a brand new tool 
+for container-free filesystem virtualization. It brings Gobo's 
+remarkable support for concurrently installed versions to the next level.
+We also overhauled our desktop, with a customized Awesome WM setup.
+</p>
+
+<p>
+Read more about <a href="?page=gobolinux016">what's new in GoboLinux 016</a>
+and <a href="?page=gobolinux016">download the Live ISO image</a> to
+give it a spin!
+</p>
+
+<hr/>
+
+<h2>GoboLinux 016.01</h2>
+
+<p><i>
+A bugfix release. This is the second time we made a "point" release. Our
+goal was to simply fix the issues reported with 016 and not really
+introduce a lot of new stuff.
+</i></p>
+
+<h3>Announcing GoboLinux 016.01</h3>
+
+<p><i>Last updated: 2017-04-04 01:15</i></p>
+
+<p>
+We are pleased to announce GoboLinux 016.01 after roughly 3 months and a half
+from the release of 016. While it features some essential package upgrades,
+this revision aims at providing a more stable foundation for those who want to
+try it out.
+</p>
+<p>
+The list of improvements over 016 is extensive. The following is a high level
+summary of what's new since 016:
+</p>
+<ul>
+<li> Enabled support for Core2 processors </li>
+<li> Improved support for UEFI systems and virtualized platforms </li>
+<li> Improved detection of other operating systems when creating the GRUB config file </li>
+<li> Support for installation on external hard drives </li>
+<li> Fixes the SSL certificates paths </li>
+<li> Fixes SSL support in our Compile tool </li>
+<li> Fixes the /usr/libexec compatibility link </li>
+<li> Inclusion of CryptSetup to enable mounting of encrypted partitions from the Live ISO </li>
+<li> Inclusion of Listener, a daemon that automatically cleans up broken links when entries from /Programs are removed </li>
+<li> Inclusion of APulse 0.1.9 as a replacement for Pulse Audio (required by Firefox 52.0 onwards) </li>
+</ul>
+<p>
+The Live ISO can be downloaded from our <a
+href="https://github.com/gobolinux/LiveCD/releases/tag/016.01">GitHub
+page</a>, from where you can also review the full change logs.
 </p>
 
 <br/><br/><br/>
