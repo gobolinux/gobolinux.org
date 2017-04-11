@@ -5,7 +5,7 @@ this revision aims at providing a more stable foundation for those who want to
 try it out.
 </p>
 <p>
-The list of improvements over 016 is extensive. The following is a high level
+The list of improvements is extensive. The following is a 
 summary of what's new since 016:
 </p>
 <ul>
@@ -19,6 +19,7 @@ summary of what's new since 016:
 <li> Inclusion of CryptSetup to enable mounting of encrypted partitions from the Live ISO </li>
 <li> Inclusion of Listener, a daemon that automatically cleans up broken links when entries from /Programs are removed </li>
 <li> Inclusion of APulse 0.1.9 as a replacement for Pulse Audio (required by Firefox 52.0 onwards) </li>
+<li> The <a href="<<root>>/release_notes_016.01.html">release notes</a> contains a list of updated packages </li>
 </ul>
 <p>
 The Live ISO can be downloaded from our <a
