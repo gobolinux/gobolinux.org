@@ -2023,4 +2023,18 @@ page</a>, from where you can also review the full change logs.
 ]===],
 },
 
+-- 115
+{
+  title = [[GoboLinux Runner presented at Linux Developer Conference Brazil]],
+  date  = [[2017-11-13 15:34]],
+  body  = [===[
+<p>
+Here are the <a href="http://gobolinux.org/doc/linuxdev-br2017/GoboLinux_Runner.pdf">slides [in English]</a> and 
+<a href="https://youtu.be/IFSMBORW2uU?t=7591">video [in Portuguese]</a> of
+the talk that GoboLinux developer Lucas C. Villa Real gave last Saturday at
+Linux Developer Conference Brazil. Enjoy!
+</p>
+]===],
+},
+
 }
