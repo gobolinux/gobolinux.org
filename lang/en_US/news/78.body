@@ -1,9 +1,0 @@
-<p>
-For the process of stabilizing the GoboLinux 014 ISO and get it ready for release, we are now starting a series of development snapshots. The idea is to make it easier for people to see where we're at now, and to make it easier for people willing to help in testing out the release to "jump in" and get it to a state real close to where the live development is.
-</p>
-<p>
-The latest snapshot is always available at the <a href="?page=downloads">downloads</a> page.
-</p>
-<p>
-All feedback is greatly welcome. Please give it a spin and report any problems in the <a href="http://bugs.gobolinux.org">bug tracker</a>.
-</p>

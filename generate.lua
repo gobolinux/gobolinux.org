@@ -10,7 +10,7 @@ elseif arg[1] == "gobolinux" then
    root_dir = "https://gobolinux.org"
 end
 
-local verbose = false
+local verbose = true
 
 local all_ok = true
 
@@ -64,7 +64,44 @@ local special_formatters = {
 
 }
 
-local function apply_template(filename, tags, lang)
+local apply_template
+
+-- Template syntax:
+-- <<@path/file>> Apply template in file `path/file`
+-- <<#tagname>> Apply template in file specified in tag `tagname`
+-- <<!tagname>> Apply template whose text is in tag `tagname`
+-- <<tagname>> Insert text verbatim from tag `tagname`
+local function apply_template_text(template, tags, lang)
+   template = template:gsub("<<@([^>]*)>>", function(filename)
+      return apply_template(filename, tags, lang)
+   end)
+
+   template = template:gsub("<<#([^>]*)>>", function(tag_name)
+      local output = apply_template(tags[tag_name], tags, lang)
+      if special_formatters[tag_name] then
+         return special_formatters[tag_name](output)
+      end
+      return output
+   end)
+
+   template = template:gsub("<<!([^>]*)>>", function(tag_name)
+      local output = apply_template_text(tags[tag_name], tags, lang)
+      return output
+   end)
+
+   template = template:gsub("<<([^>]*)>>", function(varname)
+      return tags[varname]
+   end)
+
+   -- Fix PHP-style links
+   template = template:gsub("<a href=\"%?page=([^\"]*)\">", function(page)
+      return "<a href=\""..tags.root.."/"..page..".html\">"
+   end)
+   
+   return template 
+end
+
+apply_template = function(filename, tags, lang)
    if filename == "" then
       return ""
    end
@@ -84,28 +121,8 @@ local function apply_template(filename, tags, lang)
       return ""
    end
    local template = fd:read("*a")
-   template = template:gsub("<<@([^>]*)>>", function(filename)
-      return apply_template(filename, tags, lang)
-   end)
-
-   template = template:gsub("<<#([^>]*)>>", function(tag_name)
-      local output = apply_template(tags[tag_name], tags, lang)
-      if special_formatters[tag_name] then
-         return special_formatters[tag_name](output)
-      end
-      return output
-   end)
-
-   template = template:gsub("<<([^>]*)>>", function(varname)
-      return tags[varname]
-   end)
-
-   -- Fix PHP-style links
-   template = template:gsub("<a href=\"%?page=([^\"]*)\">", function(page)
-      return "<a href=\""..tags.root.."/"..page..".html\">"
-   end)
    
-   return template 
+   return apply_template_text(template, tags, lang)
 end
 
 local function add_meta_tags(page)
@@ -165,38 +182,25 @@ local function process_pages(dir, out_dir, lang)
 end
 
 local function process_news(dir, out_dir, lang)
-   local max_id = 0
+   local news = loadfile(dir .. "/news.lua")()
+   local max_id = #news
    local news_posts = {}
-   for name in lfs.dir(dir) do
-      if name ~= "." and name ~= ".." then
-         local id = name:match("(%d+)%.body")
-         if id then
-            max_id = math.max(max_id, tonumber(id))
-         end
-      end
-   end
    local function older_newer(tags, id, min, max, older_link, newer_link)
       tags.older_news_link = id > min and older_link or ""
       tags.newer_news_link = id < max and newer_link or ""
       tags.older_news = id > min and "strings/older_news" or ""
       tags.newer_news = id < max and "strings/newer_news" or ""
    end
-   for name in lfs.dir(dir) do
-      if name ~= "." and name ~= ".." then
-         local id = name:match("(%d+)%.body")
-         if id then
-            local nid = tonumber(id)
-            local tags = {
-               title = "news/"..id..".title",
-               body = "news/"..id..".body",
-               date = "news/"..id..".date",
-               permalink = id..".html",
-            }
-            older_newer(tags, nid, 1, max_id, (string.format("%d", (id-1)))..".html", (string.format("%d", (id+1)))..".html")
-            render_with(id, "templates/news.yats", dir.."/news", out_dir.."/news", lang, tags)
-            news_posts[nid] = apply_template("templates/news_post.yats", tags, lang)
-         end
-      end
+   for id, entry in ipairs(news) do
+      local tags = {
+         title = entry.title,
+         body = entry.body,
+         date = entry.date,
+         permalink = id..".html",
+      }
+      older_newer(tags, id, 1, max_id, (string.format("%d", (id-1)))..".html", (string.format("%d", (id+1)))..".html")
+      render_with(tostring(id), "templates/news.yats", dir.."/news", out_dir.."/news", lang, tags)
+      news_posts[id] = apply_template("templates/news_post.yats", tags, lang)
    end
    local p = 1
    for i = max_id, 1, -10 do

@@ -1,3 +1,0 @@
-New versions of the GoboLinux tools were announced, featuring a number of bugfixes.
-The new version of Scripts also includes reworked signing/verification functionallity and Scripts+Compile now has real support for GConf schemes, which is required for Gnome, and desktop files database, for better file type association and to update e.g. XFCE menu directly when installing/removing applications.<br/>
-Have a look at the <a href="http://lists.gobolinux.org/pipermail/gobolinux-devel/2007-September/002844.html">mailing list announcement</a> for installation instructions and the full change log.

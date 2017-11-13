@@ -1,5 +1,0 @@
-New versions of Scripts (2.8.3) and Compile (1.10.1) are out! Please update yours by running "InstallPackage Scripts" and "InstallPackage Compile".<br><br>
-
-These new versions feature support for dynamic user/group creation in recipes and packages, support for the GIT distributed version control system, improvements in the infrastructure used by Manager, Scripts and Freshen and some assorted bug fixes.<br><br>
-
-The full announcement and change logs can be seen <a href="http://lists.gobolinux.org/pipermail/gobolinux-users/2008-January/007114.html">here</a>.

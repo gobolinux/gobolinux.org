@@ -1,6 +1,0 @@
-<p>It has been a while since last news post, but that doesn't mean that development has stopped or even stagnated. A lot has happened under the surface and those that follow mailing lists, forums, hang out in IRC or just subscribe to the recipe RSS feed can see that we have not been lazy. What can be said is that we could use more manpower to move faster, because there is no lack of ideas or goals within the project.
-Besides that our tools are always evolving, we now have a simple but powerful use flag implementation and with a new simpler recipe API coming in next release, our package/recipe repository is continuously growing and is kept up to date, with for example KDE 4.2.0 and GCC 4.3.3.</p>
-
-<p>To get more continuity in our communication and to get better information flow to our users and fans we have finally started a <a href="http://blog.gobolinux.org">blog</a>. Here we will make small (and sometimes big) notes, that do not warrant their own news post, about what is currently happening within development of GoboLinux.</p>
-
-<p>And stay tuned for a new release of Scripts and Compile soon...</p>
