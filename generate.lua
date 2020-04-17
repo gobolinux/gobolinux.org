@@ -2,12 +2,19 @@
 
 local lfs = require("lfs")
 
-local root_dir = lfs.currentdir().."/output"
+local root_dir
 
-if arg[1] == "hisham" then
-   root_dir = "http://hisham.hm/tmp/016"
-elseif arg[1] == "gobolinux" then
+if arg[1] == "gobolinux" then
    root_dir = "https://gobolinux.org"
+elseif arg[1] == "local" then
+   root_dir = lfs.currentdir().."/output"
+else
+   print("Usage:")
+   print("   " .. arg[0] .. " gobolinux")
+   print("      to generate the version to upload at the website")
+   print("   " .. arg[0] .. " local")
+   print("      to generate a version to view locally")
+   os.exit(1)
 end
 
 local verbose = true
