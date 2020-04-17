@@ -2037,4 +2037,17 @@ Linux Developer Conference Brazil. Enjoy!
 ]===],
 },
 
+-- 116
+{
+  title = [[GoboLinux 017-beta released]],
+  date  = [[2020-04-17 00:28]],
+  body  = [===[
+<p>
+We have just released a <a href="https://github.com/gobolinux/LiveCD/releases/tag/017_beta">preview of GoboLinux
+017</a>. It updates several system packages and includes a new model for recipe management (and contribution)
+that's fully integrated with the Compile build tool. We're looking forward to hearing your feedback!
+</p>
+]===],
+},
+
 }
