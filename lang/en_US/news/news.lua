@@ -1412,7 +1412,7 @@ entry</a>!
   title = [[New online recipe viewer]],
   date  = [[2007-07-24 12:12]],
   body  = [===[
-The GoboLinux website now has a new online search tool for recipes: <a href="http://recipes.gobolinux.org">recipes.gobolinux.org</a>, which you can also access from the "chef hat" icon on this page. It has many nice features such as search by descriptions, crosslinked dependencies and the ability to view files from recipes. Many thanks to mpb, who is the developer and maintainer.
+The GoboLinux website now has a new online search tool for recipes: recipes.gobolinux.org, which you can also access from the "chef hat" icon on this page. It has many nice features such as search by descriptions, crosslinked dependencies and the ability to view files from recipes. Many thanks to mpb, who is the developer and maintainer.
 
 ]===],
 },
@@ -1790,7 +1790,7 @@ Please test it and give us your feedback. You can always reach us on the mailing
   title = [[Introducing GoboLinux 015]],
   date  = [[2014-05-07 20:02]],
   body  = [===[
-We are pleased to introduce GoboLinux 015, the new major release of GoboLinux, the Linux distribution featuring a rethought file system structure. This is the first full-system image release in a number of years, after a long period in which we kept only updating <a href="http://recipes.gobolinux.org/">compilation recipes</a>. Packages were built using both <a href="http://www.linuxfromscratch.org/alfs/">ALFS</a> (Automated Linux from Scratch) and our custom dynamically-generated sandboxed environment which insulates the source code and its dependencies during compilation. Major upgrades include the Enlightenment 18 desktop and kernel version 3.14.2, as well as new versions of the GoboLinux management tools. Please check the <a href="?page=release_notes_015">Release Notes</a> for details and download instructions.
+We are pleased to introduce GoboLinux 015, the new major release of GoboLinux, the Linux distribution featuring a rethought file system structure. This is the first full-system image release in a number of years, after a long period in which we kept only updating <a href="https://github.com/gobolinux/Recipes">compilation recipes</a>. Packages were built using both <a href="http://www.linuxfromscratch.org/alfs/">ALFS</a> (Automated Linux from Scratch) and our custom dynamically-generated sandboxed environment which insulates the source code and its dependencies during compilation. Major upgrades include the Enlightenment 18 desktop and kernel version 3.14.2, as well as new versions of the GoboLinux management tools. Please check the <a href="?page=release_notes_015">Release Notes</a> for details and download instructions.
 ]===],
 },
 
@@ -1859,7 +1859,7 @@ There is still work to do: the scripts themselves still need to be converted to 
   title = [[Next release in the works]],
   date  = [[2016-07-31 13:34]],
   body  = [===[
-The next release of GoboLinux is under active development. As in the last release, we are using <a href="https://github.com/gobolinux/GoboALFS">GoboALFS</a>, a collection of build scripts based on <a href="http://www.linuxfromscratch.org/alfs/">Automated Linux From Scratch</a> and our own <a href="http://recipes.gobolinux.org">Compile recipes tree</a>. The main focus of this next release is designing a very lean core system with updated packages, including 64-bit support.
+The next release of GoboLinux is under active development. As in the last release, we are using <a href="https://github.com/gobolinux/GoboALFS">GoboALFS</a>, a collection of build scripts based on <a href="http://www.linuxfromscratch.org/alfs/">Automated Linux From Scratch</a> and our own <a href="https://github.com/gobolinux/Recipes">Compile recipes tree</a>. The main focus of this next release is designing a very lean core system with updated packages, including 64-bit support.
 ]===],
 },
 
