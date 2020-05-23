@@ -1,0 +1,288 @@
+<h1>
+GoboLinux 017 - Release Notes
+</h1>
+
+<h2>
+Introduction
+</h2>
+
+<p>
+We are pleased to present release 017 of GoboLinux, the Linux distribution
+featuring a <a href="?page=at_a_glance">rethought file system structure</a>.
+GoboLinux was created out of a desire to try new approaches in the Linux
+distribution design space. GoboLinux 017 continues this journey, with a focus
+on the exploration of novel ideas aiming to make the system simpler yet
+functional.
+</p>
+
+<h2> Availability </h2>
+
+<p>
+GoboLinux is available as an <a href="?page=downloads">ISO download</a> which you can
+download from this site.
+</p>
+
+<h2> Overview of this release </h2>
+
+<p>
+Here is a presentation of the <a href="?page=gobolinux017">new features in GoboLinux 017</a>.
+</p>
+
+<h3> Live Environment </h3>
+
+<p>
+The GoboLinux ISO image serves both as an installation disc and a Live environment,
+with a graphical desktop featuring Awesome WM. 
+In fact, due to the modular nature of the GoboLinux filesystem, every program
+available in the image can be used directly from the Live environment -- the work
+of the installer is to simply copy the user's selection to the destination
+partition (respecting dependency chains).
+</p>
+
+<h3> Graphical installer </h3>
+
+<p>
+Since version 010, GoboLinux features an installer that works on both text and
+graphical mode. The feature set of both modes is identical, thanks to the
+innovative <a href="http://www.gobolinux.org/abstk">AbsTK</a> (Abstract Toolkit),
+created by the GoboLinux team especially for this installer: a unified widget
+toolkit for Python which detects and adapts itself for different environments.
+It currently supports two backends: ncurses/console and Qt/X11.
+</p>
+
+<h3> Hardware detection </h3>
+
+<p>
+GoboLinux features a Udev-based hardware detection system. A large number of
+devices are detected, loading the appropriate kernel modules.
+Video detection is performed separately, by Xorg's own autodetection mechanism.
+</p>
+
+<h2> Hardware requirements </h2>
+
+<h3> Processor </h3>
+
+<p>
+GoboLinux is compiled to run on x86-64-class systems.
+You shouldn't have problems to run it on any modern x86 machine, including
+Macs. This release contains 64-bit binaries.
+</p>
+
+<h3> Memory </h3>
+
+<p>
+To load the Live CD environment, 128 MB of RAM is the recommended minimum for
+a text-mode system, 512 MB is the recommended minimum to load the graphic
+Awesome desktop; 1 GB is recommended for a comfortable Live-boot experience.
+</p>
+<p>
+Once the system is installed in the hard disk, memory requirements vary greatly
+depending on the kind of applications executed, but the values stated above
+related to the Live CD experience serve as a good guideline.
+</p>
+
+<h3> Video and peripherals </h3>
+
+<p>
+Video cards are supported through the Xorg X11 server, with the fallback "vesa"
+driver covering the vast majority of current cards. For running under VirtualBox,
+check the wiki for instructions on how to <a href="https://github.com/gobolinux/Documentation/wiki/Running-under-VirtualBox">enable the VirtualBox guest additions</a>.
+A large number of sound cards are supported through the kernel component of
+ALSA (Advanced Linux Sound Architecture), which is used by PulseAudio.
+Other peripherals are supported through additional packages available
+in the GoboLinux recipe store.
+</p>
+
+<h2> Package-specific notes </h2>
+
+<p>
+This section contains some general comments about the package set included in
+GoboLinux. The complete list of packages included in the CD follows in the next
+section.
+</p>
+
+<h3> Internationalization </h3>
+
+GoboLinux ships whenever possible all packages distributed in their original state,
+as intended by the authors of the various free software projects that compose the
+distribution. This also applies to the distribution of the locale files. Therefore,
+support for internationalization varies according to the translation status of each
+project for each language.
+
+<h2> List of packages </h2>
+
+<p>
+Here is the complete list of programs you will find included in the GoboLinux 017 ISO image:
+</p>
+<tt>
+<pre>
+AbsTK 017			LibCanberra 0.30		Pixman 0.38.4
+ACL 2.2.53			LibCap 2.27			Pkgconfig 0.29.2
+Acpid 2.0.32			LibCroco 0.6.13			Poppler 0.85.0
+Adwaita-Icon-Theme 3.20		LibDaemon 0.14			Popt 1.16
+ALSA-Firmware 1.2.1		LibDMX 1.1.4			PowerTOP 2.11
+ALSA-Lib 1.2.2			LibDRM 2.4.100			PPP 2.4.8
+ALSA-UCM-Conf 1.2.2		LibEpoxy 1.5.4			Procps-NG 3.3.15
+ALSA-Utils 1.2.1		LibEV 4.33			Psmisc 23.1
+AsciiDoc 9.0.0rc2		LibEvdev 1.9.0			PulseAudio 13.0
+ATK 2.34.1			LibEvent 2.1.11			PulseAudio-Ctl 1.67
+ATKMM 2.28.0			LibFFI 3.3			Python 3.8.1
+Atool 0.39.0			LibFontenc 1.1.4		Qpdf 9.1.1
+At-Spi2-ATK 2.26.2		LibFS 1.0.8			Qt 5.14.1
+At-Spi2-Core 2.28.0		LibGCrypt 1.8.5			RawTherapee 5.8
+ATTR 2.4.48			LibGLVnd 1.2.0			Readline 8.0
+Audacious 4.0.3			LibGPG-Error 1.37		RFKill 0.5
+Audiofile 0.3.6			LibiCal 3.0.7			Rust 1.41.0
+Autoconf 2.69			LibICE 1.0.10			RXVT-Unicode 9.22
+Automake 1.16.1			LibICU4C 65.1			Schroedinger 1.0.11
+Avahi 0.8			LibIDN 1.35			SCons 
+Awesome 4.3			LibIDN2 2.3.0			Scripts 017-GIT
+Babl 0.1.74			LibIptcdata 1.0.4		SDL 2.0.12
+Bash 5.0			LibJPEG-Turbo 2.0.4		Sed 4.8
+BC 1.07.1			LibMD 1.0.1			SessReg 1.1.2
+BDFtoPCF 1.1			LibMNG 2.0.3			SetXKBMap 1.3.2
+BinUtils 2.33.1			LibNL 3.5.0			SGML-Common 0.6.3.tgz
+Bison 3.5			LibNotify 0.7.9			Shadow 4.2.1
+Bluez 5.54			LibOGG 1.3.4			Shared-MIME-info 1.15
+Boost 1.72.0			LibOpenRAW 0.1.3		SMProxy 1.0.6
+BootScripts 017			LibPaper 1.1.24_nmu4		SOF-Firmware 1.4.2
+Bzip2 1.0.8			LibPCIAccess 0.16		SpeexDSP 1.2.0
+CAcerts 20120211		LibPipeline 1.5.1		SPICE-Protocol 0.14.1
+Cairo 1.17.2_f93fc72c03e	LibPNG 1.6.37			SQLite 3310100
+Cairomm 1.12.2			LibPSL 0.21.0			SquashFS-Tools 4.4
+CMake 3.16.4			LibPthread-Stubs 0.4		Srain 
+Compile 017-GIT			LibRSVG 2.46.4			Startup-Notification 0.12
+ConfigTools 017			LibSecret 0.20.1		Strace 4.8
+CoreUtils 8.31			LibSigc++ 2.10.2		Sudo 1.8.31p1
+CryptSetup 2.3.0		LibSM 1.2.3			SysFSUtils 2.1.0
+CUPS 2.3.1			LibSndfile 1.0.28		Sysklogd 2.1.2
+CUPS-Filters 1.27.1		LibSoup 2.68.4			SYSLINUX 6.02
+Curl 7.68.0			LibTasn1 4.16.0			Sysvinit 2.96
+Cyrus-SASL 2.1.27		LibTheora 1.1.1			Tabbedex-URxvt 20161124-GIT
+DB 18.1.32			LibTIRPC 1.2.5			TagLib 1.11.1
+DBus 1.12.16			LibTool 2.4.6			Tar 1.32
+DBus-GLib 0.110			LibUnwind 1.3.0			Tcl 8.6.10
+DejaVu-Fonts-TTF 2.37		LibUSB 1.0.23			TCPWrappers 7.6
+DHCPCD 8.1.6			LibUV 1.34.2			Texinfo 6.7
+Dialog 1.3.20191210		LibVA 2.7.0			TIFF 4.1.0
+DiffUtils 3.7			LibVDPAU 1.4			Tk 8.6.10
+Dit 0.7				LibVorbis 1.3.6			TWM 1.0.10
+Dmidecode 3.0			LibWebP 1.0.3			TZData 2019a
+DocBook-XML-DTD 4.5		LibX11 1.6.9			Unzip 6.0
+DocBook-XSL-Stylesheets 1.79.1	LibXau 1.0.9			USBUtils 012
+DosFSTools 4.1			LibXaw 1.0.13			UThash 2.1.0
+DoubleConversion 3.1.5		LibXaw3d 1.6.3			Util-Linux 2.35.1
+Dracut 20200220-GIT		LibXCB 1.13.1			Util-macros 1.19.0
+E2FSProgs 1.45.5		LibXcomposite 0.4.5		Vim 8.2
+Ed 1.15				LibXcursor 1.2.0		WavPack 5.3.0
+EFIBootMgr 20200501-GIT		LibXdamage 1.1.5		Wget 1.20.3
+EFIVar 20200501-GIT		LibXDG-BaseDir 1.2.0		Wireless-Tools 29
+ELFUtils 0.178			LibXdmcp 1.1.3			WPA_Supplicant 2.9
+EnhancedSkel 017		LibXext 1.3.4			X264 20200409-GIT
+Eudev 3.2.9			LibXfixes 5.0.3			XAuth 1.1
+Exempi 2.5.1			LibXfont2 2.0.4			XBitmaps 1.1.0
+Expat 2.2.9			LibXft 2.3.3			XCB-Proto 1.13
+FAAC 1.29.9.2			LibXi 1.7.10			XCB-Util 0.4.0
+FAAD2 2.8.8			LibXinerama 1.1.4		XCB-Util-Cursor 0.1.3
+FFmpeg 4.2.2			LibXKBfile 1.1.0		XCB-Util-Errors 1.0
+FFTW3F 3.3.8			LibXKBui 1.0.2			XCB-Util-Image 0.4.0
+File 5.38			LibXML2 2.9.10			XCB-Util-Keysyms 0.4.0
+FindUtils 4.7.0			LibXmu 1.1.3			XCB-Util-Renderutil 0.3.9
+Firefox 76.0.1			LibXpm 3.5.13			XCB-Util-WM 0.4.1
+Flac 1.3.3			LibXpresent 1.0.0		XCB-Util-XRM 1.3
+Flex 2.6.4			LibXRandR 1.5.2			XClip 0.13
+Fontconfig 2.13.1		LibXrender 0.9.10		XCursorGen 1.0.7
+FreeGlut 3.2.1			LibXres 1.2.0			XCursor-Themes 1.0.6
+FreeType 2.10.1			LibXScrnSaver 1.2.3		XDG-Utils 1.1.3
+Fribidi 1.0.8			LibXShmfence 1.3		XDpyInfo 1.3.2
+Fuse 3.9.0			LibXSLT 1.1.34			XDriInfo 1.0.6
+Gawk 5.0.1			LibXt 1.2.0			XEv 1.2.3
+GCC 9.2.0			LibXtst 1.2.3			XEyes 1.1.2
+GD 2.25				LibXv 1.0.11			XF86-Input-AceCad 1.5.0
+GDBM 1.18.1			LibXvMC 1.0.12			XF86-Input-Aiptek 1.4.1
+GDK-Pixbuf 2.40.0		LibXxf86dga 1.1.5		XF86-Input-ELOGraphics 1.4.2
+Gettext 0.20.1			LibXxf86vm 1.1.4		XF86-Input-Evdev 2.10.6
+Ghostscript 9.50		Linux 5.6.10			XF86-Input-Fpit 1.4.0
+Giflib 5.1.4			Linux-Firmware 20200505-GIT	XF86-Input-Hyperpen 1.4.1
+Git 2.25.0			Linux-Headers 5.4.15		XF86-Input-Joystick 1.6.3
+GLib 2.63.5			Linux-PAM 1.3.1			XF86-Input-Keyboard 1.9.0
+Glibc 2.30			Listener 2.1			XF86-Input-Mouse 1.9.3
+GLibmm 2.62.0			LiveCD 017			XF86-Input-MTrack 0.5.0
+Glib-Networking 2.63.91		LLVM 9.0.1			XF86-Input-MuTouch 1.3.0
+GLU 9.0.1			LM-Sensors 3.6.0		XF86-Input-PenMount 1.5.0
+GMP 6.2.0			Lode-Fonts 3.0			XF86-Input-Synaptics 1.9.1
+GnuTLS 3.6.12			Lsof 4.91			XF86-Input-VmMouse 13.1.0
+GObject-Introspection 1.62.0	Lua 5.3.5			XF86-Video-AMDGPU 19.1.0
+GoboHide 1.3			LuaRocks 3.0.4			XF86-Video-APM 1.3.0
+GoboLight 0.1			LVM2 2.03.05			XF86-Video-AST 1.1.5
+GoboNet 0.10			Lynx 2.9.0_dev5			XF86-Video-ATI 19.1.0
+GParted 1.1.0			LZ4 1.9.2			XF86-Video-Fbdev 0.5.0
+Gperf 3.1			LZip 1.21			XF86-Video-Intel 3.4.6
+GPM 1.20.7			LZO 2.10			XF86-Video-Nouveau 1.0.16
+Graphite2 1.3.13		M4 1.4.18			XF86-Video-NV 2.1.21
+Graphviz 2.40.1			Make 4.3			XF86-Video-Openchrome 0.6.0
+Grep 3.4			Man-DB 2.9.0			XF86-Video-Vboxvideo 1.0.0
+Groff 1.22.4			Man-Pages 5.05			XF86-Video-Vesa 2.4.0
+GRUB 2.04			Mdadm 4.1			XF86-Video-VMware 13.3.0
+GRUB-EFI 2.04			Mesa 19.3.3			XGamma 1.0.6
+GSLLang 8.13.3559		MkFontDir 1.0.7			XHost 1.0.8
+GTK+ 3.24.13			MkFontScale 1.2.1		XInit 1.4.1
+GTKMM 3.24.2			MPC 1.1.0			XInput 1.6.3
+Gutenprint 5.3.3		MPFR 4.0.2			XKBcommon 0.10.0
+Gzip 1.10			MPG123 1.25.13			XKBComp 1.4.2
+HarfBuzz 2.6.4			Mtail 1.2.0			XKBEvd 1.1.4
+Hdparm 9.58			MtDev 1.1.6			XKBUtils 1.0.4
+Help2Man 1.47.12		MuPDF 1.16.1			XKeyboard-Config 2.24
+Hicolor-Icon-Theme 0.17		Nano 4.8			XKill 1.0.5
+Hplip 3.19.12			Nasm 2.14.02			XLsAtoms 1.1.3
+Htop 2.2.0			NCPAMixer 1.3.3			XMLTO 0.0.28
+Hub 2.14.2			NcursesW 6.2			XModMap 1.0.10
+IANA-etc 2.30			Nettle 3.5.1			Xorg-Font 7.7
+ICEAuth 1.0.8			Net-Tools 1.60			XorgProto 2019.2
+IJS 0.35			NPth 1.2			Xorg-Server 1.20.7
+ImageMagick 7.0.10_4		NSPR 4.25			XPR 1.0.5
+InetUtils 1.9.4			NSS 3.50			XProp 1.2.4
+Installer 017			OpenEXR 2.4.1			XRandR 1.5.1
+Intltool 0.51.0			OpenLDAP 2.4.49			XRDB 1.2.0
+IPRoute2 5.6.0			OpenSSH 8.2p1			XRefresh 1.0.6
+Iptables 1.8.4			OpenSSL 1.1.1d			XSecureLock 1.7.0
+ITSTool 2.0.6			ORC 0.4.31			XSet 1.2.4
+Json-C 0.13.1			OS-Prober 20170308-GIT		XSetRoot 1.1.2
+JSON-GLib 1.4.4			P11-Kit 0.23.20			XSS-Lock 0.3.0
+KBD 2.2.0			Pango 1.44.7			XTerm 353
+Kerberos 1.18			PangoMM 2.42.0			XTrans 1.4.0
+Kmod 27				Parted 3.3			Xvidcore 1.3.7
+Lame 3.100			PasswdQC 1.4.0			XVInfo 1.1.4
+LCMS 2.9			Patch 2.7.6			XWD 1.0.7
+Lensfun 0.3.95			PCIUtils 3.6.4			XZ-Utils 5.2.5
+Less 551			PCRE 8.43			Zenity 3.32.0
+LibAIO 0.3.112			PCSC-Lite 1.8.26		ZLib 1.2.11
+LibArchive 3.4.2		Perl 5.30.1			ZSH 5.8
+LibAssuan 2.5.3			Picom 8.0			Zstd 1.4.4
+LibAtomic_Ops 7.6.10		Pinentry 1.1.0
+LibBSD 0.10.0			Pinfo 0.6.10
+</pre>
+</tt>
+<h3> About GoboLinux </h3>
+<p>
+GoboLinux is a Linux distribution created in 2002 which implements an
+innovative approach in terms of system administration. It defines a
+new directory hierarchy which allows the coherent management of the
+installed base of programs from a system. This is done exclusively
+through the filesystem layout, without relying on databases or
+package managers.
+</p>
+<p>
+In GoboLinux, each program resides in its own directory, such as
+/Programs/LibX11/1.6.9 and /Programs/GCC/9.2.0. Each file category
+(executables, libraries, headers) can also be accessed through unified
+symlink views, such as /System/Index/lib and
+/System/Index/include. These views match the legacy directories (/bin,
+/usr/include, /usr/local/share, and so on), achieving total Unix
+compatibility while keeping program directories completely
+self-contained.
+</p>
+
+<p>
+<a href="http://www.gobolinux.org">http://www.gobolinux.org</a>
+</p>

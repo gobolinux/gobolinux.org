@@ -2050,4 +2050,30 @@ that's fully integrated with the Compile build tool. We're looking forward to he
 ]===],
 },
 
+-- 116
+{
+  title = [[Announcing GoboLinux 017!]],
+  date  = [[2020-05-25 00:00]],
+  body  = [===[
+<p>
+We are super happy to announce <a href="?page=gobolinux017">GoboLinux
+017</a>! It is a complete update of the system, bringing the distribution up
+to date for new machines.
+</p>
+
+<p>
+This release introduces a simplified model for recipe management and
+contribution that's fully integrated with the Compile build tool, and also
+features updates on hardware and software sides of things.
+</p>
+
+<p>
+Read more about <a href="?page=gobolinux017">what's new in GoboLinux 017</a>
+and <a href="https://github.com/gobolinux/LiveCD/releases/tag/017">download the Live ISO image</a> to
+give it a spin!
+</p>
+
+]===],
+},
+
 }
