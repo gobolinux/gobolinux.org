@@ -1,0 +1,181 @@
+<h1>Introducing GoboLinux 017</h1>
+
+<h2>An exercise in software design freedom</h2>
+
+<p>GoboLinux was created out of a desire to try new approaches in the
+Linux distribution design space: the <a href="?page=at_a_glance">innovative
+filesystem organization</a> allows us to use a radically different 
+approach in package management — effectively doing away with
+the package manager.</p>
+
+<p>GoboLinux 017 continues this journey. One of the principles of software
+freedom is the ability to modify and customize. Software isn't truly free
+if you need to rely on third-parties to integrate it for you. As Linux
+distributions get more and more complicated, GoboLinux asks this question:
+can a Linux system still be built from scratch by a small team — and most
+importantly, customized in non-trivial ways — and remain understandable
+by a single person?</p>
+
+<p>The GoboLinux structure allows you to see how every building block of a
+Linux system is composed, and installs every package in a way for which they
+were never originally designed. The longevity of the GoboLinux project, 18
+years in the making, puts the promise of free and open source software to the
+test, and continues to deliver.</p>
+
+<hr/>
+
+<img class="home_icon right_icon" src="<<root>>/images/icon_recipes.svg">
+
+<h2>Simplified compilation recipe management</h2>
+
+<p>
+This release introduces a simplified model for recipe management and
+contribution that's fully integrated with the Compile build tool.
+</p>
+
+<p>The recipe tree is now a plain Git repository managed via GitHub
+cloned into your <tt>/Data/Compile/Recipes</tt> directory and used 
+by the GoboLinux Compile tool directly.</p>
+
+<p>Just like the Mac Homebrew project was inspired by GoboLinux in its
+inception, we now take a page back from Homebrew and move our recipe
+management model into becoming Git-centric, managed at <a href="https://github.com/gobolinux/Recipes">GitHub</a>.<p>
+
+<h3>Contributing is easier than ever</h3>
+
+<p>The existing <tt>ContributeRecipe</tt> tool, which used to package a
+recipe file and upload to the GoboLinux.org servers for review, now branches
+your local clone, commits your new recipe, and pushes it to your fork
+of the Recipes tree on GitHub.
+</p>
+
+<p>This should make it easier for the GoboLinux community to contribute
+recipes to the tree: we are looking forward to receiving your pull
+requests!</p>
+
+<hr/>
+
+<div class="screenshot">
+<a href="<<root>>/images/gobolinux017screenshot.png"><img class="screenshot social_thumbnail" src="<<root>>/images/gobolinux017screenshot.png"></a>
+</div>
+
+<br/><br/>
+
+<h2>An Awesome desktop</h2>
+
+<p>GoboLinux 017 continues to feature a minimalistic yet comfortable desktop
+based on the Awesome window manager. Awesome is well-known as an excellent
+tiling WM, but its Lua scripting capabilities makes it extremely customizable.
+In Gobo, we tuned it so it ships with a setup based on floating windows which
+should be familiar to all users, while keeping all the power features of
+Awesome at hand.</p>
+
+<h3>What's new</h3>
+
+<p>The desktop in 017 extends that of 016. We continue to include our custom
+widgets for Wi-Fi, audio (now using PulseAudio), battery status, laptop
+backlight, and we now bundle a new Bluetooth widget and screenshot functionality.</p>
+
+<p>And of course, there's a new procedurally-generated wallpaper, which you'll
+have to boot into the Live ISO to check out! ; )</p>
+
+<hr/>
+
+<img class="home_icon right_icon" src="<<root>>/images/icon_packages.svg">
+
+<h2>Hardware and software updates</h2>
+
+<p>
+This release also features updates on the hardware and software sides
+of things: kernel and driver updates ensure that more recent hardware
+are well-supported, and an overarching system update ensured a total
+revamp of the software dependencies, doing away with a bunch of legacy
+software.
+</p>
+
+<h3>Out with the old, in with the new</h3>
+
+<p>
+It's 2020, and this means Python 2 is no more! GoboLinux uses quite
+a bit of Python in its infrastructure, and we are happy to report that
+not only all of it was converted to Python 3, but Python 2 was entirely
+removed from the system. While we were on this cleaning spree, we also
+got rid of some other legacy packages:
+<p/>
+
+<ul>
+<li>GTK+ 2 is no longer included, only GTK+ 3 packages are shipped
+in the ISO
+</li><li>
+The graphical installer now uses Qt 5
+</li><li>
+On the terminal side, the latest NCurses is built only with
+wide-character support (libncursesw6.so) - the ASCII-only
+libncurses.so is no more.
+</li><li>
+Audio management now uses PulseAudio. Recent versions of PulseAudio
+are now quite stable and are able to provide a seamless user experience
+across multiple audio devices.
+</li>
+
+</ul>
+
+<p>
+Of course, users are free to compile and install any version of any
+library they wish, and have them coexist nicely in the system thanks to
+<a href="?page=runner">Runner</a>, GoboLinux's innovative lightweight
+filesystem virtualizer. But since GoboLinux has always been a forward-looking
+distro, we chose to provide a pristine base environment with only the
+latest libraries and no legacy cruft.
+</p>
+
+<hr/>
+
+<img class="home_icon right_icon" src="<<root>>/images/icon_downloads.svg">
+
+<h2>Sounds interesting?</h2>
+
+<p>
+<a href="?page=downloads">Download the disc image</a> and give it a spin! 
+Be sure to <a href="?page=documentation">read the documentation</a> and 
+<a href="http://wiki.gobolinux.org">check the wiki</a> for more information,
+and <a href="?page=community">join the community</a> to talk about it,
+get help and exchange ideas.</p>
+
+<hr/>
+
+<h2>This release is brought to you by</h2>
+
+<table width="100%">
+<tr>
+<td><center><img src="<<root>>/images/lucasvr.jpg" style="border-radius: 50%;" width="200px"></center></td>
+<td><center><img src="<<root>>/images/hisham.jpg"  style="border-radius: 50%;" width="200px"><center></td>
+</tr>
+<tr>
+<td><div class="screenshot_caption">
+<a href="http://lucasvr.gobolinux.org">Lucas Correia Villa Real</a><br/>
+GoboLinux 017 lead<br/>
+and head of engineering.<br/>
+Researcher, mountain biker,<br/>
+father of three and <a href="http://researcher.watson.ibm.com/researcher/view.php?person=br-lucasvr">Emmy Award</a> winner.
+
+</div></td>
+<td><div class="screenshot_caption">
+<a href="http://hisham.hm">Hisham Muhammad</a><br/>
+GoboLinux 017 cheerlead<br/>
+and head of design.<br/>
+Project co-founder.<br/>
+Creator of <a href="http://hisham.hm/htop">htop</a> and <a href="http://luarocks.org">LuaRocks</a>.
+</div></td>
+</tr>
+</table>
+
+<p>
+GoboLinux wouldn't be where it is today if it wasn't for all the <a href="?page=devteam">developers</a>
+that worked on it over the years and the many users who submitted package <a href="https://github.com/gobolinux/Recipes">recipes</a>.
+</p>
+
+<p>
+We'd also like to give special thanks to our community for their continued support
+over the years, and all feedback received on 017 pre-releases!
+</p>
