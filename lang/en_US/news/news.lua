@@ -2083,7 +2083,7 @@ give it a spin!
   date  = [[2021-01-06 00:00]],
   body  = [===[
 <p>
-We are happy to announce a new <a href="https://gobolinux.orgdiscourse.group">GoboLinux
+We are happy to announce a new <a href="https://gobolinux.discourse.group">GoboLinux
 forum</a>, powered by Discourse! This will be a new venue for users and
 developers alike talk about Gobo and help each other out, replacing our
 previous channels such as the mailing list.
