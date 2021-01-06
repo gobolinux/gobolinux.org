@@ -2076,4 +2076,25 @@ give it a spin!
 ]===],
 },
 
+
+-- 117
+{
+  title = [[New Discourse forum for GoboLinux]],
+  date  = [[2021-01-06 00:00]],
+  body  = [===[
+<p>
+We are happy to announce a new <a href="https://gobolinux.orgdiscourse.group">GoboLinux
+forum</a>, powered by Discourse! This will be a new venue for users and
+developers alike talk about Gobo and help each other out, replacing our
+previous channels such as the mailing list.
+</p>
+
+<p>
+Thanks to <a href="https:?/www.discourse.org">Discourse</a> for providing
+forum hosting for FOSS projects!
+</p>
+
+]===],
+},
+
 }
