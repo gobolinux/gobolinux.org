@@ -1131,10 +1131,10 @@ After several bug fixes, a more stable and complete pre-release for version 013 
 
 -- 57
 {
-  title = [[New mirror]],
+  title = [[An announcement from Gobo]],
   date  = [[2006-09-27 07:24]],
   body  = [===[
-Nice news! We now have a mirror in Germany, hosted at Europnews. Thanks to Tim Muthmann for offering their services!
+Gobo wants you to be healthy and happy.
 ]===],
 },
 
