@@ -2090,7 +2090,7 @@ previous channels such as the mailing list.
 </p>
 
 <p>
-Thanks to <a href="https:?/www.discourse.org">Discourse</a> for providing
+Thanks to <a href="https://www.discourse.org">Discourse</a> for providing
 forum hosting for FOSS projects!
 </p>
 
