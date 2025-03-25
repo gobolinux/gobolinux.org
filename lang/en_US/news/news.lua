@@ -1341,7 +1341,7 @@ GoboLinux tools since 013, so we hope to provide a better experience for you all
 The wallpaper for the LiveCD desktop has endured many releases and served very well through all these years giving 
 that extra spice of quirkyness to this already unconventional distro, but as all things come to an end, it is time to retire 
 it. What will take the place of the mysterious penguin feet? It's up to you to come up with. Yes, it's a wallpaper contest 
--- send in your proposals to <a href="mailto:gobo AT gobolinux.org">gobo AT gobolinux.org</a> and we'll post 
+-- send in your proposals to gobo AT gobolinux.org and we'll post 
 them online. Submission is open for two weeks (until May 19th). 
 </p>
 
