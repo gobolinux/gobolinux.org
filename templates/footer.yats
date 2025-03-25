@@ -4,7 +4,6 @@
 <div class="content3 fineprint"> 
    <p>
       © 2002-<span id="now"><<current_year>></span> GoboLinux.org.<br/>
-      <a href="mailto:gobo AT gobolinux DOT org">gobo AT gobolinux DOT org</a>
 
       <!-- Mastodon verified -->
       <a rel="me" href="https://mastodon.online/@gobolinux"></a>
