@@ -3,24 +3,27 @@
 <img class="home_icon right_icon" src="<<root>>/images/icon_community.svg">
 
 <p>
-These are the main focal points of the GoboLinux community:
+    These are the main focal points of the GoboLinux community:
 </p>
 
-<p>
-<font color="#cc33ff"><b>]</b></font>
-The <a href="irc://irc.libera.chat/gobolinux">#gobolinux</a> IRC channel, at irc.libera.chat
-<br>
-<font color="#33ccff"><b>]</b></font>
-The <a href="https://github.com/orgs/gobolinux/discussions">GoboLinux forum</a>, where users and developers alike
-talk about Gobo and help each other out;
-<br>
-<font color="#33ffcc"><b>]</b></font>
-The <a href="http://github.com/gobolinux/Documentation/wiki">GoboLinux
-wiki</a>, our collaborative documentation site,
-where everyone is welcome to contribute;
-<br>
-</p>
+<div class="focalpoints">
+    <p>
+        <font color="#cc33ff"><b>]</b></font>
+        The <a href="irc://irc.libera.chat/gobolinux">#Gobolinux IRC channel</a>, at irc.libera.chat
+    </p>
+    <p>
+        <font color="#33ccff"><b>]</b></font>
+        The <a href="https://github.com/orgs/gobolinux/discussions">GoboLinux forum</a>, where users and developers alike
+        talk about Gobo and help each other out;
+    </p>
+    <p>
+        <font color="#33ffcc"><b>]</b></font>
+        The <a href="https://wiki.gobolinux.org/"> GoboLinux
+            wiki</a>, our collaborative documentation site,
+        where everyone is welcome to contribute;
+    </p>
+</div>
 
 <p>
-More at our <a href="?page=community">Community</a> page.
+    More at our <a href="?page=community">Community</a> page.
 </p>
