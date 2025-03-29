@@ -1,9 +1,7 @@
 
-<div class="spacer"></div>
-
 <div class="content3 fineprint"> 
    <p>
-      © 2002-<span id="now"><<current_year>></span> GoboLinux.org.<br/>
+      © 2002–<span id="now"><<current_year>></span> GoboLinux.org<br/>
 
       <!-- Mastodon verified -->
       <a rel="me" href="https://mastodon.online/@gobolinux"></a>
