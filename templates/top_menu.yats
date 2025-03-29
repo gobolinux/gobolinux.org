@@ -1,10 +1,24 @@
 <div id="top_menu">
-<ul class="top_menu">
-<li class="top_menu mascot"><a href="<<root>>/index.html#content">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</a></li>
-<li class="top_menu"><a href="<<root>>/downloads.html">Downloads</a></li>
-<li class="top_menu"><a href="<<root>>/documentation.html">Docs</a></li>
-<li class="top_menu"><a href="<<root>>/community.html">Community</a></li>
-<li class="top_menu"><a href="<<root>>/recipes.html">Recipes</a></li>
-<li class="top_menu"><a href="<<root>>/screenshots.html">Screenshots</a></li>
-</ul>
+    <div class="top_menu_wrap">
+        <a class="top_menu mascot" href="<<root>>/index.html">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</a>
+        <ul class="top_menu">
+            <li class="top_menu"><a href="<<root>>/documentation.html">Documentation</a></li>
+            <li class="top_menu"><a href="<<root>>/community.html">Community</a></li>
+            <li class="top_menu"><a href="<<root>>/recipes.html">Recipes</a></li>
+            <li class="top_menu"><a href="<<root>>/screenshots.html">Screenshots</a></li>
+            <li class="top_menu"><a href="<<root>>/downloads.html">Downloads</a></li>
+        </ul>
+    </div>
+    <script>
+        // Get all the links in the navigation
+        const links = document.querySelectorAll('.top_menu a');
+        // Loop through each link
+        links.forEach(link => {
+            // Check if the href of the link matches the current URL
+            if (link.href === window.location.href) {
+                // If it matches, add the 'active' class
+                link.classList.add('active');
+            }
+        });
+    </script>
 </div>
