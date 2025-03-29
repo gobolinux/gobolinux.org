@@ -1,9 +1,10 @@
 <p>
-GoboLinux is an alternative <b>Linux distribution</b> which<br/>
-redefines the entire filesystem hierarchy.
+    <b>GoboLinux</b> is an experimental Linux distribution that<br>
+    <b>Redefines</b> the entire filesystem hierarchy.
 </p>
 <p>
-In GoboLinux you don't need a package database because</br>
-the <b>filesystem is the database</b>: each program resides in its own directory,<br/>
-such as /Programs/LibX11/1.6.9 and /Programs/GCC/9.2.0. Like it? <a href="at_a_glance.html">Learn more...</a>
+    In GoboLinux you don't need a package database, because<br>
+    the <b>Filesystem is the database</b>: each program resides in its own directory.<br>
+    Such as <b>/Programs/Nano/8.3</b> or <b>/Programs/GCC/14.2.0</b>. Like it? <a href="at_a_glance.html">Learn more...</a>
 </p>
+<p class="blink"><a href="#content">Read news...</a></p>
