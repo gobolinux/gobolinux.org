@@ -2,5 +2,5 @@
 
 <<!body>>
 
-<p class="Date"><a class="permalink" href="<<lang>>/news/<<permalink>>">permalink</a> &bullet; <<date>></p>
+<p class="Date"><a class="permalink" href="<<lang>>/news/<<permalink>>">Permalink</a> &bullet; <<date>></p>
 
