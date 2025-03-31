@@ -2097,4 +2097,35 @@ forum hosting for FOSS projects!
 ]===],
 },
 
+
+--118
+{
+  title = [[Announcing GoboLinux 017.01 - Passing the Torch 🔥]],
+  date  = [[2025/03/31 23:59 UTC]],
+  body  = [===[
+<p>Just in time for April Fools' Day (but no joke here!), GoboLinux is thrilled to announce the
+release of <b>v017.01</b>! After a brief five-year intermission, this bug-fix update tackles some critical
+issues that popped up since our last ISO release.</p>
+<p>Along with this release, Hisham Muhammad, founder and steward of GoboLinux for the past
+ 25 years, is officially stepping down! The project now continues under the stewardship of
+ Philip Pok (<a href="https://github.com/nuc1eon">@nuc1eon</a>).</p>
+<p>Hisham's vision and dedication have shaped GoboLinux into a novel experimental distribution,
+pushing past the <a href="?page=doc/articles/clueless">perceived boundaries</a>
+of traditional Unix concepts. We thank him for his remarkable contribution to the Linux community.
+As Philip takes over, the project is set to continue evolving in new and exciting directions!</p>
+<p>Special thanks goes out to Lucas Correia Villa Real (aka paranoidd) who had been maintaining
+ GoboLinux unwaiveringly along with Hisham up until June 2021.</p> 
+<p><b>Stay tuned for future updates as the project transitions to its next phase!</b></p>
+<p>We extend our gratitude towards our contributors, who shaped this release: Sage I. Hendricks (<a
+            href="https://github.com/sage-etcher">@sage-etcher</a>), Anto (<a href="https://github.com/xplshn">
+            @xplshn</a>), Rune Morling (<a href="https://github.com/ermo">@ermo</a>), <a
+            href="https://github.com/thebitstick">@TheBitStick</a>, Jean-Michel T.Dydak (<a
+                    href="https://framagit.org/yann-kaelig">@yann-kaelig</a>), Samuel Dionne-Riel (<a
+            href="https://github.com/samueldr">@samueldr</a>)... plus countless others!</p>
+<p style="padding-top: .4rem;">For changes in detail please consult our <a href="?page=release_notes_017.01">release notes</a>.
+Grab your ISO <a href="?page=downloads">here</a>.</p>
+<p>Happy Gobo-ing!!</p>
+]===],
+},
+
 }

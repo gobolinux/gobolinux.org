@@ -1,0 +1,148 @@
+<h1>GoboLinux 017.01 - Release Notes</h1>
+
+<h2>Introduction</h2>
+
+<p>
+    We are pleased to present release 017.01 of GoboLinux, the Linux distribution
+    featuring a <a href="?page=at_a_glance">rethought file system structure</a>.
+    GoboLinux was created out of a desire to try new approaches in the Linux
+    distribution design space. GoboLinux 017 <a href="?page=gobolinux017">continues this journey</a>, with a focus
+    on the exploration of novel ideas aiming to make the system simpler yet
+    functional.</a>.
+</p>
+
+<p>
+    GoboLinux 017.01 is an eagerly awaited bug-fix update that addresses several critical issues since our initial
+    017 ISO release.
+</p>
+
+<p>
+    Along with this release, Hisham Muhammad, founder and steward of GoboLinux for the past 25 years,
+    is officially stepping down! The project now continues under the stewardship of Philip Pok
+    (<a href="https://github.com/nuc1eon">@nuc1eon</a>).
+</p>
+
+<h2>Availability</h2>
+
+<p>
+    GoboLinux is available as an <a href="?page=downloads">ISO download</a> which you can
+    download from this site.
+</p>
+
+<h2>Overview of this release</h2>
+
+<h3>Main changes:</h3>
+<ul>
+    <li>
+        Resolved the following documented <a
+            href="https://wiki.gobolinux.org/v017/Overview/Installing-Gobolinux/GoboLinux-Known-Issues-and-Fixes/">Known
+            issues and fixes</a> since our 017 ISO release:
+        <ul>
+            <li>Include <tt>UnionFS-Fuse</tt> to workaround limitations with the sandbox in the live environment</li>
+            <li>Loopback network interface needs to be brought up at boot</li>
+            <li>Update the search URL used by the <tt>Scripts</tt> package</li>
+            <li><tt>Ncurses</tt> had been replaced by <tt>NcursesW</tt>, but some packages&#39; metadata still held
+                references to the former</li>
+            <li>Update expired SSL certificates (thanks to Jean-Michel T.Dydak <a
+                    href="https://framagit.org/yann-kaelig">@yann-kaelig</a>)</li>
+            <li>Fix wrong versioning of SQLite</li>
+        </ul>
+    </li>
+    <li>Fixed a missing symlink (<tt>/usr/libexec</tt> → <tt>/System/Index/libexec</tt>)</li>
+    <li>Fixed some startup <tt>Tasks</tt> that where not marked as executables (<tt>Avahi</tt>,
+        <tt>DHCPNetworkInterface</tt>)
+    </li>
+    <li>Installer: Fix ClockMode (GMT/localtime) selection and default to GMT</li>
+    <li>Installer: Add support for eMMC storage devices (thanks to <a
+            href="https://github.com/thebitstick">@TheBitStick</a>)</li>
+    <li>Freshen has been ported over to Python 3 (thanks to Sage I. Hendricks <a
+            href="https://github.com/sage-etcher">@sage-etcher</a>)
+        and been therefore re-added to Gobolinux (experimental state)
+    </li>
+    <li>Updated some core packages, bumped kernel to v6.12.16 (special thanks to Samuel Dionne-Riel <a
+            href="https://github.com/samueldr">@samueldr</a> for the updated GoboHide patch)</li>
+    <li>Updated major GoboLinux tools with lots of fixes (details not listed here)</li>
+    <li>Switched kernel, initramfs, firmware and squashfs to zstd compression</li>
+    <li>Updated Firefox default profile</li>
+    <li>Switch on numlock during boot</li>
+</ul>
+
+<h3>Updated Packages:</h3>
+<ul>
+    <li><tt>Automake 1.16.1 → 1.16.4</tt></li>
+    <li><tt>Dracut 20200220-GIT → 103</tt></li>
+    <li><tt>E2FSProgs 1.45.5 → 1.47.1</tt> (fixes initramfs on newer SSDs)</li>
+    <li><tt>Firefox 76.0.1 → 136.0</tt></li>
+    <li><tt>Fuse 3.9.0 → 3.16.2</tt></li>
+    <li><tt>GCC 9.2.0 → 14.2.0</tt></li>
+    <li><tt>GRUB</tt> &amp; <tt>GRUB-EFI 2.04 → 2.12</tt></li>
+    <li><tt>Kmod 27 → 33</tt></li>
+    <li><tt>LibArchive 3.4.2 → 3.7.6</tt> (runtime dep <tt>E2FSProgs</tt>)</li>
+    <li><tt>Linux 5.6.0 → 6.12.16</tt></li>
+    <li><tt>Linux-Firmware 20200505-GIT → 20250309-GIT</tt></li>
+    <li><tt>SQlite 3.8.2 → 3.36.0</tt></li>
+    <li><tt>SquashFS-Tools 4.4 → 4.6.1</tt></li>
+    <li><tt>Util-Linux 2.35.1 → 2.40.2</tt> (runtime dep of <tt>E2FSProgs</tt>)</li>
+</ul>
+
+<h3>Added packages:</h3>
+<ul>
+    <li><tt>CA-Certificates 2023011</tt></li>
+    <li><tt>Cpio 2.15</tt> (runtime dep of <tt>Dracut</tt>)</li>
+    <li><tt>Fuse 2.9.9</tt></li>
+    <li><tt>NumlockX 1.2</tt></li>
+    <li><tt>Tree 2.1.1</tt></li>
+    <li><tt>UnionFS-Fuse 2.1</tt></li>
+</ul>
+
+<h3>Gobolinux in-house tools:</h3>
+<ul>
+    <li>
+        <h4>Updated:</h4>
+        <ul>
+            <li><tt>BootScripts 017 → 017.01</tt></li>
+            <li><tt>Compile GIT</tt></li>
+            <li><tt>ConfigTools 017 → 017.01</tt></li>
+            <li><tt>Dit 0.7 → 0.9</tt></li>
+            <li><tt>EnhancedSkel 017 → 017.01</tt></li>
+            <li><tt>GoboNet 0.10 → 0.12</tt></li>
+            <li><tt>Scripts GIT</tt></li>
+        </ul>
+    </li>
+    <li>
+        <h4>Added:</h4>
+        <ul>
+            <li><tt>BuildLiveCD 017.01</tt></li>
+            <li><tt>Freshen GIT</tt></li>
+        </ul>
+    </li>
+</ul>
+
+<h2>Known outstanding issues</h2>
+<ul>
+    <li>In a VM environment, installing GoboLinux' bootloader onto a GPT/UEFI setup fails. Please set up an MBR
+        partition table.
+        On a bare metal system GPT partitions work fine in our testing (if in doubt, configure your bootloader
+        manually).</li>
+    <li>Copy &amp; Paste between VM and and host system does not work</li>
+    <li>Our documentation has accumultaed some cruft over the years and is in the process of being updated.
+        Contributions welcome!:-)</li>
+</ul>
+<p>Any help solving these issues for our next release is appreciated!</p>
+
+<h2>Expectations</h2>
+<p>
+    As an experimental distribution, you might run into some bugs along the way. We encourage you to tackle these
+    challenges on your own or with the support of our friendly community. While we can't promise everything will be
+    handed to you, your discoveries and solutions are invaluable to us—please share them!
+<p>
+    GoboLinux thrives on the
+    passion and contributions of its users, and together, we can make it even better.
+</p>
+</p>
+
+<h2>Outlook</h2>
+<p>
+    Stay tuned for another point release this year, this time we will focus on updating our base packages - and
+    hopefully squash more bugs, too!
+</p>
