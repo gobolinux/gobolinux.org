@@ -2107,7 +2107,7 @@ forum hosting for FOSS projects!
 release of <b>v017.01</b>! After a brief five-year intermission, this bug-fix update tackles some critical
 issues that popped up since our last ISO release.</p>
 <p>Along with this release, Hisham Muhammad, founder and steward of GoboLinux for the past
- 25 years, is officially stepping down! The project now continues under the stewardship of (<a href="https://github.com/nuc1eon">@fyrak1s</a>).</p>
+ 25 years, is officially stepping down! The project now continues under the stewardship of <a href="https://github.com/fyrak1s">@fyrak1s</a>.</p>
 <p>Hisham's vision and dedication have shaped GoboLinux into a novel experimental distribution,
 pushing past the <a href="?page=doc/articles/clueless">perceived boundaries</a>
 of traditional Unix concepts. We thank him for his remarkable contribution to the Linux community.
