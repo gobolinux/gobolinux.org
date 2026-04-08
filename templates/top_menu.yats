@@ -1,4 +1,12 @@
 <div id="top_menu">
+    <div class="banner_wrap">
+        <a class="banner" href="https://reclaimthenet.org/" target="_blank">
+            <div class="reclaimthenet">
+                Let's keep the Internet free:
+                <img style="height: 1.6rem;" src="https://reclaimthenet.org/wp-content/uploads/2026/01/apWThHm7W0xe-300x106.png" alt="">
+            </div>
+        </a>
+    </div>
     <div class="top_menu_wrap">
         <a class="top_menu mascot" href="<<root>>/index.html">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</a>
         <ul class="top_menu">
@@ -20,5 +28,34 @@
                 link.classList.add('active');
             }
         });
+        $('.banner_wrap').width($('.banner').width());
     </script>
+    <style>
+        .reclaimthenet {
+            display: flex;
+            gap: .7rem;
+            align-items: center;
+            font-size: .9rem;
+            background-color: black;
+            color: white;
+            text-align: center;"
+        }
+        .banner_wrap {
+            background-color: black;
+            height: 1.7rem;
+        }
+        .banner {
+            display: inline-block;
+            animation: marquee 20s linear infinite;
+            width: 100%;
+        }
+        @keyframes marquee {
+            from {
+                transform: translateX(100%);
+            }
+            to {
+                transform: translateX(-30px);
+            }
+        }
+    </style>
 </div>
